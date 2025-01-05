@@ -1,5 +1,5 @@
-import logo from "../assets/bg-login.png"; // Background image
-import biolabLogo from "../assets/logo.png"; // BioLab logo
+import logo from "../../assets/bg-login.png"; // Background image
+import biolabLogo from "../../assets/logo.png"; // BioLab logo
 
 const Login = () => {
   return (
