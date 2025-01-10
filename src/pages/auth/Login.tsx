@@ -1,7 +1,9 @@
-import logo from "../../assets/bg-login.png"; // Background image
-import biolabLogo from "../../assets/logo.png"; // BioLab logo
+import { useNavigate } from "react-router-dom";
+import logo from "../../assets/bg-login.png"; 
+import biolabLogo from "../../assets/logo.png"; 
 
 const Login = () => {
+  const nav = useNavigate();
   return (
     <div className="flex h-screen w-screen bg-white">
     
@@ -49,6 +51,7 @@ const Login = () => {
             <a
               href="#"
               className="text-gray-300 hover:underline hover:text-green-500"
+              onClick={() => nav("/register")}
             >
               Đăng kí ngay
             </a>

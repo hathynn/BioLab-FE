@@ -7,7 +7,6 @@ import { USER_ROUTES } from "../constants/routes";
 import RecommendationProduct from "../components/recommendation-product";
 import HomePage from "../pages/home";
 
-
 export const router = createBrowserRouter([
   {
     path: "test",
@@ -51,14 +50,12 @@ export const router = createBrowserRouter([
     element: <Login />,
   },
   {
-
-    path: SIGNUP,
+    path: USER_ROUTES.REGISTER,
     element: <SignUp />,
   },
 
-        {
+  {
     path: USER_ROUTES.HOME,
     element: <HomePage />,
   },
-
 ]);
