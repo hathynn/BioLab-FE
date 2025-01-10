@@ -3,6 +3,7 @@ import "./index.scss";
 import { RiVipCrown2Fill } from "react-icons/ri";
 import { FaArrowRight } from "react-icons/fa";
 import RecommendationProduct from "../../components/recommendation-product";
+import Header from "../../components/header";
 
 function HomePage() {
   const data = [
@@ -50,6 +51,7 @@ function HomePage() {
   return (
     <>
       <div className="homepage">
+        <Header/>
         <div className="flex justify-center items-center gap-4">
           <div className="w-[70%]">
             <Carousel arrows infinite={false} dots={false}>
