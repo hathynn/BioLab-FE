@@ -1,5 +1,6 @@
+import { Radio } from "antd";
 import { FaStar } from "react-icons/fa";
-
+import "./index.scss";
 interface RecommendationProductProps {
   title?: string;
   name: string;
@@ -21,6 +22,10 @@ function RecommendationProduct({
   rate,
   discount,
 }: RecommendationProductProps) {
+  const options = [
+    { label: "tuýt", value: "a" },
+    { label: "chai", value: "b" },
+  ];
   return (
     <div className="bg-[#F0F5F2] w-[260px] border border-[#D4DBE3] rounded-[30px] flex-col justify-center items-center">
       <div className="relative">
@@ -32,13 +37,16 @@ function RecommendationProduct({
         )}
       </div>
       <div className="bg-white rounded-[30px] p-5">
-        <div className="inline-flex mb-3">
-          <button className="bg-[#EFEFEF] rounded-md text-[14px] font-medium w-[56px] py-1 text-[#6F6F6F] hover:bg-gray-400 active:bg-white active:text-black">
-            tuýt
-          </button>
-          <button className="bg-[#EFEFEF] rounded-md text-[14px] font-medium w-[56px] text-[#6F6F6F]">
-            vỉ
-          </button>
+        <div className="product-quantity">
+          <Radio.Group
+            options={options}
+            // onChange={onChange4}
+            // value={value4}
+            optionType="button"
+            buttonStyle="solid"
+            size="small"
+            defaultValue="a"
+          />
         </div>
 
         <div className="flex justify-between text-[13px] text-[#B5BCC8] pb-4">
