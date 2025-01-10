@@ -1,0 +1,19 @@
+.homepage {
+    padding: 40px;
+  .ant-carousel {
+    .slick-arrow {
+      padding: 24px;
+      border-radius: 99999px;
+      color: white;
+      background-color: #25252575;
+    }
+    .slick-next::after {
+      margin-top: 15px;
+      margin-left: 13px;
+    }
+    .slick-prev::after {
+      margin-top: 15px;
+      margin-left: 15px;
+    }
+  }
+}
