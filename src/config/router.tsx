@@ -1,8 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../pages/auth/Login";
+
+import SignUp from "../pages/auth/SignUp";
+
 import { USER_ROUTES } from "../constants/routes";
 import RecommendationProduct from "../components/recommendation-product";
 import HomePage from "../pages/home";
+
 
 export const router = createBrowserRouter([
   {
@@ -47,7 +51,14 @@ export const router = createBrowserRouter([
     element: <Login />,
   },
   {
+
+    path: SIGNUP,
+    element: <SignUp />,
+  },
+
+        {
     path: USER_ROUTES.HOME,
     element: <HomePage />,
   },
+
 ]);
