@@ -1,0 +1,16 @@
+.type-media {
+  padding-top: 20px;
+  padding-bottom: 60px;
+  .ant-tag-checkable-checked,
+  .ant-tag-checkable {
+    border: 1px solid white;
+    background-color: transparent;
+    border-radius: 9999px;
+    color: white;
+
+    padding: 2px 10px;
+  }
+  .ant-tag-checkable-checked {
+    color: black;
+  }
+}

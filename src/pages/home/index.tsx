@@ -7,6 +7,7 @@ import Header from "../../components/header";
 import Footer from "../../components/footer";
 import { IoIosAddCircle } from "react-icons/io";
 import { AiFillLike } from "react-icons/ai";
+import MediaInfoCard from "../../components/mediaInfoCard";
 
 function HomePage() {
   const data = [
@@ -190,7 +191,7 @@ function HomePage() {
                     className="flex flex-col justify-center items-center gap-2 w-1/5 max-h-[300px]"
                     key={index}
                   >
-                    <img src={p.brand_img} className="min-h-16" />
+                    <img src={p.brand_img} className="min-h-16 object-cover" />
                     <img src={p.product_img} />
 
                     <div className="bg-[#FF5500] text-white text-[16px] text-center p-3 rounded-full w-3/5 ">
@@ -211,6 +212,7 @@ function HomePage() {
                   Xem tất cả <FaArrowRight />
                 </button>
               </div>
+              <MediaInfoCard />
             </div>
             <div className="bg-white h-full w-full rounded-3xl">
               <div className="p-10">
