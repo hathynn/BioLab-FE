@@ -23,11 +23,11 @@ function RecommendationProduct({
   discount,
 }: RecommendationProductProps) {
   const options = [
-    { label: "tuýt", value: "a" },
-    { label: "chai", value: "b" },
+    { label: "Chai", value: "a" },
+    { label: "Vỉ", value: "b" },
   ];
   return (
-    <div className="bg-[#F0F5F2] w-[270px] border border-[#D4DBE3] rounded-[30px] flex-col justify-center items-center">
+    <div className="bg-[#F0F5F2] w-[270px]  border border-[#D4DBE3] rounded-[30px] flex-col justify-center items-center">
       <div className="relative">
         <img src={img} className="mx-auto my-2 w-[80%] h-full object-cover" />
         {discount && (
@@ -36,7 +36,7 @@ function RecommendationProduct({
           </div>
         )}
       </div>
-      <div className="bg-white rounded-[30px] p-5">
+      <div className="bg-white rounded-[30px] min-h-[320px] p-5 flex flex-col justify-between">
         <div className="product-quantity">
           <Radio.Group
             options={options}
@@ -67,12 +67,16 @@ function RecommendationProduct({
           <p className="font-bold">
             1.295.000đ <span className="font-semibold">/ Hộp</span>
           </p>
-          <p className="line-through text-[#B5BCC8]">1.500.000đ</p>
+          {discount && (
+            <p className="line-through text-[#B5BCC8]">1.500.000đ</p>
+          )}
         </div>
 
-        <button className="w-full border border-[1.5px] border-[#02321C] rounded-full max-h-max p-2 font-bold text-sm">
-          + Thêm vào giỏ hàng
-        </button>
+        <div className="">
+          <button className="w-full border border-[1.5px] border-[#02321C] rounded-full max-h-max p-2 font-bold text-sm">
+            + Thêm vào giỏ hàng
+          </button>
+        </div>
       </div>
     </div>
   );
