@@ -4,6 +4,7 @@ import { RiVipCrown2Fill } from "react-icons/ri";
 import { FaArrowRight } from "react-icons/fa";
 import RecommendationProduct from "../../components/recommendation-product";
 import Header from "../../components/header";
+import Footer from "../../components/footer";
 
 function HomePage() {
   const data = [
@@ -126,6 +127,7 @@ function HomePage() {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 }

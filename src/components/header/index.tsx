@@ -27,7 +27,7 @@ function Header() {
         {/* </div> */}
 
         <div className="flex items-center space-x-4">
-          <a href="#" className="flex items-center font-bold space-x-2" onClick={() => nav('/login')}>
+          <a href="#" className="flex items-center font-bold space-x-2 hover:text-white hover:bg-black w-18 py-3 px-4 rounded-full " onClick={() => nav('/login')}>
             <i aria-hidden="true">
               <AiOutlineUser className="text-xl" />
             </i>
@@ -35,7 +35,7 @@ function Header() {
           </a>
           <a
             href="#"
-            className="relative flex items-center bg-black text-white font-bold w-18 py-3 px-4 space-x-2 rounded-full"
+            className="relative flex items-center bg-gray-800 text-gray-100 hover:text-white hover:bg-black font-bold w-18 py-3 px-4 space-x-2 rounded-full"
           >
             <i aria-hidden="true">
               <AiOutlineShoppingCart className="text-xl" />
