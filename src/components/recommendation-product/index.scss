@@ -1,11 +1,19 @@
 .product-quantity {
   padding-bottom: 10px;
   .ant-radio-button {
-    background-color: #efefef;
+  }
 
- 
+  .ant-radio-group-solid {
+    .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+      background-color: white;
+      border-color: black;
+      border-radius: 8px;
+      color: black;
+    }
   }
   .ant-radio-button-wrapper {
+    min-width: 60px;
+    text-align: center;
     background-color: #efefef;
   }
 }
