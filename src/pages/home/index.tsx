@@ -53,7 +53,7 @@ function HomePage() {
     <>
       <div className="homepage">
         <Header/>
-        <div className="flex justify-center items-center gap-4">
+        <div className="container  flex justify-center items-center gap-4">
           <div className="w-[70%]">
             <Carousel arrows infinite={false} dots={false}>
               <img
