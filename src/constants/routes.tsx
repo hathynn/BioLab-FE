@@ -6,3 +6,7 @@ export enum USER_ROUTES {
   HOME = "home",
 }
 
+export enum PRODUCT_ROUTES {
+  DETAIL = "chi-tiet-san-pham"
+}
+
