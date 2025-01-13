@@ -1,10 +1,12 @@
 import { Carousel } from "antd";
 import "./index.scss";
 import { RiVipCrown2Fill } from "react-icons/ri";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaHeart } from "react-icons/fa";
 import RecommendationProduct from "../../components/recommendation-product";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import { IoIosAddCircle } from "react-icons/io";
+import { AiFillLike } from "react-icons/ai";
 
 function HomePage() {
   const data = [
@@ -47,13 +49,61 @@ function HomePage() {
       rate: 4.5,
       discount: 20,
     },
+    {
+      title: "Mỹ phẩm",
+      name: "Sữa rửa mặt Reihaku Hatomugi Acne Care and Facial Washing ngừa mụn, dưỡng ẩm và làm sáng da (130g)",
+      img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/b.png?alt=media&token=a27a383e-b7b1-4789-9e4f-7584ba22a888",
+      note: "Chai 140ml",
+      price: 1295000,
+      quantity: ["60 viên"],
+      rate: 4.5,
+      discount: 20,
+    },
+  ];
+
+  const likes = [
+    {
+      brand_img:
+        "https://s3-alpha-sig.figma.com/img/634f/df55/45765bbe06dbe09617e3c3e8ad650061?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=gmbhqwoW94DARdl4kO7NbOetNXtzOuApLIoCIkPfxQEnVUFDDgVRQ28dg9x1T9CRtvZ1ezhKuPZdFMROcLGCI-EwzPqtv02hsyn3kTXbs5EgadXqVYvNNINyf~01D~Sj8vwuamcYSZPzBC0mYU1oToRrmW-lxu-cQx8mnGDdUHDMixRd8X0jh-mJmK9lfJ-ymhxEBAzHeC8aa7l6HRlcZLuIEf8YjSGxgje9iwlE9uuVgiTjyEXNKxYdwedK6M-KGVRoW1T0NiQPhs6ZYE~huZSOpPYsbSlCF3UPduthcJLDe5G8oD7TksuEe~nbioya2NGDRShR7aAKV~ITO~-vhw__",
+      product_img:
+        "https://s3-alpha-sig.figma.com/img/f62f/634e/f1421f8be0a43ecf7668cc6327e16094?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TKkr7m9rAHm6iWxjnWDYfj22Mc955OeOq6ElRbgDApDcj4R27~UnqBxwqKDxfXIKbDZMf47fSIFid1QMEcSnPmAyBZNjKZVkwLHwDPdHz5ntt9HOzF~bHlI8oOfZ2aG8Crl09PZhCFxv4EHJxVZNXXQ-8c2I8rZ80-p6eqN2z5AYn~Sn78TspiMyT6TaqQYGAh~T2fmxgx7lS4OXhUw3Lr~hhKNqjM-L4AdXqpwpEfk1mzJI5sDSus-Sg2Ey042JEEYqhYTpiJk8mJPwdIRb~R4pyMFYkMZmzGVOYdSPXqudVhRh-tJmNM3LkCTOUy9Dn5fgngg~Ouj7UlbWaWg30w__",
+      note: "Giảm 20%",
+    },
+    {
+      brand_img:
+        "https://s3-alpha-sig.figma.com/img/5f5a/bd67/cc87e31a9236a044f257ee1179ec7d9e?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=q8GhMTD-FrPVIKF0nBd0oK6pr1~RTSaboEvX59cVxDnLuMBruy97YV3N3-jfRkJGrjdMy0e7Tg~jo6nfXp-k20LwSRBJBvV5r9SIoiZ4WdjyW5MIwMhc9ltEmNsZDYEWpZlehkKkaIaXj15893W1ijmIKfCDuIwLXNrFaF18NYGq1Jgyk7kQ-n1OuYVS-MRmUzPu5885vPb50OHy7vAfeOXaBL-83XRwxaWLalLj-JwpwiJj39JKjH42xkzwdcozXpzeKGMsjYFs7wv1aKU6xKsDwKo18wZ4j5wGJgMWOeYtSb0S11nsEa0JQEHoW6vYuhyuYAFQ13izwA0ARNK11g__",
+      product_img:
+        "https://s3-alpha-sig.figma.com/img/e1f9/709b/6641515f6c0d2e4d58fa3a7685f82233?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pxyVPHm7ApIeGuQxUkbXAj2sc~xRcyoLn~oAqgBmQExOhCrTagCAIT6M4SFY-ZrRA14crvsVLdv6xBID0CV~aywEee-Yjg7X~1MsNbw7jbQLiBCB6Wzy1NW4o6IFs6Pw32np9S78WxLNtPiunS7yi5hUXIdfEqb1GBvbnvO4hV8g4n9IoK44YCS68YbjrQ~GDpWMy85Ijt70v7GAYuYSQccZFhSuPzj7gXxuB9sdfhEgmhCRgP2lAJYp9-2QVMjVPGRsP39ixo--duGcQquzybBQ5aPjEKrsUEU1Q1whBFk6j4~sDu6efF9zqY5ZD9P~2-tLB-Yny5UnQGg7WwPUGg__",
+      note: "Giảm 20%",
+    },
+    {
+      brand_img:
+        "https://s3-alpha-sig.figma.com/img/c7dc/9a8e/e9987e1f5bdd5c6fe77da4f0e5604ea7?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=lqvVKOq34pZP4s8l6mGXunisUB554qSFPbMupX6dtALtVBETxgIwnVFjRHOwuhPasPLr58nGCHDeN3h1bwgnbhsuOc-ryt~AjtzD6LJYG2DHkfhPZgf8iqgZCuOH31RgyYGyz1ay7hW2pUyT7Y3eC5FaWzamuxsRb9vTsSNZPds40tPgzOQKWHuJSFlaHfBtNQnUj4zoM2M~SmWLCdWmNyqQyPPlSGaqVKFozC3VvaVtXWT5lXHdwXpzVkK1iZ8ITlFK6sjyeYwaTHR3ygtyrfg4iPm5eXJuR2ZkqVn9XffqKnlQQ9UkPntDLwYmYZB1D8GS3o8XY5jarowUisIFIA__",
+      product_img:
+        "https://s3-alpha-sig.figma.com/img/c874/adca/ec9dc6fe21c739747283858dcded48bd?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=m6oIkFf0DXHWXvSLrfzC68ZagV2aAccPdfNDSOzpRVoWfDB-vR8aafSCCMElC3MQj8xefMAlayUz-XFFhAv39l3~wvaGwcMgff3KI9JmGgAqmLgQt1Lkjgx6E9MACeCedkSA0TtU0A00ytLWWNNsFezc77h8L-Nn43l53MJQjA3SvJAzAYFgakYV2vQtVtqY1uxKx93ju~51i1iVhnxq77ElDG0J~KhkziKImyKWX24ZtebNlr0Vs-~nIHc6-Z-vkibNr2cHPLIjXbaa4ZFAFcaba7fNjpTJyTVh71hWE1gcDjHJPnhK1JDbf45RabC-7lFJNlCHGXpgOEcrk9mllA__",
+      note: "Giảm 20%",
+    },
+    {
+      brand_img:
+        "https://s3-alpha-sig.figma.com/img/634f/df55/45765bbe06dbe09617e3c3e8ad650061?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=gmbhqwoW94DARdl4kO7NbOetNXtzOuApLIoCIkPfxQEnVUFDDgVRQ28dg9x1T9CRtvZ1ezhKuPZdFMROcLGCI-EwzPqtv02hsyn3kTXbs5EgadXqVYvNNINyf~01D~Sj8vwuamcYSZPzBC0mYU1oToRrmW-lxu-cQx8mnGDdUHDMixRd8X0jh-mJmK9lfJ-ymhxEBAzHeC8aa7l6HRlcZLuIEf8YjSGxgje9iwlE9uuVgiTjyEXNKxYdwedK6M-KGVRoW1T0NiQPhs6ZYE~huZSOpPYsbSlCF3UPduthcJLDe5G8oD7TksuEe~nbioya2NGDRShR7aAKV~ITO~-vhw__",
+      product_img:
+        "https://s3-alpha-sig.figma.com/img/f62f/634e/f1421f8be0a43ecf7668cc6327e16094?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=TKkr7m9rAHm6iWxjnWDYfj22Mc955OeOq6ElRbgDApDcj4R27~UnqBxwqKDxfXIKbDZMf47fSIFid1QMEcSnPmAyBZNjKZVkwLHwDPdHz5ntt9HOzF~bHlI8oOfZ2aG8Crl09PZhCFxv4EHJxVZNXXQ-8c2I8rZ80-p6eqN2z5AYn~Sn78TspiMyT6TaqQYGAh~T2fmxgx7lS4OXhUw3Lr~hhKNqjM-L4AdXqpwpEfk1mzJI5sDSus-Sg2Ey042JEEYqhYTpiJk8mJPwdIRb~R4pyMFYkMZmzGVOYdSPXqudVhRh-tJmNM3LkCTOUy9Dn5fgngg~Ouj7UlbWaWg30w__",
+      note: "Giảm 20%",
+    },
+    {
+      brand_img:
+        "https://s3-alpha-sig.figma.com/img/5f5a/bd67/cc87e31a9236a044f257ee1179ec7d9e?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=q8GhMTD-FrPVIKF0nBd0oK6pr1~RTSaboEvX59cVxDnLuMBruy97YV3N3-jfRkJGrjdMy0e7Tg~jo6nfXp-k20LwSRBJBvV5r9SIoiZ4WdjyW5MIwMhc9ltEmNsZDYEWpZlehkKkaIaXj15893W1ijmIKfCDuIwLXNrFaF18NYGq1Jgyk7kQ-n1OuYVS-MRmUzPu5885vPb50OHy7vAfeOXaBL-83XRwxaWLalLj-JwpwiJj39JKjH42xkzwdcozXpzeKGMsjYFs7wv1aKU6xKsDwKo18wZ4j5wGJgMWOeYtSb0S11nsEa0JQEHoW6vYuhyuYAFQ13izwA0ARNK11g__",
+      product_img:
+        "https://s3-alpha-sig.figma.com/img/e1f9/709b/6641515f6c0d2e4d58fa3a7685f82233?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=pxyVPHm7ApIeGuQxUkbXAj2sc~xRcyoLn~oAqgBmQExOhCrTagCAIT6M4SFY-ZrRA14crvsVLdv6xBID0CV~aywEee-Yjg7X~1MsNbw7jbQLiBCB6Wzy1NW4o6IFs6Pw32np9S78WxLNtPiunS7yi5hUXIdfEqb1GBvbnvO4hV8g4n9IoK44YCS68YbjrQ~GDpWMy85Ijt70v7GAYuYSQccZFhSuPzj7gXxuB9sdfhEgmhCRgP2lAJYp9-2QVMjVPGRsP39ixo--duGcQquzybBQ5aPjEKrsUEU1Q1whBFk6j4~sDu6efF9zqY5ZD9P~2-tLB-Yny5UnQGg7WwPUGg__",
+      note: "Giảm 20%",
+    },
   ];
 
   return (
     <>
       <div className="homepage">
-        <Header/>
-        <div className="container  flex justify-center items-center gap-4">
+        <Header />
+        <div className="container mx-auto  flex justify-center items-center gap-4">
           <div className="w-[70%]">
             <Carousel arrows infinite={false} dots={false}>
               <img
@@ -102,31 +152,97 @@ function HomePage() {
           />
         </div>
       </div>
-      <div className="bg-gradient-to-b from-[#B1F0B0] to-[#5BD07E] h-full w-full rounded-lg p-10">
-        <div className="flex justify-between items-center">
-          <h1 className="text-4xl text-white font-normal flex justify-center items-center gap-2">
-            <RiVipCrown2Fill /> Đề xuất của chuyên gia
-          </h1>
-          <button className="bg-[#373737] text-white text-[16px] rounded-full p-3 px-4 flex justify-between items-center gap-3">
-            Xem tất cả <FaArrowRight />
-          </button>
+      <div className="bg-gradient-to-b from-[#B1F0B0] to-[#5BD07E] h-full w-full rounded-3xl">
+        <div className="p-10">
+          <div className="flex justify-between items-center">
+            <h1 className="text-4xl text-white font-normal flex justify-center items-center gap-2">
+              <RiVipCrown2Fill /> Đề xuất của chuyên gia
+            </h1>
+            <button className="bg-[#373737] text-white text-[16px] rounded-full p-3 px-4 flex justify-between items-center gap-3">
+              Xem tất cả <FaArrowRight />
+            </button>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
+            {data.map((product, index) => (
+              <RecommendationProduct
+                key={index}
+                title={product.title}
+                name={product.name}
+                img={product.img}
+                note={product.note}
+                price={product.price}
+                quantity={product.quantity}
+                rate={product.rate}
+                discount={product.discount}
+              />
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-10">
-          {data.map((product, index) => (
-            <RecommendationProduct
-              key={index}
-              title={product.title}
-              name={product.name}
-              img={product.img}
-              note={product.note}
-              price={product.price}
-              quantity={product.quantity}
-              rate={product.rate}
-              discount={product.discount}
-            />
-          ))}
+        <div className="bg-white h-full w-full rounded-3xl">
+          <div className="p-10">
+            <h1 className="text-4xl text-[#565656] font-normal flex justify-start items-center gap-2">
+              <FaHeart /> Thương hiệu được yêu thích nhất
+            </h1>
+            <div className="p-10">
+              <div className="flex justify-center items-center">
+                {likes?.map((p, index) => (
+                  <div
+                    className="flex flex-col justify-center items-center gap-2 w-1/5 max-h-[300px]"
+                    key={index}
+                  >
+                    <img src={p.brand_img} className="min-h-16" />
+                    <img src={p.product_img} />
+
+                    <div className="bg-[#FF5500] text-white text-[16px] text-center p-3 rounded-full w-3/5 ">
+                      Giảm 20%
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="bg-gradient-to-l from-[#99DBF7] to-[#90CCFA] h-full w-full rounded-3xl">
+            <div className="p-10">
+              <div className="flex justify-start items-center gap-3">
+                <h1 className="text-4xl text-white font-normal flex justify-start items-center gap-2">
+                  <IoIosAddCircle /> Cẩm nang sức khỏe
+                </h1>
+                <button className="bg-white text-[#006DC0] text-[16px] font-semibold rounded-full p-3 px-4 flex justify-between items-center gap-3">
+                  Xem tất cả <FaArrowRight />
+                </button>
+              </div>
+            </div>
+            <div className="bg-white h-full w-full rounded-3xl">
+              <div className="p-10">
+                <div className="flex justify-between items-center">
+                  <h1 className="text-4xl text-[#FC853E] font-normal flex justify-start items-center gap-2">
+                    <AiFillLike /> Sản phẩm theo đối tượng
+                  </h1>
+                  <button className="bg-gradient-to-l from-[#FC853E] to-[#F05334] text-white text-[16px] font-semibold rounded-full p-3 px-4 flex justify-between items-center gap-3">
+                    Xem tất cả <FaArrowRight />
+                  </button>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
+                  {data.map((product, index) => (
+                    <RecommendationProduct
+                      key={index}
+                      title={product.title}
+                      name={product.name}
+                      img={product.img}
+                      note={product.note}
+                      price={product.price}
+                      quantity={product.quantity}
+                      rate={product.rate}
+                      discount={product.discount}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
       <Footer />
     </>
   );
