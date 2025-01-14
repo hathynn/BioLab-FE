@@ -1,3 +1,71 @@
 .detail-product {
-    padding: 30px;
+  padding: 30px;
+  .ant-carousel {
+    .slick-arrow {
+      padding: 24px;
+      border-radius: 99999px;
+      color: white;
+      background-color: #25252575;
+    }
+    .slick-next::after {
+      margin-top: 15px;
+      margin-left: 13px;
+    }
+    .slick-prev::after {
+      margin-top: 15px;
+      margin-left: 15px;
+    }
+  }
+  .ant-radio-group-solid {
+    .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+      background-color: #62d985;
+      border-color: transparent;
+      border-radius: 8px;
+      color: white;
+    }
+  }
+  .ant-radio-button-wrapper {
+    min-width: 60px;
+    text-align: center;
+    background-color: #efefef;
+  }
+  .ant-radio-button-wrapper:not(:first-child)::before {
+    background-color: transparent;
+    opacity: 0.2;
+    border-right: 0.7px solid rgb(131, 81, 81);
+  }
+  .ant-tabs-tab-btn {
+    color: black;
+    text-align: left;
+    width: 180px;
+    padding: 13px;
+    border-bottom: 1px solid #dcdcdc;
+    font-size: 16px;
+    color: #555555;
+    font-weight: 500;
+  }
+  .ant-tabs-left > .ant-tabs-nav .ant-tabs-tab + .ant-tabs-tab {
+    margin: 0;
+  }
+
+  .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: white;
+    background-color: #62d985;
+    border-radius: 5px;
+  }
+
+  .ant-tabs-ink-bar {
+    display: none;
+  }
+  .ant-tabs-left > .ant-tabs-content-holder {
+    border: none;
+  }
+
+  .ant-collapse>.ant-collapse-item >.ant-collapse-header{
+    font-weight: bold;
+    font-size: 16px;
+  }
+  .ant-collapse-content-box{
+    width: 85%;
+  }
 }
