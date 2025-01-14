@@ -28,7 +28,43 @@ const ProductDetail = () => {
     {
       label: `Mô tả sản phẩm`,
       key: "1",
-      children: `Content of Tab Mô tả sản phẩm`,
+      children: (
+        <div className="flex flex-col justify-center items-start gap-3">
+          <h1 className="text-xl font-bold pt-5">Mô tả sản phẩm</h1>
+          <h3 className="text-sm font-semibold">
+            Cân bằng nội tiết tố, níu giữ tuổi xuân cho phụ nữ
+          </h3>
+          <p>
+            Léana Ocavill là loại thực phẩm giúp cân bằng nội tiết tố của thương
+            hiệu Ocavill được nhập khẩu từ Bulgaria. Với sự kết hợp tinh dầu hoa
+            anh thảo cùng các thành phần như rễ maca, nhân sâm, trinh nữ châu Âu
+            và vitamin E, Léana Ocavill giúp cải thiện sức khỏe nữ giới hiệu
+            quả. 
+          </p>
+
+          <img
+            src="https://s3-alpha-sig.figma.com/img/c874/adca/ec9dc6fe21c739747283858dcded48bd?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=m6oIkFf0DXHWXvSLrfzC68ZagV2aAccPdfNDSOzpRVoWfDB-vR8aafSCCMElC3MQj8xefMAlayUz-XFFhAv39l3~wvaGwcMgff3KI9JmGgAqmLgQt1Lkjgx6E9MACeCedkSA0TtU0A00ytLWWNNsFezc77h8L-Nn43l53MJQjA3SvJAzAYFgakYV2vQtVtqY1uxKx93ju~51i1iVhnxq77ElDG0J~KhkziKImyKWX24ZtebNlr0Vs-~nIHc6-Z-vkibNr2cHPLIjXbaa4ZFAFcaba7fNjpTJyTVh71hWE1gcDjHJPnhK1JDbf45RabC-7lFJNlCHGXpgOEcrk9mllA__"
+            className="w-2/5 mx-auto "
+          />
+
+          <p>
+            Nội tiết tố là hormone sinh dục nữ được sản sinh và tiết ra từ buồng
+            trứng, đóng vai trò quan trọng trong việc tạo nên sự nữ tính, vóc
+            dáng và tuổi xuân của phụ nữ. Nội tiết tố nữ estrogen sẽ thay đổi
+            theo từng giai đoạn dậy thì, mang thai và giảm dần khi bước qua tuổi
+            30, tiền mãn kinh, mãn kinh. Mất cân bằng nội tiết tố nữ, phụ nữ sẽ
+            gặp phải các biểu hiện như mất ngủ, mệt mỏi, căng thẳng, lo âu, mắc
+            các bệnh lý về phụ khoa, nám da, sạm da, rối loạn chu kỳ kinh
+            nguyệt và giảm ham muốn tình dục. Khi những triệu chứng thiếu hụt
+            nội tiết tố này mới bắt đầu, các biện pháp bổ sung estrogen sẽ có
+            công dụng và cân bằng rất nhanh, giúp cơ thể chị em hấp thu tốt
+            nhất. Và việc sử dụng thực phẩm chức năng tăng nội tiết tố là giải
+            pháp được các chị em tin tưởng lựa chọn. Đồng thời, các chuyên gia y
+            tế cũng cho biết, đây là liệu pháp an toàn và mang lại hiệu quả bền
+            vững.
+          </p>
+        </div>
+      ),
     },
     {
       label: `Thành phần`,
@@ -247,8 +283,13 @@ const ProductDetail = () => {
       <Tabs tabPosition={"left"} items={menu} />
 
       <div className="pt-6">
-        <h1 className="text-lg font-semibold">Câu hỏi thường gặp</h1>
+        <h1 className="text-lg font-semibold p-2">Câu hỏi thường gặp</h1>
         <Collapse items={items} bordered={false} defaultActiveKey={["1"]} />
+      </div>
+      <div className="pt-6">
+        <h1 className="text-lg font-semibold p-2">
+          Đánh giá sản phẩm (5 đánh giá)
+        </h1>
       </div>
     </div>
   );
