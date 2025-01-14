@@ -2,7 +2,14 @@ import { useState } from "react";
 import RatingStars from "../../components/rating-star";
 import "./index.scss";
 import Header from "../../components/header";
-import { Carousel, Radio } from "antd";
+import {
+  Carousel,
+  Collapse,
+  CollapseProps,
+  Radio,
+  Tabs,
+  TabsProps,
+} from "antd";
 import { BsHeart } from "react-icons/bs";
 
 const ProductDetail = () => {
@@ -17,20 +24,67 @@ const ProductDetail = () => {
     if (value > 0) setQuantity(value);
   };
 
+  const menu: TabsProps["items"] = [
+    {
+      label: `Mô tả sản phẩm`,
+      key: "1",
+      children: `Content of Tab Mô tả sản phẩm`,
+    },
+    {
+      label: `Thành phần`,
+      key: "2",
+      children: `Content of Tab Thành phần`,
+    },
+    {
+      label: `Công dụng`,
+      key: "3",
+      children: `Content of Tab Công dụng`,
+    },
+  ];
+  const text = (
+    <p style={{ paddingInlineStart: 24 }}>
+      Những trường hợp nên dùng Léana Ocavill: Phụ nữ sau 30 tuổi và phụ nữ tiền
+      mãn kinh. Phụ nữ da bị sạm nám, suy giảm sinh lý, khô âm đạo, rối loạn
+      kinh nguyệt, bốc hỏa, mất ngủ. Phụ nữ dưới 30 tuổi và phụ nữ sau khi sinh
+      nở nếu có dấu hiệu thiếu hụt hoặc rối loạn nội tiết tố nữ.
+    </p>
+  );
+  const items: CollapseProps["items"] = [
+    {
+      key: "1",
+      label:
+        "Những ai nên dùng thực phẩm chức năng cân bằng nội tiết tố Léana Ocavill?",
+      children: text,
+    },
+    {
+      key: "2",
+      label:
+        "Những ai nên dùng thực phẩm chức năng cân bằng nội tiết tố Léana Ocavill?",
+      children: text,
+    },
+    {
+      key: "3",
+      label:
+        "Những ai nên dùng thực phẩm chức năng cân bằng nội tiết tố Léana Ocavill?",
+      children: text,
+    },
+  ];
+
   return (
     <div className="detail-product ">
       <Header />
-      <div className="p-4 md:p-8">
+      <div className="p-4 mb-7 md:p-8">
         <div className="max-w-6xl mx-auto bg-white rounded-lg ">
           <div className="grid md:grid-cols-2 gap-6 p-6">
-            <div className="flex flex-col space-y-4">
+            <div className="flex flex-col justify-start items-center space-y-3">
               <div className="w-[70%]">
-                <Carousel arrows infinite={false} dots={false}>
+                <Carousel arrows infinite={false} dots={true}>
                   <img
-                    src="https://bizweb.dktcdn.net/100/011/344/products/omega3-a223b96b-88f8-45b6-9c0e-89c7db4cd048.jpg?v=1639712259133"
+                    src="https://s3-alpha-sig.figma.com/img/5444/5f36/4d8a152aa8343d7f9ecf66b67784bdc8?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Xx~orRdSMtjbu0Bp7ulbGcxlj4WnIzaznfidKJXNim16lEgDI9Qv~mgw1iC78~dEfC9lflULi959IqyVTnd-lSL3ivZsXJlFKkxmXj0flSnb3Kkvj9gxCZzMx7pP-29YEkUnH9uV83pUBWCO~0GPyWCxVNmYqPUydLVtm9-EU0gwkwlBxNJbNALkoJuXCbFgwmOSXM1EwM0ty6emd0rEstjAMi4CgtSRmxjwDt5f8SCO7FgysgMi9bXDniS9Yz~dnha7v-NMfWGRoFQfHhkeIfaAI2qMPC9jVocKZpRmajEmhxuy6ov5r4h0uhC2u3DLnCCBSP6Bi4O2V9bXXip2Fg__"
                     alt="Product"
                     className="rounded-lg w-full"
                   />
+
                   <img
                     src="https://bizweb.dktcdn.net/100/011/344/products/omega3-a223b96b-88f8-45b6-9c0e-89c7db4cd048.jpg?v=1639712259133"
                     alt="Product"
@@ -50,19 +104,24 @@ const ProductDetail = () => {
               </div>
               <div className="flex space-x-2">
                 <img
-                  src="https://bizweb.dktcdn.net/100/421/115/products/3-df21fc2a-f256-4144-a537-f4aa586f2a29.jpg?v=1680864997713"
+                  src="https://s3-alpha-sig.figma.com/img/5444/5f36/4d8a152aa8343d7f9ecf66b67784bdc8?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Xx~orRdSMtjbu0Bp7ulbGcxlj4WnIzaznfidKJXNim16lEgDI9Qv~mgw1iC78~dEfC9lflULi959IqyVTnd-lSL3ivZsXJlFKkxmXj0flSnb3Kkvj9gxCZzMx7pP-29YEkUnH9uV83pUBWCO~0GPyWCxVNmYqPUydLVtm9-EU0gwkwlBxNJbNALkoJuXCbFgwmOSXM1EwM0ty6emd0rEstjAMi4CgtSRmxjwDt5f8SCO7FgysgMi9bXDniS9Yz~dnha7v-NMfWGRoFQfHhkeIfaAI2qMPC9jVocKZpRmajEmhxuy6ov5r4h0uhC2u3DLnCCBSP6Bi4O2V9bXXip2Fg__"
                   alt="Thumbnail 1"
-                  className="rounded-lg w-20 h-20 object-cover"
+                  className="rounded-lg w-32 h-32 object-cover"
                 />
                 <img
                   src="https://bizweb.dktcdn.net/100/421/115/products/3-df21fc2a-f256-4144-a537-f4aa586f2a29.jpg?v=1680864997713"
                   alt="Thumbnail 2"
-                  className="rounded-lg w-20 h-20 object-cover"
+                  className="rounded-lg w-32 h-32 object-cover"
                 />
                 <img
                   src="https://bizweb.dktcdn.net/100/421/115/products/3-df21fc2a-f256-4144-a537-f4aa586f2a29.jpg?v=1680864997713"
                   alt="Thumbnail 3"
-                  className="rounded-lg w-20 h-20 object-cover"
+                  className="rounded-lg w-32 h-32 object-cover"
+                />
+                <img
+                  src="https://s3-alpha-sig.figma.com/img/5444/5f36/4d8a152aa8343d7f9ecf66b67784bdc8?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Xx~orRdSMtjbu0Bp7ulbGcxlj4WnIzaznfidKJXNim16lEgDI9Qv~mgw1iC78~dEfC9lflULi959IqyVTnd-lSL3ivZsXJlFKkxmXj0flSnb3Kkvj9gxCZzMx7pP-29YEkUnH9uV83pUBWCO~0GPyWCxVNmYqPUydLVtm9-EU0gwkwlBxNJbNALkoJuXCbFgwmOSXM1EwM0ty6emd0rEstjAMi4CgtSRmxjwDt5f8SCO7FgysgMi9bXDniS9Yz~dnha7v-NMfWGRoFQfHhkeIfaAI2qMPC9jVocKZpRmajEmhxuy6ov5r4h0uhC2u3DLnCCBSP6Bi4O2V9bXXip2Fg__"
+                  alt="Thumbnail 1"
+                  className="rounded-lg w-32 h-32 object-cover"
                 />
               </div>
             </div>
@@ -78,6 +137,9 @@ const ProductDetail = () => {
               <div className="flex items-center space-x-2 mt-2">
                 <RatingStars rating={4} />
                 <span className="text-sm text-gray-600">(150 đánh giá)</span>
+                <div className="bg-gradient-to-r from-[#62D985] to-[#ABFFC5] text-xs text-white p-1 px-2 rounded-full">
+                  Còn hàng
+                </div>
               </div>
               <h1 className="flex text-black font-bold text-xl mt-4">
                 295.000₫ &nbsp;
@@ -180,6 +242,13 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <Tabs tabPosition={"left"} items={menu} />
+
+      <div className="pt-6">
+        <h1 className="text-lg font-semibold">Câu hỏi thường gặp</h1>
+        <Collapse items={items} bordered={false} defaultActiveKey={["1"]} />
       </div>
     </div>
   );
