@@ -27,7 +27,7 @@ function RecommendationProduct({
     { label: "Vỉ", value: "b" },
   ];
   return (
-    <div className="bg-[#F0F5F2] w-[270px]  border border-[#D4DBE3] rounded-[30px] flex-col justify-center items-center">
+    <div className="bg-[#F0F5F2]   border border-[#D4DBE3] rounded-[30px] flex-col justify-center items-center">
       <div className="relative">
         <img src={img} className="mx-auto my-2 w-[80%] h-full object-cover" />
         {discount && (
