@@ -2,7 +2,10 @@ import { useState } from "react";
 import RatingStars from "../../components/rating-star";
 import "./index.scss";
 import Header from "../../components/header";
+import { PiClockClockwise } from "react-icons/pi";
+
 import {
+  Breadcrumb,
   Carousel,
   Collapse,
   CollapseProps,
@@ -11,6 +14,9 @@ import {
   TabsProps,
 } from "antd";
 import { BsHeart } from "react-icons/bs";
+import ProductReviews from "../../components/product-review";
+import Footer from "../../components/footer";
+import RecommendationProduct from "../../components/recommendation-product";
 
 const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
@@ -20,6 +26,87 @@ const ProductDetail = () => {
     { label: "Vỉ", value: "b" },
   ];
 
+  const data = [
+    {
+      title: "Thực phẩm chức năng",
+      name: "Siro ho thảo mộc Tanacol siro ho cảm cho trẻ sơ sinh",
+      img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/Frame%2011.png?alt=media&token=6e79df5f-8d6b-4633-847e-6c89f8231b77",
+      note: "Hộp 60 viên",
+      price: 1295000,
+      quantity: ["60 viên"],
+      rate: 4.5,
+    },
+    {
+      title: "Thực phẩm chức năng",
+      name: "Bột Hapacol 150 DHG giảm đau, hạ sốt (24 gói)",
+      img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/a.png?alt=media&token=26bf348e-28bc-45cc-ba99-39d2864f57f1",
+      note: "Hộp 24 gói",
+      price: 1295000,
+      quantity: ["60 viên"],
+      rate: 4.5,
+      discount: 25,
+    },
+
+    {
+      title: "Mỹ phẩm",
+      name: "Sữa rửa mặt Reihaku Hatomugi Acne Care and Facial Washing ngừa mụn, dưỡng ẩm và làm sáng da (130g)",
+      img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/b.png?alt=media&token=a27a383e-b7b1-4789-9e4f-7584ba22a888",
+      note: "Chai 140ml",
+      price: 1295000,
+      quantity: ["60 viên"],
+      rate: 4.5,
+      discount: 20,
+    },
+    {
+      title: "Mỹ phẩm",
+      name: "Sữa rửa mặt Reihaku Hatomugi Acne Care and Facial Washing ngừa mụn, dưỡng ẩm và làm sáng da (130g)",
+      img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/b.png?alt=media&token=a27a383e-b7b1-4789-9e4f-7584ba22a888",
+      note: "Chai 140ml",
+      price: 1295000,
+      quantity: ["60 viên"],
+      rate: 4.5,
+      discount: 20,
+    },
+  ];
+
+  const DescribeProduct = () => {
+    return (
+      <div className="pt-4 mr-10">
+        <h1 className="text-xl font-bold ">Mô tả sản phẩm</h1>
+        <h1 className="text-sm font-bold my-4 ">
+          Cân bằng nội tiết tố, níu giữ tuổi xuân cho phụ nữ
+        </h1>
+        <p className="text-sm my-4 text-justify">
+          Léana Ocavill là loại thực phẩm giúp cân bằng nội tiết tố của thương
+          hiệu Ocavill được nhập khẩu từ Bulgaria. Với sự kết hợp tinh dầu hoa
+          anh thảo cùng các thành phần như rễ maca, nhân sâm, trinh nữ châu Âu
+          và vitamin E, Léana Ocavill giúp cải thiện sức khỏe nữ giới hiệu quà.
+        </p>
+        <div className="flex justify-center">
+          <img
+            className="object-cover h-96"
+            src="https://s3-alpha-sig.figma.com/img/5444/5f36/4d8a152aa8343d7f9ecf66b67784bdc8?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Xx~orRdSMtjbu0Bp7ulbGcxlj4WnIzaznfidKJXNim16lEgDI9Qv~mgw1iC78~dEfC9lflULi959IqyVTnd-lSL3ivZsXJlFKkxmXj0flSnb3Kkvj9gxCZzMx7pP-29YEkUnH9uV83pUBWCO~0GPyWCxVNmYqPUydLVtm9-EU0gwkwlBxNJbNALkoJuXCbFgwmOSXM1EwM0ty6emd0rEstjAMi4CgtSRmxjwDt5f8SCO7FgysgMi9bXDniS9Yz~dnha7v-NMfWGRoFQfHhkeIfaAI2qMPC9jVocKZpRmajEmhxuy6ov5r4h0uhC2u3DLnCCBSP6Bi4O2V9bXXip2Fg__"
+          />
+        </div>
+        <p className="mt-6 text-justify">
+          Nội tiết tố là hormone sinh dục nữ được sản sinh và tiết ra từ buồng
+          trứng, đóng vai trò quan trọng trong việc tạo nên sự nữ tính, vóc dáng
+          và tuổi xuân của phụ nữ. Nội tiết tố nữ estrogen sẽ thay đổi theo từng
+          giai đoạn dậy thì, mang thai và giảm dần khi bước qua tuổi 30, tiền
+          mãn kinh, mãn kinh. Mất cân bằng nội tiết tố nữ, phụ nữ sẽ gặp phải
+          các biểu hiện như mất ngủ, mệt mỏi, căng thẳng, lo âu, mắc các bệnh lý
+          về phụ khoa, năm da, sạm da, rối loạn chu kỳ kinh nguyệt và giảm ham
+          muốn tình dục. Khi những triệu chứng thiếu hụt nội tiết tố này mới bắt
+          đầu, các biện pháp bổ sung estrogen sẽ có công dụng và cân bằng rất
+          nhanh, giúp cơ thể chị em hấp thu tốt nhất. Và việc sử dụng thực phẩm
+          chức năng tăng nội tiết tố là giải pháp được các chị em tin tưởng lựa
+          chọn. Đồng thời, các chuyên gia y tế cũng cho biết, đây là liệu pháp
+          an toàn và mang lại hiệu quả bền vững.
+        </p>
+      </div>
+    );
+  };
+
   const handleQuantityChange = (value: number) => {
     if (value > 0) setQuantity(value);
   };
@@ -28,7 +115,7 @@ const ProductDetail = () => {
     {
       label: `Mô tả sản phẩm`,
       key: "1",
-      children: `Content of Tab Mô tả sản phẩm`,
+      children: <DescribeProduct />,
     },
     {
       label: `Thành phần`,
@@ -72,7 +159,21 @@ const ProductDetail = () => {
 
   return (
     <div className="detail-product ">
-      <Header />
+      <Header navbarType="green" />
+      <Breadcrumb
+        className="ml-12 mt-6 text-sm"
+        items={[
+          {
+            title: <a href="/home">Trang chủ</a>,
+          },
+          {
+            title: <a href="#">Thực phẩm chức năng</a>,
+          },
+          {
+            title: <p className="font-bold">Nội tiết tố </p>,
+          },
+        ]}
+      />
       <div className="p-4 mb-7 md:p-8">
         <div className="max-w-6xl mx-auto bg-white rounded-lg ">
           <div className="grid md:grid-cols-2 gap-6 p-6">
@@ -243,13 +344,39 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
-
       <Tabs tabPosition={"left"} items={menu} />
-
-      <div className="pt-6">
-        <h1 className="text-lg font-semibold">Câu hỏi thường gặp</h1>
+      <div className="bg-gray-50 m-8 rounded-2xl p-6 mt-10">
+        <h1 className="text-lg mb-3 font-bold">Câu hỏi thường gặp</h1>
         <Collapse items={items} bordered={false} defaultActiveKey={["1"]} />
       </div>
+      <ProductReviews />
+      <div className="px-6 mb-16">
+        <div className="flex justify-between ">
+          <div className="flex gap-2">
+            <PiClockClockwise className="text-4xl" />
+            <h1 className="text-3xl font-bold">Sản phẩm đã xem </h1>
+          </div>
+          <button className="bg-buttonColor text-gray-200 py-3 px-5 text-base rounded-full hover:bg-black hover:text-white ">
+            Xem tất cả ➜
+          </button>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
+          {data.map((product, index) => (
+            <RecommendationProduct
+              key={index}
+              title={product.title}
+              name={product.name}
+              img={product.img}
+              note={product.note}
+              price={product.price}
+              quantity={product.quantity}
+              rate={product.rate}
+              discount={product.discount}
+            />
+          ))}
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };

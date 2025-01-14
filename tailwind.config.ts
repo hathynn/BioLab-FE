@@ -8,6 +8,10 @@ module.exports = {
       colors: {
         customGreen: '#62D985',
         customLightGreen: '#DEFFE8',
+        starColor:'#FFAD33',
+        buttonColor:'#373737',
+        navColor:'#62D98533',
+        cartColor:'#373737',
       },
     },
   },
