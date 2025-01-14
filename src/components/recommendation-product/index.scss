@@ -16,4 +16,9 @@
     text-align: center;
     background-color: #efefef;
   }
+  .ant-radio-button-wrapper:not(:first-child)::before {
+    background-color: transparent;
+    opacity: 0.2;
+    border-right: 0.7px solid rgb(131, 81, 81);
+  }
 }
