@@ -120,22 +120,23 @@ function HomePage() {
                 className="object-cover w-full h-[375px] rounded-2xl "
               />
             </Carousel>
-
-            <div className="lg:col-span-1 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-1  ">
-              <img
-                src="https://s3-alpha-sig.figma.com/img/069f/178d/e59afbefcacd17912267d6a6991cc15c?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=X9gDwJ2fvD9fEYj46zXAtJbrrzCnGCW1RgXI3Z4VdBVfNxeqeGYjHDdZGAuMlNMkdsAOSh4GcsNOf4mY6SbRK7YOsVfzNqVG9wH~2vLlGDhEjrlwwCK08q3wZRjzkEFXkYp8NOUoeLW-xwasZ8SFN3mhmQ40VKl68xYDl7ptT1GmZdCZT7R78NETItyLIwnwRaofJnFAv1VIC39VJJ6MypkAlUsTpydkobfS6D6B2isd6pVusJ0MpZJ4O4su93maasQc2IzaxAsBEBkNiREf-wY8~d7p-K6PWFTbfoKFrOmk1akQrg5TbGWz9LkYz~CLi2J-xWCKIbhUptrbu48WLg__"
-                className="rounded-2xl w-full h-full object-cover "
-                alt="Image 1"
-              />
-
-              <img
-                src="https://s3-alpha-sig.figma.com/img/4c81/3a4c/51d8108e0a9edaa3d6a1fde795b3f1ac?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=b-zmbSqEqhrLChckPoRQcTOjJp2YyA-zFCVSa4m6Bu60QfdP77PvzNpi7t5JJR5exujyb5BhiH8gdA5ubAOqp37TbBQdoMjGGw2471gxNQY2egV5ZKnFUJxpbyVb2Uj4SVkLeXg62o~OMS5daBUoppQRnm9EBsmx3q1kdGi8jmH3i2xoICKNDVWVzdlqYIQqSG0NTUUMoA5v-i11MhqM8baYHc58uSyu1khmn2NlSGzT4zO~JnKwvhuWL44iRggidcqRTddibtxj8VuXtVImOFneqtUVmNKe6NGWU5AHH~y8Dkvkjf03yUS5-pVyjDw-3UYMCtekxUcjDhUcQER9ag__"
-                className="rounded-2xl w-full h-full object-cover "
-                alt="Image 2"
-              />
-            </div>
           </div>
-          <div className="flex justify-center items-center gap-4 h-[335px] pt-7">
+          <div className="lg:col-span-1 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-1  ">
+            <img
+              src="https://s3-alpha-sig.figma.com/img/069f/178d/e59afbefcacd17912267d6a6991cc15c?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=X9gDwJ2fvD9fEYj46zXAtJbrrzCnGCW1RgXI3Z4VdBVfNxeqeGYjHDdZGAuMlNMkdsAOSh4GcsNOf4mY6SbRK7YOsVfzNqVG9wH~2vLlGDhEjrlwwCK08q3wZRjzkEFXkYp8NOUoeLW-xwasZ8SFN3mhmQ40VKl68xYDl7ptT1GmZdCZT7R78NETItyLIwnwRaofJnFAv1VIC39VJJ6MypkAlUsTpydkobfS6D6B2isd6pVusJ0MpZJ4O4su93maasQc2IzaxAsBEBkNiREf-wY8~d7p-K6PWFTbfoKFrOmk1akQrg5TbGWz9LkYz~CLi2J-xWCKIbhUptrbu48WLg__"
+              className="rounded-2xl w-full h-full object-cover "
+              alt="Image 1"
+            />
+
+            <img
+              src="https://s3-alpha-sig.figma.com/img/4c81/3a4c/51d8108e0a9edaa3d6a1fde795b3f1ac?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=b-zmbSqEqhrLChckPoRQcTOjJp2YyA-zFCVSa4m6Bu60QfdP77PvzNpi7t5JJR5exujyb5BhiH8gdA5ubAOqp37TbBQdoMjGGw2471gxNQY2egV5ZKnFUJxpbyVb2Uj4SVkLeXg62o~OMS5daBUoppQRnm9EBsmx3q1kdGi8jmH3i2xoICKNDVWVzdlqYIQqSG0NTUUMoA5v-i11MhqM8baYHc58uSyu1khmn2NlSGzT4zO~JnKwvhuWL44iRggidcqRTddibtxj8VuXtVImOFneqtUVmNKe6NGWU5AHH~y8Dkvkjf03yUS5-pVyjDw-3UYMCtekxUcjDhUcQER9ag__"
+              className="rounded-2xl w-full h-full object-cover "
+              alt="Image 2"
+            />
+          </div>
+        </div>
+
+        <div className="flex justify-center items-center gap-4 h-[335px] pt-7">
             <img
               src="https://s3-alpha-sig.figma.com/img/b24e/d6b4/3baa0caeaa29aaab596c684ab438ac20?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dVY8--RyFJNXHIhAkD7Nv-YYAcd3vVPzA7QFgMhIltgaOc5Kz6ssRSg5EowdnJ~1CuuWHVP88OkiSj7dwr80Qb-1g2WYyDbTqPDWmGnkkDpugME~QhTbAN7OHSSLEitf4jELqVbtWuKzCR3JGBieLGbB6B41GpdK0ffrCA1iO-kvYQPmiQ-3BYVeGIDFQQPt6knNSvDyM1qsrZQBSGXcZ~iRJU1pGph8QfQSwy1Ax5W0yigulEKF78JK7y1Jtx52zOIkTzTQT~LdcyYbObSH-wy1~TnHXyQWBTk-Z3T~mSWOZvU2Hy7QyXC3KwGWvI-Skyouzw3VOyKmTi-x0qV9zw__"
               className="rounded-2xl w-[30%] h-full object-cover "
@@ -152,104 +153,100 @@ function HomePage() {
               alt="Image 2"
             />
           </div>
+      </div>
+      <div className="bg-gradient-to-b from-[#B1F0B0] to-[#5BD07E] h-full w-full rounded-3xl">
+        <div className="p-10">
+          <div className="flex justify-between items-center">
+            <h1 className="text-4xl text-white font-normal flex justify-center items-center gap-2">
+              <RiVipCrown2Fill /> Đề xuất của chuyên gia
+            </h1>
+            <button className="bg-[#373737] text-white text-[16px] rounded-full p-3 px-4 flex justify-between items-center gap-3">
+              Xem tất cả <FaArrowRight />
+            </button>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
+            {data.map((product, index) => (
+              <RecommendationProduct
+                key={index}
+                title={product.title}
+                name={product.name}
+                img={product.img}
+                note={product.note}
+                price={product.price}
+                quantity={product.quantity}
+                rate={product.rate}
+                discount={product.discount}
+              />
+            ))}
+          </div>
         </div>
-        <div className="bg-gradient-to-b from-[#B1F0B0] to-[#5BD07E] h-full w-full rounded-3xl">
+        <div className="bg-white h-full w-full rounded-3xl">
           <div className="p-10">
-            <div className="flex justify-between items-center">
-              <h1 className="text-4xl text-white font-normal flex justify-center items-center gap-2">
-                <RiVipCrown2Fill /> Đề xuất của chuyên gia
-              </h1>
-              <button className="bg-[#373737] text-white text-[16px] rounded-full p-3 px-4 flex justify-between items-center gap-3">
-                Xem tất cả <FaArrowRight />
-              </button>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
-              {data.map((product, index) => (
-                <RecommendationProduct
-                  key={index}
-                  title={product.title}
-                  name={product.name}
-                  img={product.img}
-                  note={product.note}
-                  price={product.price}
-                  quantity={product.quantity}
-                  rate={product.rate}
-                  discount={product.discount}
-                />
-              ))}
+            <h1 className="text-4xl text-[#565656] font-normal flex justify-start items-center gap-2">
+              <FaHeart /> Thương hiệu được yêu thích nhất
+            </h1>
+            <div className="p-10">
+              <div className="flex justify-center items-center">
+                {likes?.map((p, index) => (
+                  <div
+                    className="flex flex-col justify-center items-center gap-2 w-1/5 max-h-[300px]"
+                    key={index}
+                  >
+                    <img src={p.brand_img} className="min-h-16 object-cover" />
+                    <img src={p.product_img} />
+
+                    <div className="bg-[#FF5500] text-white text-[16px] text-center p-3 rounded-full w-3/5 ">
+                      Giảm 20%
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-          <div className="bg-white h-full w-full rounded-3xl">
+          <div className="bg-gradient-to-l from-[#99DBF7] to-[#90CCFA] h-full w-full rounded-3xl">
             <div className="p-10">
-              <h1 className="text-4xl text-[#565656] font-normal flex justify-start items-center gap-2">
-                <FaHeart /> Thương hiệu được yêu thích nhất
-              </h1>
+              <div className="flex justify-start items-center gap-3">
+                <h1 className="text-4xl text-white font-normal flex justify-start items-center gap-2">
+                  <IoIosAddCircle /> Cẩm nang sức khỏe
+                </h1>
+                <button className="bg-white text-[#006DC0] text-[16px] font-semibold rounded-full p-3 px-4 flex justify-between items-center gap-3">
+                  Xem tất cả <FaArrowRight />
+                </button>
+              </div>
+              <MediaInfoCard />
+            </div>
+            <div className="bg-white h-full w-full rounded-3xl">
               <div className="p-10">
-                <div className="flex justify-center items-center">
-                  {likes?.map((p, index) => (
-                    <div
-                      className="flex flex-col justify-center items-center gap-2 w-1/5 max-h-[300px]"
+                <div className="flex justify-between items-center">
+                  <h1 className="text-4xl text-[#FC853E] font-normal flex justify-start items-center gap-2">
+                    <AiFillLike /> Sản phẩm theo đối tượng
+                  </h1>
+                  <button className="bg-gradient-to-l from-[#FC853E] to-[#F05334] text-white text-[16px] font-semibold rounded-full p-3 px-4 flex justify-between items-center gap-3">
+                    Xem tất cả <FaArrowRight />
+                  </button>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
+                  {data.map((product, index) => (
+                    <RecommendationProduct
                       key={index}
-                    >
-                      <img
-                        src={p.brand_img}
-                        className="min-h-16 object-cover"
-                      />
-                      <img src={p.product_img} />
-
-                      <div className="bg-[#FF5500] text-white text-[16px] text-center p-3 rounded-full w-3/5 ">
-                        Giảm 20%
-                      </div>
-                    </div>
+                      title={product.title}
+                      name={product.name}
+                      img={product.img}
+                      note={product.note}
+                      price={product.price}
+                      quantity={product.quantity}
+                      rate={product.rate}
+                      discount={product.discount}
+                    />
                   ))}
                 </div>
               </div>
             </div>
-            <div className="bg-gradient-to-l from-[#99DBF7] to-[#90CCFA] h-full w-full rounded-3xl">
-              <div className="p-10">
-                <div className="flex justify-start items-center gap-3">
-                  <h1 className="text-4xl text-white font-normal flex justify-start items-center gap-2">
-                    <IoIosAddCircle /> Cẩm nang sức khỏe
-                  </h1>
-                  <button className="bg-white text-[#006DC0] text-[16px] font-semibold rounded-full p-3 px-4 flex justify-between items-center gap-3">
-                    Xem tất cả <FaArrowRight />
-                  </button>
-                </div>
-                <MediaInfoCard />
-              </div>
-              <div className="bg-white h-full w-full rounded-3xl">
-                <div className="p-10">
-                  <div className="flex justify-between items-center">
-                    <h1 className="text-4xl text-[#FC853E] font-normal flex justify-start items-center gap-2">
-                      <AiFillLike /> Sản phẩm theo đối tượng
-                    </h1>
-                    <button className="bg-gradient-to-l from-[#FC853E] to-[#F05334] text-white text-[16px] font-semibold rounded-full p-3 px-4 flex justify-between items-center gap-3">
-                      Xem tất cả <FaArrowRight />
-                    </button>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
-                    {data.map((product, index) => (
-                      <RecommendationProduct
-                        key={index}
-                        title={product.title}
-                        name={product.name}
-                        img={product.img}
-                        note={product.note}
-                        price={product.price}
-                        quantity={product.quantity}
-                        rate={product.rate}
-                        discount={product.discount}
-                      />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
-
-        <Footer />
       </div>
+
+      <Footer />
     </>
   );
 }
