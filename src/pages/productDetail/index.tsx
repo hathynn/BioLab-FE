@@ -115,7 +115,6 @@ const ProductDetail = () => {
     {
       label: `Mô tả sản phẩm`,
       key: "1",
-
       children: <DescribeProduct />,
     },
     {
@@ -379,8 +378,6 @@ const ProductDetail = () => {
         </div>
       </div>
       <Footer />
-
-
     </div>
   );
 };
