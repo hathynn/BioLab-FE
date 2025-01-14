@@ -345,6 +345,7 @@ const ProductDetail = () => {
         </div>
       </div>
       <Tabs tabPosition={"left"} items={menu} />
+
       <div className="bg-gray-50 m-8 rounded-2xl p-6 mt-10">
         <h1 className="text-lg mb-3 font-bold">Câu hỏi thường gặp</h1>
         <Collapse items={items} bordered={false} defaultActiveKey={["1"]} />
