@@ -25,8 +25,20 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: USER_ROUTES.HOME,
-    element: <HomePage />,
+    path: "/",
+    element: (
+      <>
+        <Header />
+        <Outlet />
+        <Footer />
+      </>
+    ),
+    children: [
+      {
+        path: USER_ROUTES.HOME,
+        element: <HomePage />,
+      },
+    ],
   },
   {
     path: PRODUCT_ROUTES.DETAIL,

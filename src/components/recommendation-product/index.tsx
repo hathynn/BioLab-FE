@@ -72,8 +72,8 @@ function RecommendationProduct({
           )}
         </div>
 
-        <div className="">
-          <button className="w-full border border-[1.5px] border-[#02321C] rounded-full max-h-max p-2 font-bold text-sm">
+        <div >
+          <button className="w-full border border-[1.5px] border-[#02321C] rounded-full max-h-max p-2 font-bold text-sm hover:bg-slate-200">
             + Thêm vào giỏ hàng
           </button>
         </div>
