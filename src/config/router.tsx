@@ -3,12 +3,13 @@ import Login from "../pages/auth/Login";
 
 import SignUp from "../pages/auth/SignUp";
 
-import { PRODUCT_ROUTES, USER_ROUTES } from "../constants/routes";
+import { ADMIN_ROUTES, PRODUCT_ROUTES, USER_ROUTES } from "../constants/routes";
 import RecommendationProduct from "../components/recommendation-product";
 import HomePage from "../pages/home";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ProductDetail from "../pages/productDetail";
+import DashboardLayout from "../components/layouts/dashboard-layout";
 
 export const router = createBrowserRouter([
   {
@@ -43,5 +44,19 @@ export const router = createBrowserRouter([
   {
     path: PRODUCT_ROUTES.DETAIL,
     element: <ProductDetail />,
+  },
+  {
+    path: ADMIN_ROUTES.ADMIN,
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: ADMIN_ROUTES.OVERVIEW,
+        element: <></>,
+      },
+      {
+        path: ADMIN_ROUTES.SETTING,
+        element: <></>,
+      },
+    ],
   },
 ]);
