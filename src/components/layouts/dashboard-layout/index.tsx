@@ -8,6 +8,7 @@ import { LogoutOutlined } from "@ant-design/icons";
 // import { toast } from "react-toastify";
 // import { useCurrentUser } from "../../../utils/getcurrentUser";
 import "./index.scss";
+import HeaderDashboard from "../../header-dashboard";
 
 const { Content, Sider } = Layout;
 
@@ -56,7 +57,7 @@ const DashboardLayout: React.FC = () => {
       <Layout
         style={{ padding: "0 26px 0 106px", background: colorBgContainer }}
       >
-        {/* <Header title={getLabel(currentItem?.key, user?.role)} /> */}
+        <HeaderDashboard title={getLabel(currentItem?.key, "")} />
         <Content>
           <div
             style={{
