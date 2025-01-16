@@ -10,6 +10,7 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 import ProductDetail from "../pages/productDetail";
 import DashboardLayout from "../components/layouts/dashboard-layout";
+import OverviewTeamplate from "../components/templates/overview";
 
 export const router = createBrowserRouter([
   {
@@ -51,7 +52,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: ADMIN_ROUTES.OVERVIEW,
-        element: <></>,
+        element: <OverviewTeamplate />,
       },
       {
         path: ADMIN_ROUTES.SETTING,
