@@ -11,6 +11,7 @@ import Footer from "../components/footer";
 import ProductDetail from "../pages/productDetail";
 import DashboardLayout from "../components/layouts/dashboard-layout";
 import OverviewTeamplate from "../components/templates/overview";
+import ShoppingCart from "../pages/shopping-cart";
 
 export const router = createBrowserRouter([
   {
@@ -43,9 +44,26 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: PRODUCT_ROUTES.DETAIL,
-    element: <ProductDetail />,
+    path: "/",
+    element: (
+      <>
+        <Header navbarType="green"/>
+        <Outlet />
+        <Footer />
+      </>
+    ),
+    children: [
+      {
+        path: PRODUCT_ROUTES.CART,
+        element: <ShoppingCart />,
+      },
+      {
+        path: PRODUCT_ROUTES.DETAIL,
+        element: <ProductDetail />,
+      },
+    ],
   },
+  
   {
     path: ADMIN_ROUTES.ADMIN,
     element: <DashboardLayout />,

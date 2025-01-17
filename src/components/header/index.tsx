@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 function Header({ navbarType = "light" }) {
   const nav = useNavigate();
 
-  // Xác định màu nền cho phần navbar dựa trên navbarType
   const navbarBackground =
     navbarType === "green"
       ? "bg-navColor text-black"
@@ -17,7 +16,7 @@ function Header({ navbarType = "light" }) {
       : "bg-gray-100 text-black";
 
   return (
-    <header className="px-10">
+    <header className="px-10 pt-7">
       <div className="flex items-center justify-between">
         <img src={logo2} alt="Logo" className="h-15 w-12" />
 
@@ -50,7 +49,7 @@ function Header({ navbarType = "light" }) {
             <i aria-hidden="true">
               <AiOutlineShoppingCart className="text-xl" />
             </i>
-            <span className="text-sm">Giỏ hàng</span>
+            <span  onClick={() => nav("/shopping-cart")} className="text-sm">Giỏ hàng</span>
             <span className="absolute -top-2 -right-1 px-2 py-1 bg-red-600 text-white text-xs rounded-full">
               2
             </span>

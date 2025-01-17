@@ -1,7 +1,6 @@
 import { useState } from "react";
 import RatingStars from "../../components/rating-star";
 import "./index.scss";
-import Header from "../../components/header";
 import { PiClockClockwise } from "react-icons/pi";
 
 import {
@@ -15,7 +14,6 @@ import {
 } from "antd";
 import { BsHeart } from "react-icons/bs";
 import ProductReviews from "../../components/product-review";
-import Footer from "../../components/footer";
 import RecommendationProduct from "../../components/recommendation-product";
 import FeatureBar from "../../components/feature-bar";
 
@@ -160,9 +158,8 @@ const ProductDetail = () => {
 
   return (
     <div className="detail-product ">
-      <Header navbarType="green" />
       <Breadcrumb
-        className="ml-12 mt-6 text-sm"
+        className="ml-12 text-sm"
         items={[
           {
             title: <a href="/home">Trang chủ</a>,
@@ -329,7 +326,7 @@ const ProductDetail = () => {
                 </div>
               </div>
 
-              {/* Action Buttons */}
+         
               <div className="mt-6 flex space-x-4">
                 <button className=" w-2/5  px-6 py-3 bg-customGreen text-white rounded-lg shadow-md hover:bg-green-500">
                   Mua ngay
@@ -349,7 +346,11 @@ const ProductDetail = () => {
       <div className="flex justify-center mb-10">
         <FeatureBar />
       </div>
-      <Tabs tabPosition={"left"} items={menu} className="flex justify-center w-5/6" />
+      <Tabs
+        tabPosition={"left"}
+        items={menu}
+        className="flex justify-center w-5/6"
+      />
 
       <div className="bg-gray-50 m-8 rounded-2xl p-6 mt-10">
         <h1 className="text-lg mb-3 font-bold">Câu hỏi thường gặp</h1>
@@ -382,7 +383,6 @@ const ProductDetail = () => {
           ))}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
