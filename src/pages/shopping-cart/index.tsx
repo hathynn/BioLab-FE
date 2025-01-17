@@ -140,7 +140,7 @@ function ShoppingCart() {
                     </button>
                   </div>
 
-                  <select className="border-2 border-gray-400 text-sm px-1 rounded-full text-gray-600 h-6 ">
+                  <select className="border-2 border-gray-400 text-sm px-1 rounded-full text-gray-600 h-6  ">
                     <option>Hộp</option>
                     <option>Chai</option>
                   </select>
@@ -163,7 +163,7 @@ function ShoppingCart() {
           </div>
         </div>
 
-        <div className="w-full border-gray-200 rounded-lg shadow-sm p-4">
+        <div className="w-full rounded-lg  p-4">
           <button className="w-full px-6 py-3 mb-3 text-green-600 border-customGreen border-2 rounded-lg hover:bg-customGreen hover:text-white">
             Áp dụng ưu đãi để được giảm giá
           </button>
