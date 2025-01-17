@@ -17,6 +17,7 @@ import { BsHeart } from "react-icons/bs";
 import ProductReviews from "../../components/product-review";
 import Footer from "../../components/footer";
 import RecommendationProduct from "../../components/recommendation-product";
+import FeatureBar from "../../components/feature-bar";
 
 const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
@@ -344,7 +345,11 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
-      <Tabs tabPosition={"left"} items={menu} />
+
+      <div className="flex justify-center mb-10">
+        <FeatureBar />
+      </div>
+      <Tabs tabPosition={"left"} items={menu} className="flex justify-center w-5/6" />
 
       <div className="bg-gray-50 m-8 rounded-2xl p-6 mt-10">
         <h1 className="text-lg mb-3 font-bold">Câu hỏi thường gặp</h1>
