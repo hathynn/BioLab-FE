@@ -7,7 +7,8 @@ export enum USER_ROUTES {
 }
 
 export enum PRODUCT_ROUTES {
-  DETAIL = "chi-tiet-san-pham"
+  DETAIL = "product-detail",
+  CART ="shopping-cart"
 }
 
 // Admin Routes

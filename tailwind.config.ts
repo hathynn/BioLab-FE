@@ -12,6 +12,7 @@ module.exports = {
         buttonColor:'#373737',
         navColor:'#62D98533',
         cartColor:'#373737',
+        cartCardColor:'#FCFFFD',
       },
     },
   },
