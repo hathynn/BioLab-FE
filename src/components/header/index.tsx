@@ -18,7 +18,7 @@ function Header({ navbarType = "light" }) {
   return (
     <header className="px-10 pt-7">
       <div className="flex items-center justify-between">
-        <img src={logo2} alt="Logo" className="h-15 w-12" />
+        <img onClick={() => nav('/home')} src={logo2} alt="Logo" className="h-15 w-12 cursor-pointer" />
 
         <div className="relative w-[500px]">
           <i className="absolute left-4 top-5 transform -translate-y-1/2">
@@ -57,7 +57,7 @@ function Header({ navbarType = "light" }) {
         </div>
       </div>
 
-      {/* Navbar Section */}
+
       <div className={` mt-3 py-3 rounded-full  ${navbarBackground}`}>
         <nav className="flex justify-between text-sm px-10">
           <a href="#" className="hover:text-green-500">
