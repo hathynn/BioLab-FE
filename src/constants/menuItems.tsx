@@ -20,7 +20,9 @@ function getItem(
   } as MenuItem;
 }
 
-export const getLabel = (key?: Key, role?: string): string | undefined => {
+export const getLabel = (key?: Key, 
+  // role?: string
+): string | undefined => {
   return adminItems.find((item) => item.key === key)?.label;
 };
 

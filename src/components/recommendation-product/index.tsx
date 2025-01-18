@@ -17,9 +17,9 @@ function RecommendationProduct({
   name,
   img,
   note,
-  price,
-  quantity,
-  rate,
+  // price,
+  // quantity,
+  // rate,
   discount,
 }: RecommendationProductProps) {
   const options = [

@@ -106,9 +106,9 @@ const ProductDetail = () => {
     );
   };
 
-  const handleQuantityChange = (value: number) => {
-    if (value > 0) setQuantity(value);
-  };
+  // const handleQuantityChange = (value: number) => {
+  //   if (value > 0) setQuantity(value);
+  // };
 
   const menu: TabsProps["items"] = [
     {
@@ -254,6 +254,13 @@ const ProductDetail = () => {
                 <div className="flex items-start">
                   <p className="w-1/4 text-sm font-bold">Chọn đơn vị</p>
                   <p className="w-3/4 text-sm">
+                    {/* <Radio.Group
+                      options={options}
+                      optionType="button"
+                      buttonStyle="solid"
+                      size="small"
+                      defaultValue="a"
+                    /> */}
                     <Radio.Group
                       options={options}
                       optionType="button"

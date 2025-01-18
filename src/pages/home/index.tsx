@@ -3,8 +3,6 @@ import "./index.scss";
 import { RiVipCrown2Fill } from "react-icons/ri";
 import { FaArrowRight, FaHeart } from "react-icons/fa";
 import RecommendationProduct from "../../components/recommendation-product";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
 import { IoIosAddCircle } from "react-icons/io";
 import { AiFillLike } from "react-icons/ai";
 import MediaInfoCard from "../../components/mediaInfoCard";
