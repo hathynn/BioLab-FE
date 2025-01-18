@@ -9,7 +9,7 @@ import { IoGiftOutline } from "react-icons/io5";
 function FeatureBar() {
   const features = [
     {
-      icon:<CiMedicalCase className="text-customGreen text-5xl"/>,
+      icon:<CiMedicalCase className="text-customGreen text-5xl "/>,
       title: "Thuốc chính hãng",
       description: "Đa dạng và chuyên sâu",
     },
@@ -24,19 +24,19 @@ function FeatureBar() {
       description: "Chất lượng sản phẩm",
     },
     {
-      icon: <IoGiftOutline className="text-customGreen text-4xl"/>,
+      icon: <IoGiftOutline className="text-customGreen text-4xl ml-6"/>,
       title: "Miễn phí vận chuyển",
       description: "Theo chính sách giao hàng",
     },
   ];
 
   return (
-    <div className="flex justify-evenly items-center py-4 w-5/6 px-7 border border-gray-400 rounded-2xl bg-white shadow-sm">
+    <div className="flex justify-between w-full items-center py-7  border border-gray-400 rounded-2xl bg-white shadow-sm">
   {features.map((feature, index) => (
     <div
       key={index}
-      className={`flex items-center gap-3 ${
-        index !== features.length - 1 ? "border-r border-gray-300 pr-6" : ""
+      className={`flex items-center gap-10 ${
+        index !== features.length - 1 ? "border-r border-gray-300 pl-11  pr-20" : "pr-20"
       }`}
     >
       <div className="text-green-500 text-2xl">{feature.icon}</div>

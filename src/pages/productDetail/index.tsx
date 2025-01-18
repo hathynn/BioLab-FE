@@ -157,9 +157,9 @@ const ProductDetail = () => {
   ];
 
   return (
-    <div className="detail-product ">
-      <Breadcrumb
-        className="ml-12 text-sm"
+    <>
+     <Breadcrumb
+        className="ml-12 mt-6 text-sm"
         items={[
           {
             title: <a href="/home">Trang chủ</a>,
@@ -172,9 +172,11 @@ const ProductDetail = () => {
           },
         ]}
       />
+    <div className="detail-product ">
+     
       <div className="p-4 mb-7 md:p-8">
-        <div className="max-w-6xl mx-auto bg-white rounded-lg ">
-          <div className="grid md:grid-cols-2 gap-6 p-6">
+        <div className="max-w-6xl mx-auto rounded-lg ">
+          <div className="grid md:grid-cols-2  gap-6 p-6">
             <div className="flex flex-col justify-start items-center space-y-3">
               <div className="w-[70%]">
                 <Carousel arrows infinite={false} dots={true}>
@@ -349,15 +351,15 @@ const ProductDetail = () => {
       <Tabs
         tabPosition={"left"}
         items={menu}
-        className="flex justify-center w-5/6"
+        className="w-full"
       />
 
-      <div className="bg-gray-50 m-8 rounded-2xl p-6 mt-10">
+      <div className="bg-gray-50 m-8 rounded-2xl p-6 mt-10 w-full">
         <h1 className="text-lg mb-3 font-bold">Câu hỏi thường gặp</h1>
         <Collapse items={items} bordered={false} defaultActiveKey={["1"]} />
       </div>
       <ProductReviews />
-      <div className="px-6 mb-16">
+      <div className="mb-16 mt-16 ">
         <div className="flex justify-between ">
           <div className="flex gap-2">
             <PiClockClockwise className="text-4xl" />
@@ -384,6 +386,7 @@ const ProductDetail = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

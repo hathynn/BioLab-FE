@@ -41,7 +41,7 @@ const ProductReviews = () => {
   ];
 
   return (
-    <div className="p-10">
+    <div className="w-full">
       <h1 className="text-xl font-bold mb-4">Đánh giá sản phẩm (5 đánh giá)</h1>
       <div className="flex mt-6 ">
         <div>
