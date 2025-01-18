@@ -21,13 +21,27 @@
     }
   }
   .ant-radio-group-solid {
+    border-radius: 9px;
+    border: solid 1px rgb(222, 219, 219);
     .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
       background-color: #62d985;
       border-color: transparent;
       border-radius: 8px;
       color: white;
     }
+
+    .ant-radio-button-wrapper {
+      border:none;
+      background: transparent ;
+
+      &:hover {
+      color:#62d985;
+      }
+    }
+
+   
   }
+  
   .ant-radio-button-wrapper {
     min-width: 60px;
     text-align: center;
@@ -36,7 +50,7 @@
   .ant-radio-button-wrapper:not(:first-child)::before {
     background-color: transparent;
     opacity: 0.2;
-    border-right: 0.7px solid rgb(131, 81, 81);
+    // border-right: 0.7px solid rgb(131, 81, 81);
   }
   .ant-tabs-tab-btn {
     color: black;

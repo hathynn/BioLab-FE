@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button, Layout, Menu, theme } from "antd";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Layout, Menu, theme } from "antd";
+import { Outlet } from "react-router-dom";
 import { getLabel, adminMenuItems } from "../../../constants/menuItems";
 import { LogoutOutlined } from "@ant-design/icons";
 // import { useDispatch } from "react-redux";
@@ -57,7 +57,7 @@ const DashboardLayout: React.FC = () => {
       <Layout
         style={{ padding: "0 26px 0 106px", background: colorBgContainer }}
       >
-        <HeaderDashboard title={getLabel(currentItem?.key, "")} />
+        <HeaderDashboard title={getLabel(currentItem?.key)} />
         <Content>
           <div
             style={{

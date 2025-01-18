@@ -3,8 +3,7 @@ import Login from "../pages/auth/Login";
 
 import SignUp from "../pages/auth/SignUp";
 
-import { ADMIN_ROUTES, PRODUCT_ROUTES, USER_ROUTES } from "../constants/routes";
-import RecommendationProduct from "../components/recommendation-product";
+import { ADMIN_ROUTES, PAYMENT_ROUTES, PRODUCT_ROUTES, USER_ROUTES } from "../constants/routes";
 import HomePage from "../pages/home";
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -12,6 +11,7 @@ import ProductDetail from "../pages/productDetail";
 import DashboardLayout from "../components/layouts/dashboard-layout";
 import OverviewTeamplate from "../components/templates/overview";
 import ShoppingCart from "../pages/shopping-cart";
+import Payment from "../pages/payment";
 
 export const router = createBrowserRouter([
   {
@@ -60,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: PRODUCT_ROUTES.DETAIL,
         element: <ProductDetail />,
+      },
+      {
+        path: PAYMENT_ROUTES.PAYMENT,
+        element: <Payment />,
       },
     ],
   },

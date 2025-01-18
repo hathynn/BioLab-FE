@@ -10,7 +10,7 @@ function ShoppingCart() {
   const [selectAll, setSelectAll] = useState(false); 
   const [checkedItems, setCheckedItems] = useState([false, false, false]); 
   const [prices] = useState([295000, 150000, 50000]); 
-  const [discountPercentage] = useState(0); 
+  // const [discountPercentage] = useState(0); 
   const nav = useNavigate();
 
   const handleSelectAllChange = (checked: boolean) => {
@@ -42,9 +42,9 @@ function ShoppingCart() {
     return totalPrice /*- discount */;
   };
 
-  const handleQuantityChange = (value: number) => {
-    if (value > 0) setQuantity(value);
-  };
+  // const handleQuantityChange = (value: number) => {
+  //   if (value > 0) setQuantity(value);
+  // };
 
   return (
     <div className="px-10 mx-auto p-6">

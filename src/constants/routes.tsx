@@ -11,6 +11,12 @@ export enum PRODUCT_ROUTES {
   CART ="shopping-cart"
 }
 
+export enum PAYMENT_ROUTES {
+  PAYMENT = 'payment'
+}
+
+
+
 // Admin Routes
 export enum ADMIN_ROUTES {
   ADMIN = "admin",

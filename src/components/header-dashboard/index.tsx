@@ -1,5 +1,5 @@
 import { BellOutlined } from "@ant-design/icons";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { Notification } from "../notification";
 import Account from "../account";
 
@@ -8,7 +8,7 @@ interface HeaderDashboardProps {
 }
 
 const HeaderDashboard: FC<HeaderDashboardProps> = ({ title }) => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
 
   //   // Format items for Dropdown menu
   //   const notificationItems = data
