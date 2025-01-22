@@ -1,0 +1,31 @@
+.blog {
+  .ant-tabs-tab-btn {
+    color: black;
+    text-align: left;
+    font-size: 16px;
+    color: #757575;
+    font-weight: 500;
+  }
+
+  .ant-tabs-ink-bar {
+    display: none;
+  }
+  .ant-tabs-left > .ant-tabs-content-holder {
+    border: none;
+  }
+  .ant-tabs-tab-btn {
+    color: black;
+    text-align: left;
+    font-size: 16px;
+    color: #555555;
+    font-weight: 500;
+  }
+
+  .ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #292929;
+  }
+
+  //   .ant-tabs-ink-bar {
+  //     display: none;
+  //   }
+}

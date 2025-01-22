@@ -3,7 +3,12 @@ import Login from "../pages/auth/Login";
 
 import SignUp from "../pages/auth/SignUp";
 
-import { ADMIN_ROUTES, PAYMENT_ROUTES, PRODUCT_ROUTES, USER_ROUTES } from "../constants/routes";
+import {
+  ADMIN_ROUTES,
+  PAYMENT_ROUTES,
+  PRODUCT_ROUTES,
+  USER_ROUTES,
+} from "../constants/routes";
 import HomePage from "../pages/home";
 import Header from "../components/header";
 import Footer from "../components/footer";
@@ -12,6 +17,7 @@ import DashboardLayout from "../components/layouts/dashboard-layout";
 import OverviewTeamplate from "../components/templates/overview";
 import ShoppingCart from "../pages/shopping-cart";
 import Payment from "../pages/payment";
+import Blog from "../pages/blog";
 
 export const router = createBrowserRouter([
   {
@@ -38,7 +44,7 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: USER_ROUTES.HOME,
+        path: "/",
         element: <HomePage />,
       },
     ],
@@ -47,12 +53,16 @@ export const router = createBrowserRouter([
     path: "/",
     element: (
       <>
-        <Header navbarType="green"/>
+        <Header navbarType="green" />
         <Outlet />
         <Footer />
       </>
     ),
     children: [
+      {
+        path: USER_ROUTES.BLOG,
+        element: <Blog />,
+      },
       {
         path: PRODUCT_ROUTES.CART,
         element: <ShoppingCart />,
@@ -67,7 +77,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  
+
   {
     path: ADMIN_ROUTES.ADMIN,
     element: <DashboardLayout />,
