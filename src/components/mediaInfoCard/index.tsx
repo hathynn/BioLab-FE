@@ -2,14 +2,15 @@ import { Flex, Tag } from "antd";
 import { useState } from "react";
 import "./index.scss";
 
-function ListMedia() {
+export function ListMedia() {
   return (
-    <div className="flex justify-start items-start gap-4">
+    <div className="flex justify-center items-start gap-4">
       <img
         src="https://s3-alpha-sig.figma.com/img/5283/bf9a/b4ee6a05da5b8c41d80ebd301b4e9bfb?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=YagJSS0cpw5dLfYhCxYYeVR4IcdJhAWclrYwX5JJxoR2TMCRU8vduIRmXzgTCuupEuKnThjOexVf9oAe3uSelhkmcgMkuL2kRanRK3~g4c5F9-3qrNQGH25nGjRXMB2YGBlnf7sGsLhaZRuGSEc8AEXqvPJFza3Ilooke6fsZ7XbnG6EowzsSHd~oRih0LRnzKZaa5jTJK4rKmdPNvO4h7j8ITzQiaGmp7Fdc2TaNPStWzftR4zvxoW8kMVZIjBPn1ctO~abRQE2Ug3bTQHfVP-haQMQVPzOkCkgKJL0HQDbv6leOrWZ3GHjptMsl-ynZTf1Vp-k-t1Hz3Ixn8MZ3A__"
         className="w-2/5 rounded-lg min-h-[105px] object-cover"
       />
-      <div className="mt-2 flex flex-col gap-2">
+
+      <div className="mt-2 flex flex-col justify-center items-start gap-2">
         <div className="bg-[#EFEFEF] text-[#6F6F6F] text-xs font-semibold max-w-fit p-1 px-2 rounded-full ">
           Truyền thông
         </div>
@@ -20,8 +21,11 @@ function ListMedia() {
     </div>
   );
 }
+interface MediaInfoCardProps {
+  tags?: boolean; // Define the prop type for `tags` (optional boolean)
+}
 
-function MediaInfoCard() {
+function MediaInfoCard({ tags }: MediaInfoCardProps) {
   const tagsData = [
     "Dinh dưỡng",
     "Mẹ và bé",
@@ -39,17 +43,19 @@ function MediaInfoCard() {
   };
   return (
     <div>
-      <Flex gap={3} wrap align="center" className="type-media">
-        {tagsData.map<React.ReactNode>((tag) => (
-          <Tag.CheckableTag
-            key={tag}
-            checked={selectedTags.includes(tag)}
-            onChange={(checked) => handleChange(tag, checked)}
-          >
-            {tag}
-          </Tag.CheckableTag>
-        ))}
-      </Flex>
+      {tags == true && (
+        <Flex gap={3} wrap align="center" className="type-media">
+          {tagsData.map<React.ReactNode>((tag) => (
+            <Tag.CheckableTag
+              key={tag}
+              checked={selectedTags.includes(tag)}
+              onChange={(checked) => handleChange(tag, checked)}
+            >
+              {tag}
+            </Tag.CheckableTag>
+          ))}
+        </Flex>
+      )}
       <div className="p-5 bg-white rounded-2xl flex gap-5">
         <div className="w-3/5">
           <div>

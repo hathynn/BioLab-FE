@@ -6,6 +6,8 @@ import RecommendationProduct from "../../components/recommendation-product";
 import { IoIosAddCircle } from "react-icons/io";
 import { AiFillLike } from "react-icons/ai";
 import MediaInfoCard from "../../components/mediaInfoCard";
+import { useNavigate } from "react-router-dom";
+import { USER_ROUTES } from "../../constants/routes";
 
 function HomePage() {
   const data = [
@@ -97,6 +99,11 @@ function HomePage() {
       note: "Giảm 20%",
     },
   ];
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/" + USER_ROUTES.BLOG);
+  };
 
   return (
     <>
@@ -137,7 +144,7 @@ function HomePage() {
             <Col lg={17}>
               <Carousel arrows infinite={false} dots={false}>
                 <img
-                  src="https://s3-alpha-sig.figma.com/img/b128/3697/e5f3d2460105e95b6c1ca97681048d62?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FtTEgmPNyZzEI6UK66Sg~PX5tWmFxh00tR3KGbefDqG6IU6eq0VubjU3kqtNU459n2EoO3Xexkp7JyJtKCi-8Yv1eQQmoCAo9nevfm-W~qlW2DDKKuNokMc~9R4wlG62fnWWqikp9qu0g95f-9VypAdKv0Cwysn~g5vGoYzhTU6drqsn1TXPLqsHt~yV~AvM3T0F2wJPHbEPD1-IUIEXQk7BoME9KZTZn9AifXH1ukFMXJQF2qwy6Idtidtuk~YZ7GSkMSlX6~p3DUzzXcQ~ktAKDGpbfI1sNViABfnepsgJbAa780LT53gQAjmz39wKWCXLfrI9eU3HTwn78zKsuQ__"
+                  src="https://s3-alpha-sig.figma.com/img/b128/3697/e5f3d2460105e95b6c1ca97681048d62?Expires=1738540800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=hgwGIFNebWoblPXNYVOH2mPpQHuNLETJNQD6Hau8wfPEsPvd2IqnQvHX8VLiMlnnANtB07E5r5lal8cnqDme5dRu3TSD7reAy0Ax9yNo40zeRlopRRRu~ar2TnOLGchzdonek0ZO0vCQigUHnGLqstVHv0EwZmXFA7zJXZrmocpdPVjc908AvZKnoBuw6cJDlBuhiRolYdh7m-JxA80I0prFHBKzAKE6JbMa0l3iGbvUARlCtDrLR1fNarzglalXA2axvLG9QOwLP-18DY4WAoUZHg4u7KdwGN4ICl5R8ceDQtH4BZP7RoRhmJ-XrlGc1wgKg5~vUhr4HJ~J7VRhGw__"
                   className="object-cover w-full h-[200px] lg:h-[375px] rounded-2xl "
                 />
                 <img
@@ -241,11 +248,14 @@ function HomePage() {
                 <h1 className="text-4xl text-white font-normal flex justify-start items-center gap-2">
                   <IoIosAddCircle /> Cẩm nang sức khỏe
                 </h1>
-                <button className="bg-white text-[#006DC0] text-[16px] font-semibold rounded-full p-3 px-4 flex justify-between items-center gap-3 hover:bg-slate-200">
+                <button
+                  onClick={handleNavigate}
+                  className="bg-white text-[#006DC0] text-[16px] font-semibold rounded-full p-3 px-4 flex justify-between items-center gap-3 hover:bg-slate-200"
+                >
                   Xem tất cả <FaArrowRight />
                 </button>
               </div>
-              <MediaInfoCard />
+              <MediaInfoCard tags={true} />
             </div>
             <div className="bg-white h-full w-full rounded-3xl">
               <div className="p-10">
