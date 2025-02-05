@@ -1,4 +1,4 @@
-import MediaInfoCard, { ListMedia } from "../../components/mediaInfoCard";
+import MediaInfoCard from "../../components/mediaInfoCard";
 import { Tabs, TabsProps } from "antd";
 import { CiSearch } from "react-icons/ci";
 import { GoDotFill } from "react-icons/go";
