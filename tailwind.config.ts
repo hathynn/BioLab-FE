@@ -13,6 +13,7 @@ module.exports = {
         navColor:'#62D98533',
         cartColor:'#373737',
         cartCardColor:'#FCFFFD',
+        cancelColor:'#C83152',
       },
     },
   },

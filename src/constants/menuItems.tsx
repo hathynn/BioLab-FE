@@ -1,11 +1,14 @@
 import { MenuProps } from "antd";
 import { Link } from "react-router-dom";
-import Icon, {
+import {
   HomeOutlined,
   LineChartOutlined,
+  PaperClipOutlined,
+  ProductOutlined,
   SettingOutlined,
-  SnippetsOutlined,
 } from "@ant-design/icons";
+
+
 import { Key } from "react";
 
 export type MenuItem = Required<MenuProps>["items"][number];
@@ -35,6 +38,8 @@ const adminItems = [
   { label: "Tổng quan", key: "overview", icon: <HomeOutlined /> },
   { label: "Doanh thu", key: "sales", icon: <LineChartOutlined /> },
   { label: "Cài đặt", key: "setting", icon: <SettingOutlined /> },
+  { label: "Đăng blog", key: "create-blog", icon: <PaperClipOutlined/> },
+  { label: "Sản phẩm", key: "product", icon: <ProductOutlined/> },
 ];
 
 export const adminMenuItems: MenuItem[] = adminItems.map((item) =>

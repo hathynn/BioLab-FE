@@ -13,6 +13,7 @@ export enum PRODUCT_ROUTES {
 
 export enum PAYMENT_ROUTES {
   PAYMENT = "payment",
+  SHIPPING_INFO ='shipping-info'
 }
 
 // Admin Routes
@@ -20,4 +21,6 @@ export enum ADMIN_ROUTES {
   ADMIN = "admin",
   OVERVIEW = "overview",
   SETTING = "setting",
+  BLOG = "create-blog",
+  PRODUCT="product",
 }
