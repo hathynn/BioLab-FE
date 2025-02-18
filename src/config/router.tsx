@@ -18,6 +18,7 @@ import OverviewTeamplate from "../components/templates/overview";
 import ShoppingCart from "../pages/shopping-cart";
 import Payment from "../pages/payment";
 import Blog from "../pages/blog";
+import CreateBlog from "../components/templates/create-blog";
 
 export const router = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ export const router = createBrowserRouter([
       {
         path: ADMIN_ROUTES.SETTING,
         element: <></>,
+      },
+      {
+        path: ADMIN_ROUTES.BLOG,
+        element: <CreateBlog/>,
       },
     ],
   },

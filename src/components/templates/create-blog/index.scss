@@ -1,0 +1,48 @@
+.ql-container {
+  min-height: 300px !important;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.ql-toolbar {
+  background-color: #f8f9fa;
+  border-radius: 8px 8px 0 0;
+}
+
+
+.ql-editor {
+  font-family: "Arial", sans-serif;
+  font-size: 18px;
+  color: #333;
+}
+
+//   .ql-toolbar .ql-bold,
+//   .ql-toolbar .ql-italic {
+//     display: none !important;
+//   }
+
+
+//Customize màu khi tools active
+.ql-toolbar button.ql-active,
+.ql-toolbar .ql-picker-label.ql-active,
+.ql-toolbar .ql-picker-item.ql-selected {
+  color: green !important;
+}
+
+
+.ql-toolbar button.ql-active .ql-stroke,
+.ql-toolbar .ql-picker-label.ql-active .ql-stroke {
+  stroke: green !important;
+}
+
+.ql-toolbar button.ql-active .ql-fill,
+.ql-toolbar .ql-picker-label.ql-active .ql-fill {
+  fill: green !important;
+}
+
+
+.ql-toolbar button.ql-active {
+  border-color: green !important;
+}
+
+

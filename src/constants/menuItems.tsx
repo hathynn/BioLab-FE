@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import {
   HomeOutlined,
   LineChartOutlined,
+  PaperClipOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
+
+
 import { Key } from "react";
 
 export type MenuItem = Required<MenuProps>["items"][number];
@@ -34,6 +37,7 @@ const adminItems = [
   { label: "Tổng quan", key: "overview", icon: <HomeOutlined /> },
   { label: "Doanh thu", key: "sales", icon: <LineChartOutlined /> },
   { label: "Cài đặt", key: "setting", icon: <SettingOutlined /> },
+  { label: "Đăng blog", key: "create-blog", icon: <PaperClipOutlined/> },
 ];
 
 export const adminMenuItems: MenuItem[] = adminItems.map((item) =>
