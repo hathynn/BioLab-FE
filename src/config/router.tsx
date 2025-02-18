@@ -21,6 +21,7 @@ import CreateBlog from "../components/templates/create-blog";
 import ShippingInfo from "../pages/payment/shipping-info";
 import Payment from "../pages/payment";
 import Product from "../components/templates/product";
+import BrandAdmin from "../components/templates/brand";
 
 export const router = createBrowserRouter([
   {
@@ -104,6 +105,10 @@ export const router = createBrowserRouter([
       {
         path: ADMIN_ROUTES.PRODUCT,
         element: <Product/>,
+      },
+      {
+        path: ADMIN_ROUTES.BRAND,
+        element: <BrandAdmin/>,
       },
     ],
   },
