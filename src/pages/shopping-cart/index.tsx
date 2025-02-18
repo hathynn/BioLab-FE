@@ -4,31 +4,40 @@ import { FaTrash } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
 import { Checkbox, ConfigProvider } from "antd";
+import useCartStore from "../../store/cartStore";
 
 function ShoppingCart() {
+  const { cart,removeFromCart } = useCartStore();
   const [quantity, setQuantity] = useState(1);
-  const [selectAll, setSelectAll] = useState(false); 
-  const [checkedItems, setCheckedItems] = useState([false, false, false]); 
-  const [prices] = useState([295000, 150000, 50000]); 
-  // const [discountPercentage] = useState(0); 
+  const [selectAll, setSelectAll] = useState(false);
+  const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>(
+    cart.reduce((acc, item) => ({ ...acc, [item.id]: false }), {})
+  );
+  const [prices] = useState([295000, 150000, 50000]);
+  // const [discountPercentage] = useState(0);
   const nav = useNavigate();
 
   const handleSelectAllChange = (checked: boolean) => {
     setSelectAll(checked);
-    setCheckedItems(checkedItems.map(() => checked));
+    setCheckedItems(
+      cart.reduce((acc, item) => ({ ...acc, [item.id]: checked }), {})
+    );
   };
 
-  const handleItemChange = (index: number, checked: boolean) => {
-    const updatedItems = [...checkedItems];
-    updatedItems[index] = checked;
-    setCheckedItems(updatedItems);
-    setSelectAll(updatedItems.every((item) => item));
+  const handleItemChange = (id: string, checked: boolean) => {
+    setCheckedItems((prev) => {
+      const updated = { ...prev, [id]: checked };
+      setSelectAll(Object.values(updated).every((v) => v));
+      return updated;
+    });
   };
 
   const calculateTotalPrice = () => {
-    return checkedItems.reduce((total, isChecked, index) => {
-      return isChecked ? total + prices[index] : total;
-    }, 0);
+    return cart.reduce(
+      (total, item) =>
+        checkedItems[item.id] ? total + item.price * item.quantity : total,
+      0
+    );
   };
 
   // const calculateDiscount = () => {
@@ -73,7 +82,7 @@ function ShoppingCart() {
                   </Checkbox>
                 </ConfigProvider>
               </div>
-              <div className="flex justify-end space-x-10 w-1/3 font-bold">
+              <div className="flex justify-end space-x-10 w-1/3 font-bold text-nowrap">
                 <p>Giá thành </p>
                 <p>Số lượng </p>
                 <p>Đơn vị</p>
@@ -83,8 +92,8 @@ function ShoppingCart() {
               </div>
             </div>
 
-            {checkedItems.map((checked, index) => (
-              <div key={index} className="flex justify-between mb-4">
+            {cart?.map((p, index) => (
+              <div key={index} className="flex justify-between items-center mb-4">
                 <div className="flex w-2/3 space-x-4">
                   <ConfigProvider
                     theme={{
@@ -98,26 +107,21 @@ function ShoppingCart() {
                     }}
                   >
                     <Checkbox
-                      checked={checked}
-                      onChange={(e) =>
-                        handleItemChange(index, e.target.checked)
-                      }
+                      checked={checkedItems[p.id] || false}
+                      onChange={(e) => handleItemChange(p.id, e.target.checked)}
                     />
                   </ConfigProvider>
                   <img
-                    src={demo}
+                    src={p?.img}
                     alt="Product"
                     className="w-16 h-16 object-cover border rounded-md"
                   />
-                  <p className="font-bold text-gray-800">
-                    Dung dịch vệ sinh mũi ION Muối hỗ trợ sát khuẩn, kháng viêm,
-                    phòng ngừa sổ mũi (90ml)
-                  </p>
+                  <p className="font-bold text-gray-800">{p?.name}</p>
                 </div>
                 <div className="flex justify-end space-x-8 w-1/3">
                   <div className="pr-2">
                     <h1 className="flex text-customGreen font-bold">
-                      {prices[index].toLocaleString()}₫
+                      {p?.price}₫
                     </h1>
                   </div>
                   <div className="flex items-center border-2 border-gray-400 rounded-full w-16 h-6">
@@ -129,7 +133,7 @@ function ShoppingCart() {
                     </button>
 
                     <span className="w-12 text-center text-black">
-                      {quantity}
+                      {p?.quantity}
                     </span>
 
                     <button
@@ -146,7 +150,7 @@ function ShoppingCart() {
                   </select>
 
                   <i>
-                    <FaTrash />
+                    <FaTrash onClick={() => removeFromCart(p?.id)} className="cursor-pointer hover:text-red-500" />
                   </i>
                 </div>
               </div>

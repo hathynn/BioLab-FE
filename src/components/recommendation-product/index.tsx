@@ -20,7 +20,7 @@ function RecommendationProduct({
   name,
   img,
   note,
-  // price,
+  price,
   // quantity,
   // rate,
   discount,
@@ -37,6 +37,7 @@ function RecommendationProduct({
       name,
       img,
       discount,
+      price,
     };
 
     addToCart(product);
