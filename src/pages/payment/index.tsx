@@ -1,9 +1,6 @@
 import { useState } from "react";
-import demo from "../../assets/demo.png";
-import { FaTrash } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-
-import { Checkbox, ConfigProvider } from "antd";
+import qr from '../../assets/qr.png'
 
 function Payment() {
   const [quantity, setQuantity] = useState(1);
@@ -75,75 +72,36 @@ function Payment() {
               </div>
               <div className="flex">
                 <div className="pr-2 flex flex-col justify-between h-full">
-                  <p className="font-bold text-lg text-gray-800">
+                  <p className="font-bold text-base text-gray-800">
                     Dung dịch vệ sinh mũi ION Muối hỗ trợ sát khuẩn, kháng viêm,
-                    phòng ngừa sổ mũi (90ml)  Dung dịch vệ sinh mũi ION Muối hỗ trợ sát khuẩn, kháng viêm,
-                    phòng ngừa sổ mũi (90ml) 
+                    phòng ngừa sổ mũi (90ml)  
                   </p>
-                  <div className="flex w-full justify-between">
-                    <h1 className="flex text-black text-lg font-bold gap-2">
+                  <div className="flex w-full gap-5">
+                    <h1 className="flex text-black text-base font-bold gap-2">
                       50.505đ
-                      <span className="line-through text-lg text-gray-400">
+                      <span className="line-through text-base text-gray-400">
                         60.000đ
                       </span>
                     </h1>
-                    <p className="text-lg font-bold">x1 Hộp</p>
+                    <p className="flex justify-end text-base font-bold">x1 Hộp</p>
                   </div>
                 </div>
               </div>
             </div>
+
+            <div className="flex justify-between ">
+              <h1 className="w-2/3 font-bold text-base">Thành tiền</h1>
+              <h1 className="flex justify-end text-base space-x-10 w-1/3 font-bold text-customGreen">
+               60.000đ
+              </h1>
+            </div>
           </div>
 
-          <div>
-            <button
-              onClick={() => nav("/home")}
-              className="px-6 py-3 text-gray-600 font-semibold border-gray-100 bg-gray-100 border-2 rounded-lg hover:bg-gray-500 hover:text-white"
-            >
-              Tiếp tục mua sắm
-            </button>
-          </div>
+          
         </div>
 
         <div className="w-full rounded-lg  p-4">
-          <button className="w-full px-6 py-3 mb-3 text-green-600 border-customGreen border-2 rounded-lg hover:bg-customGreen hover:text-white">
-            Áp dụng ưu đãi để được giảm giá
-          </button>
-          <div className="space-y-3 text-black">
-            <div className="flex justify-between">
-              <span className="font-bold">Tổng tiền</span>
-              <span>{calculateTotalPrice().toLocaleString()}₫</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="font-bold">Giảm giá</span>
-              {/* <span>
-                {calculateDiscount() > 0
-                  ? `-${calculateDiscount().toLocaleString()}₫`
-                  : "0₫"}
-              </span> */}
-              <span>0đ</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="font-bold">Tiết kiệm</span>
-              {/* <span>
-                {calculateDiscount() > 0
-                  ? calculateDiscount().toLocaleString() + "₫"
-                  : "0₫"}
-              </span> */}
-              <span>0đ</span>
-            </div>
-            <div className="flex justify-between font-semibold text-lg text-green-500 pt-5">
-              <span className="font-bold">Thành tiền</span>
-              <span>{calculateFinalPrice().toLocaleString()}₫</span>
-            </div>
-          </div>
-
-          <button className="w-full mt-4 px-6 py-3 bg-customGreen text-white rounded-lg shadow-md hover:bg-green-500">
-            Tiến hành đặt mua
-          </button>
-          <p className="text-sm text-gray-500 mt-2">
-            Bằng việc tiến hành đặt mua hàng, bạn đồng ý với Điều khoản dịch vụ
-            và Chính sách cá nhân của BioLab.
-          </p>
+          <img src={qr}/>
         </div>
       </div>
     </div>
