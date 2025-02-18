@@ -2,11 +2,11 @@ import { Flex, Tag } from "antd";
 import { useState } from "react";
 import "./index.scss";
 
-export function ListMedia() {
+function ListMedia() {
   return (
     <div className="flex justify-center items-start gap-4">
       <img
-        src="https://s3-alpha-sig.figma.com/img/5283/bf9a/b4ee6a05da5b8c41d80ebd301b4e9bfb?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=YagJSS0cpw5dLfYhCxYYeVR4IcdJhAWclrYwX5JJxoR2TMCRU8vduIRmXzgTCuupEuKnThjOexVf9oAe3uSelhkmcgMkuL2kRanRK3~g4c5F9-3qrNQGH25nGjRXMB2YGBlnf7sGsLhaZRuGSEc8AEXqvPJFza3Ilooke6fsZ7XbnG6EowzsSHd~oRih0LRnzKZaa5jTJK4rKmdPNvO4h7j8ITzQiaGmp7Fdc2TaNPStWzftR4zvxoW8kMVZIjBPn1ctO~abRQE2Ug3bTQHfVP-haQMQVPzOkCkgKJL0HQDbv6leOrWZ3GHjptMsl-ynZTf1Vp-k-t1Hz3Ixn8MZ3A__"
+        src="https://s3-alpha-sig.figma.com/img/646d/1797/a009f5a12690b71cb92c1c37579cba68?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=D523hgvPtZL9JrcY2AEjUdHTTdGCiDq9hVRqOJGEGxMxLgHXFg7Mbxa9S8FwnH85CgY-81TFQ8P2e3xjEGv~yJcJTO4EbIoum0NLHokSHyX9Tmgc1pe4g17CBJvnjMUvZ4EteBQUP~FvUbJgPy~C8Vv5C87h7B-q73j3OvTAD6PMdL-WBhFFZZ0zFh2TNoadWjDqHwLgRpnh7C280zJ~JjbepxOTAuEnsrcvTu4Mpb02sKUUiL1H~eyyZWdyRd54ib2ry4qfKIVFeUmpIRa-xQ1zZYzqxPUXX0ZId3F1uBvK50jJag8FOoyUf4jlMTE1F2MEzN5gnEb3CqIh9-A9dg__"
         className="w-2/5 rounded-lg min-h-[105px] object-cover"
       />
 
@@ -33,7 +33,7 @@ function MediaInfoCard({ tags }: MediaInfoCardProps) {
     "Khoẻ đẹp",
     "Tin tức sức khoẻ",
   ];
-  const [selectedTags, setSelectedTags] = useState<string[]>(["Movies"]);
+  const [selectedTags, setSelectedTags] = useState<string[]>([""]);
   const handleChange = (tag: string, checked: boolean) => {
     const nextSelectedTags = checked
       ? [...selectedTags, tag]
@@ -60,7 +60,7 @@ function MediaInfoCard({ tags }: MediaInfoCardProps) {
         <div className="w-3/5">
           <div>
             <img
-              src="https://s3-alpha-sig.figma.com/img/8009/711d/ee338228e49f8a5b89ed6718acb91e58?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HZxgmwHEuZUt804if2Nh54ER-wgL4bLOnDf--FaN2uenUHDRQavAhdSLmRm6I-9RZWNBS8z76ZZcVEGL8sObopBe~4xCQ-bJurPLMr1htMrh9OHXr2JQT7ZVKPM1ywTNcP5lUJLjW6qOLERJKvW207hrOZEt-riifcTgIndS2k9pgE4Wr2vSDrxbCMYitKEuZ7tDJtZUGdhwWUFCOdq7uUfZrNgQbeyjjqEBfwBhh6WGv5zK3hQMKIKxmbR15GdwNKPUM0MHXsC3HEG~F1NMrD-04PRTz3CG9KesKNxlXxgQ5UdJADirJFhvScLQiF~KqcQIJ-Lm0lYmndsrExH2dw__"
+              src="https://s3-alpha-sig.figma.com/img/8009/711d/ee338228e49f8a5b89ed6718acb91e58?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=NLG6vrwH2NNENRi7AcqtSLn9LMDykWT2DSmjHM9k2TyHz~mx9ttXAQCpkkQjQcDDV9uj3VX2YKK29nMUKq4q7ImH8snqkmcIbcjHFUQP6GTW5Xa0tSe504VCrIi70hWlwhJ1RNFY-XBPafZZrxURphDLfEJ5yV-d4rid~u9WfeLK0uwm-rLPayjYdSabPUq2wzlGbCcvfbADkueiXyToPAQB4y8LlnH9yAlHJVQPklheT7EYO2gD3JFvIUC8U7s~bhkVBYy~vQ6l0Efa3gmZdIwsOX9H70iJuz6Ya~BgGc-emmufO8hcfgUerQlgFyQEoMSz0aT70OEPcV5~mg0z0A__"
               className="rounded-lg"
             />
             <div className="bg-[#EFEFEF] text-[#6F6F6F] text-xs max-w-fit p-1 px-2 font-semibold rounded-full my-3">
