@@ -1,3 +1,4 @@
-* {
-    font-family: "Manrope", serif;
+*,
+input:placeholder-shown {
+  font-family: "Manrope", serif;
 }
