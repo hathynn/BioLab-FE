@@ -1,10 +1,9 @@
 import { MenuProps } from "antd";
 import { Link } from "react-router-dom";
-import Icon, {
+import {
   HomeOutlined,
   LineChartOutlined,
   SettingOutlined,
-  SnippetsOutlined,
 } from "@ant-design/icons";
 import { Key } from "react";
 
