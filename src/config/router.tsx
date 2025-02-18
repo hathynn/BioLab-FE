@@ -16,9 +16,10 @@ import ProductDetail from "../pages/productDetail";
 import DashboardLayout from "../components/layouts/dashboard-layout";
 import OverviewTeamplate from "../components/templates/overview";
 import ShoppingCart from "../pages/shopping-cart";
-import Payment from "../pages/payment";
 import Blog from "../pages/blog";
 import CreateBlog from "../components/templates/create-blog";
+import ShippingInfo from "../pages/payment/shipping-info";
+import Payment from "../pages/payment";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: PRODUCT_ROUTES.DETAIL,
         element: <ProductDetail />,
+      },
+      {
+        path: PAYMENT_ROUTES.SHIPPING_INFO,
+        element: <ShippingInfo />,
       },
       {
         path: PAYMENT_ROUTES.PAYMENT,
