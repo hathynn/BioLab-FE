@@ -1,47 +1,8 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import qr from '../../assets/qr.png'
 
 function Payment() {
-  const [quantity, setQuantity] = useState(1);
-  const [selectAll, setSelectAll] = useState(false);
-  const [checkedItems, setCheckedItems] = useState([false, false, false]);
-  const [prices] = useState([295000, 150000, 50000]);
-  // const [discountPercentage] = useState(0);
-  const nav = useNavigate();
 
-  const handleSelectAllChange = (checked: boolean) => {
-    setSelectAll(checked);
-    setCheckedItems(checkedItems.map(() => checked));
-  };
-
-  const handleItemChange = (index: number, checked: boolean) => {
-    const updatedItems = [...checkedItems];
-    updatedItems[index] = checked;
-    setCheckedItems(updatedItems);
-    setSelectAll(updatedItems.every((item) => item));
-  };
-
-  const calculateTotalPrice = () => {
-    return checkedItems.reduce((total, isChecked, index) => {
-      return isChecked ? total + prices[index] : total;
-    }, 0);
-  };
-
-  // const calculateDiscount = () => {
-  //   const totalPrice = calculateTotalPrice();
-  //   return discountPercentage > 0 ? (totalPrice * discountPercentage) / 100 : 0;
-  // };
-
-  const calculateFinalPrice = () => {
-    const totalPrice = calculateTotalPrice();
-    // const discount = calculateDiscount();
-    return totalPrice /*- discount */;
-  };
-
-  // const handleQuantityChange = (value: number) => {
-  //   if (value > 0) setQuantity(value);
-  // };
 
   return (
     <div className="px-10 mx-auto p-6">
