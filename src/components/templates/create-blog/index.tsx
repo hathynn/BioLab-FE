@@ -95,7 +95,7 @@ function CreateBlog() {
       />
 
       <button
-        onClick={() => console.log(content)}
+        onClick={() => console.log(value)}
         className="mt-4 px-4 py-2 border hover:bg-customGreen hover:text-white text-gray-500 font-semibold text-base rounded-lg"
       >
         Đăng bài
