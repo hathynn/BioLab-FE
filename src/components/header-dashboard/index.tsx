@@ -32,7 +32,7 @@ const HeaderDashboard: FC<HeaderDashboardProps> = ({ title }) => {
         <h1 className="text-2xl font-bold pt-3">{title}</h1>
       </div>
       <div className="flex gap-5">
-        <Notification
+        {/* <Notification
           count={8}
           items={[]}
           placement="bottomRight"
@@ -41,7 +41,7 @@ const HeaderDashboard: FC<HeaderDashboardProps> = ({ title }) => {
           <div className="h-14 w-14 flex justify-center items-center rounded-full">
             <BellOutlined style={{ fontSize: 26 }} />
           </div>
-        </Notification>
+        </Notification> */}
         <Account
           src={""}
           subTitle={"Xin chào nhà bán lẻ"}
