@@ -1,11 +1,14 @@
 import { MenuProps } from "antd";
 import { Link } from "react-router-dom";
 import {
+  BranchesOutlined,
   HomeOutlined,
   LineChartOutlined,
   PaperClipOutlined,
   ProductOutlined,
   SettingOutlined,
+  ShopFilled,
+  ShopOutlined,
 } from "@ant-design/icons";
 
 
@@ -40,6 +43,7 @@ const adminItems = [
   { label: "Cài đặt", key: "setting", icon: <SettingOutlined /> },
   { label: "Đăng blog", key: "create-blog", icon: <PaperClipOutlined/> },
   { label: "Sản phẩm", key: "product", icon: <ProductOutlined/> },
+  { label: "Nhãn hàng", key: "brand", icon: <ShopOutlined/> },
 ];
 
 export const adminMenuItems: MenuItem[] = adminItems.map((item) =>
