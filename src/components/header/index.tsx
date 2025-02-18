@@ -4,8 +4,10 @@ import { AiOutlineUser } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import useCartStore from "../../store/cartStore";
 
 function Header({ navbarType = "light" }) {
+  const { cart } = useCartStore();
   const nav = useNavigate();
 
   const navbarBackground =
@@ -18,7 +20,12 @@ function Header({ navbarType = "light" }) {
   return (
     <header className="px-10 pt-7">
       <div className="flex items-center justify-between">
-        <img onClick={() => nav('/home')} src={logo2} alt="Logo" className="h-15 w-12 cursor-pointer" />
+        <img
+          onClick={() => nav("/home")}
+          src={logo2}
+          alt="Logo"
+          className="h-15 w-12 cursor-pointer"
+        />
 
         <div className="relative w-[500px]">
           <i className="absolute left-4 top-5 transform -translate-y-1/2">
@@ -49,14 +56,17 @@ function Header({ navbarType = "light" }) {
             <i aria-hidden="true">
               <AiOutlineShoppingCart className="text-xl" />
             </i>
-            <span  onClick={() => nav("/shopping-cart")} className="text-sm">Giỏ hàng</span>
-            <span className="absolute -top-2 -right-1 px-2 py-1 bg-red-600 text-white text-xs rounded-full">
-              2
+            <span onClick={() => nav("/shopping-cart")} className="text-sm">
+              Giỏ hàng
             </span>
+            {cart.length != 0 && (
+              <span className="absolute -top-2 -right-1 px-2 py-1 bg-red-600 text-white text-xs rounded-full">
+                {cart.length}
+              </span>
+            )}
           </a>
         </div>
       </div>
-
 
       <div className={` mt-3 py-3 rounded-full  ${navbarBackground}`}>
         <nav className="flex justify-between text-sm px-10">

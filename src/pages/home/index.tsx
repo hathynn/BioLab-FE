@@ -39,6 +39,7 @@ function HomePage() {
   };
   const data = [
     {
+      id:"1",
       title: "Thực phẩm chức năng",
       name: "Siro ho thảo mộc Tanacol siro ho cảm cho trẻ sơ sinh",
       img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/Frame%2011.png?alt=media&token=6e79df5f-8d6b-4633-847e-6c89f8231b77",
@@ -48,6 +49,7 @@ function HomePage() {
       rate: 4.5,
     },
     {
+      id:"2",
       title: "Thực phẩm chức năng",
       name: "Bột Hapacol 150 DHG giảm đau, hạ sốt (24 gói)",
       img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/a.png?alt=media&token=26bf348e-28bc-45cc-ba99-39d2864f57f1",
@@ -58,6 +60,7 @@ function HomePage() {
       discount: 25,
     },
     {
+      id:"3",
       title: "Mỹ phẩm",
       name: "Sữa rửa mặt Reihaku Hatomugi Acne Care and Facial Washing ngừa mụn, dưỡng ẩm và làm sáng da (130g)",
       img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/b.png?alt=media&token=a27a383e-b7b1-4789-9e4f-7584ba22a888",
@@ -68,6 +71,7 @@ function HomePage() {
       discount: 20,
     },
     {
+      id:"4",
       title: "Mỹ phẩm",
       name: "Sữa rửa mặt Reihaku Hatomugi Acne Care and Facial Washing ngừa mụn, dưỡng ẩm và làm sáng da (130g)",
       img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/b.png?alt=media&token=a27a383e-b7b1-4789-9e4f-7584ba22a888",
@@ -78,6 +82,7 @@ function HomePage() {
       discount: 20,
     },
     {
+      id:"5",
       title: "Mỹ phẩm",
       name: "Sữa rửa mặt Reihaku Hatomugi Acne Care and Facial Washing ngừa mụn, dưỡng ẩm và làm sáng da (130g)",
       img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/b.png?alt=media&token=a27a383e-b7b1-4789-9e4f-7584ba22a888",
@@ -171,15 +176,15 @@ function HomePage() {
             <Col lg={17}>
               <Carousel arrows infinite={false} dots={false}>
                 <img
-                  src="https://s3-alpha-sig.figma.com/img/b128/3697/e5f3d2460105e95b6c1ca97681048d62?Expires=1738540800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=hgwGIFNebWoblPXNYVOH2mPpQHuNLETJNQD6Hau8wfPEsPvd2IqnQvHX8VLiMlnnANtB07E5r5lal8cnqDme5dRu3TSD7reAy0Ax9yNo40zeRlopRRRu~ar2TnOLGchzdonek0ZO0vCQigUHnGLqstVHv0EwZmXFA7zJXZrmocpdPVjc908AvZKnoBuw6cJDlBuhiRolYdh7m-JxA80I0prFHBKzAKE6JbMa0l3iGbvUARlCtDrLR1fNarzglalXA2axvLG9QOwLP-18DY4WAoUZHg4u7KdwGN4ICl5R8ceDQtH4BZP7RoRhmJ-XrlGc1wgKg5~vUhr4HJ~J7VRhGw__"
+                  src="https://s3-alpha-sig.figma.com/img/b128/3697/e5f3d2460105e95b6c1ca97681048d62?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Fnv~jumJcq103T4J6WTiBIbb8dORQBPP00MKt6m20DFEa3mHCT95p28i0b-NgFn38H~wbRgeXevgJEsw5sxjYLxLqiCPFrOJT99MSK20GbrLsaO-JyeU2p-RXh~0auSCfKXnIniK785iNt8PXQDTEDevniVbzmU9Pbst5DBJCxz4co8k8aLCvCvoEhBZB9LlVwStjCYj1fiIFEuMCnLqAKFdT5HDEB0jcQReDKMdUqkck7~IwNeldqQ4dkiUaL2JTOR66knxsAVFUQviGLplzD28yihU3DiQbGmow0EW-T6ZIzBweHQ-aIuzUr4X-w3SLV~LUSuYBZDTt84Eq3~8zA__"
                   className="object-cover w-full h-[200px] lg:h-[375px] rounded-2xl "
                 />
                 <img
-                  src="https://s3-alpha-sig.figma.com/img/b128/3697/e5f3d2460105e95b6c1ca97681048d62?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FtTEgmPNyZzEI6UK66Sg~PX5tWmFxh00tR3KGbefDqG6IU6eq0VubjU3kqtNU459n2EoO3Xexkp7JyJtKCi-8Yv1eQQmoCAo9nevfm-W~qlW2DDKKuNokMc~9R4wlG62fnWWqikp9qu0g95f-9VypAdKv0Cwysn~g5vGoYzhTU6drqsn1TXPLqsHt~yV~AvM3T0F2wJPHbEPD1-IUIEXQk7BoME9KZTZn9AifXH1ukFMXJQF2qwy6Idtidtuk~YZ7GSkMSlX6~p3DUzzXcQ~ktAKDGpbfI1sNViABfnepsgJbAa780LT53gQAjmz39wKWCXLfrI9eU3HTwn78zKsuQ__"
+                  src="https://cdn.nhathuoclongchau.com.vn/unsafe/1920x0/filters:quality(90)/https://cms-prod.s3-sgn09.fptcloud.com/Banner_Web_PC_1610x492_ba2ba6f811.png"
                   className="object-cover w-full h-[200px] lg:h-[375px] rounded-2xl "
                 />
                 <img
-                  src="https://s3-alpha-sig.figma.com/img/b128/3697/e5f3d2460105e95b6c1ca97681048d62?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FtTEgmPNyZzEI6UK66Sg~PX5tWmFxh00tR3KGbefDqG6IU6eq0VubjU3kqtNU459n2EoO3Xexkp7JyJtKCi-8Yv1eQQmoCAo9nevfm-W~qlW2DDKKuNokMc~9R4wlG62fnWWqikp9qu0g95f-9VypAdKv0Cwysn~g5vGoYzhTU6drqsn1TXPLqsHt~yV~AvM3T0F2wJPHbEPD1-IUIEXQk7BoME9KZTZn9AifXH1ukFMXJQF2qwy6Idtidtuk~YZ7GSkMSlX6~p3DUzzXcQ~ktAKDGpbfI1sNViABfnepsgJbAa780LT53gQAjmz39wKWCXLfrI9eU3HTwn78zKsuQ__"
+                  src="https://s3-alpha-sig.figma.com/img/b128/3697/e5f3d2460105e95b6c1ca97681048d62?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Fnv~jumJcq103T4J6WTiBIbb8dORQBPP00MKt6m20DFEa3mHCT95p28i0b-NgFn38H~wbRgeXevgJEsw5sxjYLxLqiCPFrOJT99MSK20GbrLsaO-JyeU2p-RXh~0auSCfKXnIniK785iNt8PXQDTEDevniVbzmU9Pbst5DBJCxz4co8k8aLCvCvoEhBZB9LlVwStjCYj1fiIFEuMCnLqAKFdT5HDEB0jcQReDKMdUqkck7~IwNeldqQ4dkiUaL2JTOR66knxsAVFUQviGLplzD28yihU3DiQbGmow0EW-T6ZIzBweHQ-aIuzUr4X-w3SLV~LUSuYBZDTt84Eq3~8zA__"
                   className="object-cover w-full h-[200px] lg:h-[375px] rounded-2xl "
                 />
               </Carousel>
@@ -187,13 +192,13 @@ function HomePage() {
             <Col lg={7}>
               <Row gutter={[12, 12]}>
                 <img
-                  src="https://s3-alpha-sig.figma.com/img/069f/178d/e59afbefcacd17912267d6a6991cc15c?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=X9gDwJ2fvD9fEYj46zXAtJbrrzCnGCW1RgXI3Z4VdBVfNxeqeGYjHDdZGAuMlNMkdsAOSh4GcsNOf4mY6SbRK7YOsVfzNqVG9wH~2vLlGDhEjrlwwCK08q3wZRjzkEFXkYp8NOUoeLW-xwasZ8SFN3mhmQ40VKl68xYDl7ptT1GmZdCZT7R78NETItyLIwnwRaofJnFAv1VIC39VJJ6MypkAlUsTpydkobfS6D6B2isd6pVusJ0MpZJ4O4su93maasQc2IzaxAsBEBkNiREf-wY8~d7p-K6PWFTbfoKFrOmk1akQrg5TbGWz9LkYz~CLi2J-xWCKIbhUptrbu48WLg__"
+                  src="https://s3-alpha-sig.figma.com/img/069f/178d/e59afbefcacd17912267d6a6991cc15c?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uPsXDPvpCxIpux1jMAqXpY7ue6-3Tlp6u0ZUJXuzpUzxsoIZzUUPXhoAK4G~bk~vYMuZJFccVeIIGcH4zYaLhXFV6vyXEv2xF7hawBf1rNsI3JiN0486jlTzis~vlOE3whTd6u2OnG72eBj8mAOILXCwc9sbefGrIKzYnDXrTERa5bTaSmHtmXz0wqMcNnfvKvfvsOv3UlKn~HDtPXimodPdc-H2OBBIRER2ne0CbQ6c2B9xDO6pKJdic-Qa3VQrCStM4BMks4aBM7Ibd0cmmcoL1RSsGV4f5SrD8doNUzwn0dZjfNO~aY5HigcJKumueLuf8nzd4T-DOd9kF43YXA__"
                   className="rounded-2xl w-full h-full object-cover "
                   alt="Image 1"
                 />
 
                 <img
-                  src="https://s3-alpha-sig.figma.com/img/4c81/3a4c/51d8108e0a9edaa3d6a1fde795b3f1ac?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=b-zmbSqEqhrLChckPoRQcTOjJp2YyA-zFCVSa4m6Bu60QfdP77PvzNpi7t5JJR5exujyb5BhiH8gdA5ubAOqp37TbBQdoMjGGw2471gxNQY2egV5ZKnFUJxpbyVb2Uj4SVkLeXg62o~OMS5daBUoppQRnm9EBsmx3q1kdGi8jmH3i2xoICKNDVWVzdlqYIQqSG0NTUUMoA5v-i11MhqM8baYHc58uSyu1khmn2NlSGzT4zO~JnKwvhuWL44iRggidcqRTddibtxj8VuXtVImOFneqtUVmNKe6NGWU5AHH~y8Dkvkjf03yUS5-pVyjDw-3UYMCtekxUcjDhUcQER9ag__"
+                  src="https://s3-alpha-sig.figma.com/img/4c81/3a4c/51d8108e0a9edaa3d6a1fde795b3f1ac?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=YOcvyHI26b48IiMS6b8wNRwrflhymo5ZpLVhtC8nIgACqweBqGXES~MH8W~954HXKd4E7Yy2QkI4HsHRKPT3mA2-3K~gf8MxUkbMtysRB~uvbFdm0yfWm2E6VOMUWsrgtvUQOK1PaXNoHazeDKZWuIIdOTyLc-I9UVgb1FJxq~~mZU1MsTcX60bud~UVOS0pl6oHNOnphvqVRMR7anc41fyaqr6kC3C96QsjCUgV338iBmFJc-ChBCIm2rR~I6kATG2c69b6a-g5DSrls7cpG2zYO9tVCHQe45gNZh7Tn2A4wX1WQyCeH4ahmsS195MUse-8S3lsi7cZRFxyoaB6vQ__"
                   className="rounded-2xl w-full h-full object-cover "
                   alt="Image 2"
                 />
@@ -204,17 +209,17 @@ function HomePage() {
 
         <div className="flex justify-center items-center gap-4 h-[335px] pt-7">
           <img
-            src="https://s3-alpha-sig.figma.com/img/b24e/d6b4/3baa0caeaa29aaab596c684ab438ac20?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=dVY8--RyFJNXHIhAkD7Nv-YYAcd3vVPzA7QFgMhIltgaOc5Kz6ssRSg5EowdnJ~1CuuWHVP88OkiSj7dwr80Qb-1g2WYyDbTqPDWmGnkkDpugME~QhTbAN7OHSSLEitf4jELqVbtWuKzCR3JGBieLGbB6B41GpdK0ffrCA1iO-kvYQPmiQ-3BYVeGIDFQQPt6knNSvDyM1qsrZQBSGXcZ~iRJU1pGph8QfQSwy1Ax5W0yigulEKF78JK7y1Jtx52zOIkTzTQT~LdcyYbObSH-wy1~TnHXyQWBTk-Z3T~mSWOZvU2Hy7QyXC3KwGWvI-Skyouzw3VOyKmTi-x0qV9zw__"
+            src="https://s3-alpha-sig.figma.com/img/b24e/d6b4/3baa0caeaa29aaab596c684ab438ac20?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=t72kRf6FaZadqWuzYbZeo4bBk27FixJ6EWeHYoXekwSh50vDLWOHDoroFODnt7LcAY5QoVxTlcszYVJmKdSr9LXKx1ard0AwzDJfPRblhGNxgI8SYGH85sZE6RIVQvPidiRKXPSDpNfRDEYbjattk4xARaNT-o9vKcPFgx3PdPz9yUebRtq-Ehty2MeEHiMfisplaeydWKvABrP~wyvaouoxGkT57VryxF0-bBDYf1tkz2XQ5IALkR15-poo5dfGQR2DLQKcV-MdqMlhMlMLDaYCnBbiBHbhr0ZtiV1~VkD8xkb2tV6w0p68sYzHN8OWHAOP-bRQ0sGDt9OvY8GGPQ__"
             className="rounded-2xl w-[30%] h-full object-cover "
             alt="Image 2"
           />
           <img
-            src="https://s3-alpha-sig.figma.com/img/b49f/1b80/e9ad7f0f94224a4118fddda8131b9432?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=m8E0F3VDXmRlCodsJ~rX3Hcwb3B06zNFPHws4qHblgrZAu9aqd6dhutTI6vHeiOuAhVXjnmzs7czwAHUOVEce8hxtjsvO8q1RhbrY~b9Ngy32sY0BOqgICkcGm-VQc76eDLIRqqHsIx4xylPlbl1ejsOnOxmelDAa7PKDlscnddYLFGQFZqdauWVWFiOR5Y0tZ10IcQFm2JJRcUoWib3GGhhS1ZTePpkF4f05hw8RcxOK5zpnh1fdcMnmpdKgk2VT8cMyf4-e3zPWlisjUTkiN-YYdBRiy16KqYfc8a6VTmATch94ghFJHx-dUTZKnrIvqLagn32L5XgPuOIUDTXpw__"
+            src="https://s3-alpha-sig.figma.com/img/b49f/1b80/e9ad7f0f94224a4118fddda8131b9432?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=CD8fR23ViH98sC00DihpaJuzzeyR~F22wZUgZLUfI-YTctQ~KF8k54GUNHXPz5odF~SasvuZcsriF8lm7McwgZ~aq067IzVrzwQ-522yFqLNtR~k8R97ts4r9FI1JDTzGlIFcpcja2kCST-C2DlFUt8ZA8eziO1MwDSV0nIKJvXxyJcQI9l8o0NVcgdFYEc3D74qc6V6474lJQfgycVIma4YL8qXht3kAk-~UBrGHA0SuxQAXl9acW3Bd6Ys7nE5uN47YgBXPWT7050nfLkHLIuxJnFO24~Hpn2XSk0PInx8dtpMEWYAyaeZ4STrC61~940~R5clOPIzOCS7qOCuOg__"
             className="rounded-2xl w-[30%] h-full object-cover "
             alt="Image 2"
           />
           <img
-            src="https://s3-alpha-sig.figma.com/img/2810/afb8/d6cce381df614aa5c564c287bdc35c88?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Gc5D4Sm28Jlt0XU0auPlJCPA4HFKLBRoQ~R-f3Cy0xyJwixccnXTwAKFunk84nzVoHrZ5Nm0JwWcxE0DittV6h29apQEFP88DpudGIfrX4KaztCowr59sTn4RoZaIDA2voPcNnM-5Pml~gDNsw5rWGMhls-3PXXOreTbAYcI2YC5J-1VI31Nb6kl4wc5QUM3C5iw-A0rJ9vZkvsaiJwy29TMGNOAw3ZLusogRVe5TeaNG1kd127ufiYgsOG4TNbviQKobceBd6AecdWKmpimQvLt~eliAwiS9e3BNFyNZQo1WwBoKiQUQYPmHkAMr2bPicrG5y9hQASYBY2agwDWAA__"
+            src="https://s3-alpha-sig.figma.com/img/2810/afb8/d6cce381df614aa5c564c287bdc35c88?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=oEiG-ctE9d~yLtf5lfsw6YHbUCMEVOzarmROw4igHGPpNRh4~EbfjwUd~fI6ghPIjUsPsihKBDxZUTmoijYmBX3SOIQfhFL9KrYzPlzjtPNZX~B3yepTS3aC1YLAhzLDih1ofi6ezwp50NSFxprdmzqiTag488NvS~VPF8zcRMOsxh0C3QaH3Mj2XKHNG4HCcna-T2BFT-7W3YWys4KKLTaPe-PQtMHnSoLe3urIVFZVn7y4eSabzQaXtc1lx~fTqPjsJ4Bbt2~U-jhYLdKkvkepM-aKNfdX8uJTa~IdVcmWtHRpd7OJBZN5rzqklcOMfRUR8pjaH6-JElmT5DgOEw__"
             className="rounded-2xl w-[40%] h-full object-cover "
             alt="Image 2"
           />
@@ -234,6 +239,7 @@ function HomePage() {
             {data.map((product, index) => (
               <RecommendationProduct
                 key={index}
+                id={product.id}
                 title={product.title}
                 name={product.name}
                 img={product.img}
