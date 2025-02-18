@@ -2,6 +2,7 @@ import { Radio } from "antd";
 import { FaStar } from "react-icons/fa";
 import "./index.scss";
 import useCartStore from "../../store/cartStore";
+import { toast } from "react-toastify";
 interface RecommendationProductProps {
   id?: string;
   title?: string;
@@ -41,7 +42,7 @@ function RecommendationProduct({
     };
 
     addToCart(product);
-    alert("Sản phẩm đã được thêm vào giỏ hàng!");
+    toast.success("Đã thêm sản phẩm vào giỏ hàng");
   };
   return (
     <div className="bg-[#F0F5F2]   border border-[#D4DBE3] rounded-[30px] flex-col justify-center items-center">
