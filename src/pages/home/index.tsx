@@ -12,6 +12,7 @@ import { USER_ROUTES } from "../../constants/routes";
 function HomePage() {
   const data = [
     {
+      id:"1",
       title: "Thực phẩm chức năng",
       name: "Siro ho thảo mộc Tanacol siro ho cảm cho trẻ sơ sinh",
       img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/Frame%2011.png?alt=media&token=6e79df5f-8d6b-4633-847e-6c89f8231b77",
@@ -21,6 +22,7 @@ function HomePage() {
       rate: 4.5,
     },
     {
+      id:"2",
       title: "Thực phẩm chức năng",
       name: "Bột Hapacol 150 DHG giảm đau, hạ sốt (24 gói)",
       img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/a.png?alt=media&token=26bf348e-28bc-45cc-ba99-39d2864f57f1",
@@ -31,6 +33,7 @@ function HomePage() {
       discount: 25,
     },
     {
+      id:"3",
       title: "Mỹ phẩm",
       name: "Sữa rửa mặt Reihaku Hatomugi Acne Care and Facial Washing ngừa mụn, dưỡng ẩm và làm sáng da (130g)",
       img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/b.png?alt=media&token=a27a383e-b7b1-4789-9e4f-7584ba22a888",
@@ -41,6 +44,7 @@ function HomePage() {
       discount: 20,
     },
     {
+      id:"4",
       title: "Mỹ phẩm",
       name: "Sữa rửa mặt Reihaku Hatomugi Acne Care and Facial Washing ngừa mụn, dưỡng ẩm và làm sáng da (130g)",
       img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/b.png?alt=media&token=a27a383e-b7b1-4789-9e4f-7584ba22a888",
@@ -51,6 +55,7 @@ function HomePage() {
       discount: 20,
     },
     {
+      id:"5",
       title: "Mỹ phẩm",
       name: "Sữa rửa mặt Reihaku Hatomugi Acne Care and Facial Washing ngừa mụn, dưỡng ẩm và làm sáng da (130g)",
       img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/b.png?alt=media&token=a27a383e-b7b1-4789-9e4f-7584ba22a888",
@@ -207,6 +212,7 @@ function HomePage() {
             {data.map((product, index) => (
               <RecommendationProduct
                 key={index}
+                id={product.id}
                 title={product.title}
                 name={product.name}
                 img={product.img}

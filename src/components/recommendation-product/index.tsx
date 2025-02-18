@@ -1,7 +1,9 @@
 import { Radio } from "antd";
 import { FaStar } from "react-icons/fa";
 import "./index.scss";
+import useCartStore from "../../store/cartStore";
 interface RecommendationProductProps {
+  id?: string;
   title?: string;
   name: string;
   img: string;
@@ -13,6 +15,7 @@ interface RecommendationProductProps {
 }
 
 function RecommendationProduct({
+  id,
   title,
   name,
   img,
@@ -26,6 +29,19 @@ function RecommendationProduct({
     { label: "Chai", value: "a" },
     { label: "Vỉ", value: "b" },
   ];
+  const { addToCart } = useCartStore();
+
+  const handleAddToCart = () => {
+    const product = {
+      id,
+      name,
+      img,
+      discount,
+    };
+
+    addToCart(product);
+    alert("Sản phẩm đã được thêm vào giỏ hàng!");
+  };
   return (
     <div className="bg-[#F0F5F2]   border border-[#D4DBE3] rounded-[30px] flex-col justify-center items-center">
       <div className="relative">
@@ -72,8 +88,11 @@ function RecommendationProduct({
           )}
         </div>
 
-        <div >
-          <button className="w-full border border-[1.5px] border-[#02321C] rounded-full max-h-max p-2 font-bold text-sm hover:bg-slate-200">
+        <div>
+          <button
+            onClick={handleAddToCart}
+            className="w-full border border-[1.5px] border-[#02321C] rounded-full max-h-max p-2 font-bold text-sm hover:bg-slate-200"
+          >
             + Thêm vào giỏ hàng
           </button>
         </div>
