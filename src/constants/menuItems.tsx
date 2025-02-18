@@ -4,6 +4,7 @@ import {
   HomeOutlined,
   LineChartOutlined,
   PaperClipOutlined,
+  ProductOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
 
@@ -38,6 +39,7 @@ const adminItems = [
   { label: "Doanh thu", key: "sales", icon: <LineChartOutlined /> },
   { label: "Cài đặt", key: "setting", icon: <SettingOutlined /> },
   { label: "Đăng blog", key: "create-blog", icon: <PaperClipOutlined/> },
+  { label: "Sản phẩm", key: "product", icon: <ProductOutlined/> },
 ];
 
 export const adminMenuItems: MenuItem[] = adminItems.map((item) =>

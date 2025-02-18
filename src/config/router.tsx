@@ -20,6 +20,7 @@ import Blog from "../pages/blog";
 import CreateBlog from "../components/templates/create-blog";
 import ShippingInfo from "../pages/payment/shipping-info";
 import Payment from "../pages/payment";
+import Product from "../components/templates/product";
 
 export const router = createBrowserRouter([
   {
@@ -99,6 +100,10 @@ export const router = createBrowserRouter([
       {
         path: ADMIN_ROUTES.BLOG,
         element: <CreateBlog/>,
+      },
+      {
+        path: ADMIN_ROUTES.PRODUCT,
+        element: <Product/>,
       },
     ],
   },
