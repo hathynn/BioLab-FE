@@ -121,7 +121,7 @@ function ShoppingCart() {
                 <div className="flex justify-end space-x-8 w-1/3">
                   <div className="pr-2">
                     <h1 className="flex text-customGreen font-bold">
-                      {p?.price}₫
+                      {p?.price?.toLocaleString()}₫
                     </h1>
                   </div>
                   <div className="flex items-center border-2 border-gray-400 rounded-full w-16 h-6">
