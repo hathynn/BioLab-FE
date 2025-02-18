@@ -4,6 +4,7 @@ import type { TableProps } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { Image, Upload } from "antd";
 import type { GetProp, UploadFile, UploadProps } from "antd";
+import './index.scss'
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -172,7 +173,7 @@ const Product: React.FC = () => {
   );
 
   return (
-    <div className="">
+    <div className="product-admin">
       <button
         onClick={showModal}
         className="my-5 px-6 py-3 bg-customGreen text-white rounded-lg shadow-md hover:bg-green-500"
