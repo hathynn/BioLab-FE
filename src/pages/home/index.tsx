@@ -1,4 +1,4 @@
-import { Carousel, Col, Flex, Row } from "antd";
+import { Button, Carousel, Col, Drawer, Flex, Input, Row, Space } from "antd";
 import "./index.scss";
 import { RiVipCrown2Fill } from "react-icons/ri";
 import { FaArrowRight, FaHeart } from "react-icons/fa";
@@ -8,8 +8,35 @@ import { AiFillLike } from "react-icons/ai";
 import MediaInfoCard from "../../components/mediaInfoCard";
 import { useNavigate } from "react-router-dom";
 import { USER_ROUTES } from "../../constants/routes";
+import { useState } from "react";
+import { sendMsgToOpenAI } from "../../config/openAI";
+import { marked } from "marked";
+import { BsSendFill } from "react-icons/bs";
 
 function HomePage() {
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("");
+  const [question, setQuestion] = useState("");
+  const [response, setResponse] = useState(
+    "Xin chào bạn cần giúp đỡ gì không?"
+  );
+
+  async function handleSendMessage() {
+    setMessage("");
+    setQuestion(message);
+    setResponse("");
+    await sendMsgToOpenAI(message, (chunk) => {
+      setResponse((prevResponse) => prevResponse + chunk);
+    });
+  }
+
+  const showDrawer = () => {
+    setOpen(true);
+  };
+
+  const onClose = () => {
+    setOpen(false);
+  };
   const data = [
     {
       id:"1",
@@ -293,6 +320,70 @@ function HomePage() {
           </div>
         </div>
       </div>
+      <Button
+        className="h-fit w-fit px-4 py-3 flex justify-center border-none items-center gap-2 cursor-pointer bg-emerald-400 shadow-xl rounded-full fixed bottom-9 right-8 text-white"
+        onClick={showDrawer}
+      >
+        <span className="absolute -translate-y-6 -translate-x-11 flex size-3">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-200 opacity-75"></span>
+          <span className="relative inline-flex size-3 rounded-full bg-emerald-200"></span>
+        </span>
+
+        <span>Tư vấn với AI</span>
+      </Button>
+      <Drawer
+        title="Biolab AI"
+        width={720}
+        onClose={onClose}
+        open={open}
+        styles={{
+          body: {
+            paddingTop: 10,
+            display: "flex",
+            flexDirection: "column",
+          },
+        }}
+      >
+        <div
+          className="flex flex-col space-y-4 overflow-y-auto p-4"
+          style={{ height: "100%" }}
+        >
+          <div className={question ? "flex justify-end" : "hidden"}>
+            <div className="bg-emerald-500 text-white p-2 rounded-xl max-w-[80%] mb-2">
+              {question}
+            </div>
+          </div>
+
+          <div className="flex justify-start">
+            <div className="bg-gray-100 text-black p-2 rounded-xl max-w-[80%] mb-2">
+              <div
+                className="message-response"
+                style={{
+                  wordWrap: "break-word",
+                  lineHeight: "1.5",
+                  padding: "8px",
+                }}
+                dangerouslySetInnerHTML={{ __html: marked(response) }}
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex justify-between mt-4 p-4">
+          <Input
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            placeholder="Nhập câu hỏi ở đây"
+            className="w-full rounded-full"
+          />
+          <Button
+            onClick={handleSendMessage}
+            className="ml-2 w-fit rounded-full"
+          >
+            <BsSendFill />
+          </Button>
+        </div>
+      </Drawer>
     </>
   );
 }
