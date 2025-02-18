@@ -15,6 +15,8 @@
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.9",
     "formik": "^2.4.6",
+    "marked": "^15.0.7",
+    "openai": "^4.85.1",
     "postcss": "^8.4.49",
     "quill": "^2.0.3",
     "react": "^18.3.1",
