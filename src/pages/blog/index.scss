@@ -25,7 +25,24 @@
     color: #292929;
   }
 
-  //   .ant-tabs-ink-bar {
-  //     display: none;
-  //   }
+  &__tag {
+    .type-media {
+      padding-bottom: 20px;
+    }
+    padding: 0;
+    .ant-tag-checkable-checked,
+    .ant-tag-checkable {
+      // border: 1px solid white;
+      background-color: #f2f2f2;
+      border-radius: 9999px;
+      color: black;
+      font-weight: 400;
+      font-size: 14px;
+      padding: 10px 16px;
+    }
+    .ant-tag-checkable-checked {
+      color: black;
+      background-color: #bdbdbd;
+    }
+  }
 }

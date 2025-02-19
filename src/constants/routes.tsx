@@ -4,9 +4,11 @@ export enum USER_ROUTES {
   REGISTER = "register",
   HOME = "home",
   BLOG = "blog",
+  SOP = "sop",
 }
 
 export enum PRODUCT_ROUTES {
+  PRODUCT = "product",
   DETAIL = "product-detail",
   CART = "shopping-cart",
 }
@@ -24,5 +26,7 @@ export enum ADMIN_ROUTES {
   BLOG = "create-blog",
   PRODUCT = "product",
   BRAND = "brand",
+
   CATEGORY = "category",
+
 }

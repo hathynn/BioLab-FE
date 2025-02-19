@@ -22,7 +22,11 @@ import ShippingInfo from "../pages/payment/shipping-info";
 import Payment from "../pages/payment";
 import Product from "../components/templates/product";
 import BrandAdmin from "../components/templates/brand";
+
 import Category from "../components/templates/category";
+
+import SOP from "../pages/sop";
+
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +56,14 @@ export const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
       },
+      {
+        path: USER_ROUTES.HOME,
+        element: <HomePage />,
+      },
+      {
+        path: USER_ROUTES.SOP,
+        element: <SOP />,
+      },
     ],
   },
   {
@@ -73,6 +85,17 @@ export const router = createBrowserRouter([
         element: <ShoppingCart />,
       },
       {
+        path: PRODUCT_ROUTES.PRODUCT,
+        element: <ProductDetail />,
+        children: [
+          {
+            path: ":id",
+            element: <ProductDetail />,
+          },
+        ],
+      },
+
+      {
         path: PRODUCT_ROUTES.DETAIL,
         element: <ProductDetail />,
       },
@@ -83,6 +106,16 @@ export const router = createBrowserRouter([
       {
         path: PAYMENT_ROUTES.PAYMENT,
         element: <Payment />,
+      },
+    ],
+  },
+  {
+    path: PRODUCT_ROUTES.PRODUCT,
+    element: <ProductDetail />,
+    children: [
+      {
+        path: ":id",
+        element: <ProductDetail />,
       },
     ],
   },
@@ -101,15 +134,15 @@ export const router = createBrowserRouter([
       },
       {
         path: ADMIN_ROUTES.BLOG,
-        element: <CreateBlog/>,
+        element: <CreateBlog />,
       },
       {
         path: ADMIN_ROUTES.PRODUCT,
-        element: <Product/>,
+        element: <Product />,
       },
       {
         path: ADMIN_ROUTES.BRAND,
-        element: <BrandAdmin/>,
+        element: <BrandAdmin />,
       },
       {
         path: ADMIN_ROUTES.CATEGORY,

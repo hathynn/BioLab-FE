@@ -3,6 +3,8 @@ import { FaStar } from "react-icons/fa";
 import "./index.scss";
 import useCartStore from "../../store/cartStore";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { PRODUCT_ROUTES } from "../../constants/routes";
 interface RecommendationProductProps {
   id?: string;
   title?: string;
@@ -26,6 +28,11 @@ function RecommendationProduct({
   // rate,
   discount,
 }: RecommendationProductProps) {
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate("/" + PRODUCT_ROUTES.PRODUCT + "/" + `${id}`);
+  };
   const options = [
     { label: "Chai", value: "a" },
     { label: "Vỉ", value: "b" },
@@ -45,7 +52,10 @@ function RecommendationProduct({
     toast.success("Đã thêm sản phẩm vào giỏ hàng");
   };
   return (
-    <div className="bg-[#F0F5F2]   border border-[#D4DBE3] rounded-[30px] flex-col justify-center items-center">
+    <div
+      onClick={handleNavigate}
+      className=" cursor-pointer bg-[#F0F5F2]   border border-[#D4DBE3] rounded-[30px] flex-col justify-center items-center"
+    >
       <div className="relative">
         <img src={img} className="mx-auto my-2 w-[80%] h-full object-cover" />
         {discount && (
