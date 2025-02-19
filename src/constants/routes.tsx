@@ -8,6 +8,7 @@ export enum USER_ROUTES {
 }
 
 export enum PRODUCT_ROUTES {
+  PRODUCT = "product",
   DETAIL = "product-detail",
   CART = "shopping-cart",
 }

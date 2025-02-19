@@ -81,6 +81,17 @@ export const router = createBrowserRouter([
         element: <ShoppingCart />,
       },
       {
+        path: PRODUCT_ROUTES.PRODUCT,
+        element: <ProductDetail />,
+        children: [
+          {
+            path: ":id",
+            element: <ProductDetail />,
+          },
+        ],
+      },
+
+      {
         path: PRODUCT_ROUTES.DETAIL,
         element: <ProductDetail />,
       },
@@ -91,6 +102,16 @@ export const router = createBrowserRouter([
       {
         path: PAYMENT_ROUTES.PAYMENT,
         element: <Payment />,
+      },
+    ],
+  },
+  {
+    path: PRODUCT_ROUTES.PRODUCT,
+    element: <ProductDetail />,
+    children: [
+      {
+        path: ":id",
+        element: <ProductDetail />,
       },
     ],
   },
