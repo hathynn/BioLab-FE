@@ -44,6 +44,7 @@ const adminItems = [
   { label: "Đăng blog", key: "create-blog", icon: <PaperClipOutlined/> },
   { label: "Sản phẩm", key: "product", icon: <ProductOutlined/> },
   { label: "Nhãn hàng", key: "brand", icon: <ShopOutlined/> },
+  { label: "Category", key: "category", icon: <ShopOutlined/> },
 ];
 
 export const adminMenuItems: MenuItem[] = adminItems.map((item) =>
