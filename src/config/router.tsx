@@ -22,6 +22,7 @@ import ShippingInfo from "../pages/payment/shipping-info";
 import Payment from "../pages/payment";
 import Product from "../components/templates/product";
 import BrandAdmin from "../components/templates/brand";
+import Category from "../components/templates/category";
 
 export const router = createBrowserRouter([
   {
@@ -109,6 +110,10 @@ export const router = createBrowserRouter([
       {
         path: ADMIN_ROUTES.BRAND,
         element: <BrandAdmin/>,
+      },
+      {
+        path: ADMIN_ROUTES.CATEGORY,
+        element: <Category/>,
       },
     ],
   },

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Modal, Table } from "antd";
 import type { TableProps } from "antd";
 
-import "./index.scss";
 import { UploadOutlined } from "@ant-design/icons";
 import type { UploadFile, UploadProps } from "antd";
 import { Button, Upload } from "antd";
@@ -54,23 +53,8 @@ const data: DataType[] = [
   },
 ];
 
-const BrandAdmin: React.FC = () => {
+const Category: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { getBrands } =useBrandService();
-
-  const fetch = async () => {
-    try {
-      const response = await getBrands();
-      console.log(response);
-    
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  
-  useEffect(() => {
-    fetch();
-  }, []);
 
   const [fileList, setFileList] = useState<UploadFile[]>([
     {
@@ -116,10 +100,10 @@ const BrandAdmin: React.FC = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-  // const getBrand = useBrandService().getBrands();
+
   useEffect(() => {
- 
-    // console.log(getBrand)
+    const getBrand = useBrandService().getBrands();
+    console.log(getBrand)
   }, []);
 
   return (
@@ -148,4 +132,4 @@ const BrandAdmin: React.FC = () => {
   );
 };
 
-export default BrandAdmin;
+export default Category;
