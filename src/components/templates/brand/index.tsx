@@ -18,7 +18,8 @@ import { storage } from "../../../config/firebaseConfig";
 
 const BrandAdmin: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { getBrands, createBrands, getBrandById, updateBrands } = useBrandService();
+  const { getBrands, createBrands, getBrandById, updateBrands } =
+    useBrandService();
   const [brands, setBrands] = useState([]);
   const [brandName, setBrandName] = useState("");
   const [selectedBrand, setSelectedBrand] = useState<BrandType | null>(null);
@@ -72,9 +73,9 @@ const BrandAdmin: React.FC = () => {
 
     try {
       const imageUrl = updateFileList.length > 0 ? updateFileList[0].url : "";
-      console.log(imageUrl)
+      console.log(imageUrl);
       await updateBrands(selectedBrandId, updateBrandName, imageUrl || "");
-    
+
       console.log("Cập nhật brand thành công!");
       setIsUpdateModalOpen(false);
       fetch(); // Refresh danh sách
@@ -128,16 +129,7 @@ const BrandAdmin: React.FC = () => {
     },
   ];
 
-  const [fileList, setFileList] = useState<UploadFile[]>([
-    {
-      uid: "-1",
-      name: "xxx.png",
-      status: "done",
-      url: "http://www.baidu.com/xxx.png",
-    },
-  ]);
-
-
+  const [fileList, setFileList] = useState<UploadFile[]>([]);
 
   const uploadImageToFirebase = async (file: File) => {
     return new Promise<string>((resolve, reject) => {
@@ -145,12 +137,12 @@ const BrandAdmin: React.FC = () => {
         reject("Chỉ được phép tải lên file hình ảnh!");
         return;
       }
-  
+
       // Tạo tên file duy nhất bằng timestamp + UUID
       const uniqueFileName = `${Date.now()}-${uuidv4()}-${file.name}`;
       const storageRef = ref(storage, `brands/${uniqueFileName}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
-  
+
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -170,7 +162,6 @@ const BrandAdmin: React.FC = () => {
       );
     });
   };
-  
 
   const deleteImageFromFirebase = async (imageUrl: string) => {
     try {
@@ -192,7 +183,7 @@ const BrandAdmin: React.FC = () => {
   const handleUpload: UploadProps["onChange"] = async (info) => {
     const file = info.file.originFileObj as File;
     if (!file) return;
-  
+
     try {
       const imageUrl = await uploadImageToFirebase(file);
       console.log("Ảnh mới:", imageUrl); // Kiểm tra URL ảnh mới
@@ -208,7 +199,6 @@ const BrandAdmin: React.FC = () => {
       console.error(error);
     }
   };
-  
 
   const uploadProps: UploadProps = {
     beforeUpload: (file) => {
@@ -233,13 +223,13 @@ const BrandAdmin: React.FC = () => {
   const openUpdateModal = async (brandId: string) => {
     try {
       const brandDetail = await getBrandById(brandId);
-      console.log(brandId)
+      console.log(brandId);
       setSelectedBrandId(brandDetail._id);
       setUpdateBrandName(brandDetail.brand_name);
       setUpdateFileList([
         {
           uid: "-1",
-          name:  brandDetail.image_url,
+          name: brandDetail.image_url,
           status: "done",
           url: brandDetail.image_url,
         },
@@ -249,8 +239,6 @@ const BrandAdmin: React.FC = () => {
       console.error("Lỗi khi lấy thông tin nhãn hàng:", error);
     }
   };
-  
-  
 
   return (
     <div className="brand-admin">
@@ -258,7 +246,7 @@ const BrandAdmin: React.FC = () => {
         onClick={showModal}
         className="my-5 px-5 py-2.5 bg-customGreen text-white rounded-lg hover:bg-green-500"
       >
-      Thêm nhãn hàng
+        Thêm nhãn hàng
       </button>
       <Table<BrandType> columns={columns} dataSource={brands} />
       <Modal
@@ -302,26 +290,25 @@ const BrandAdmin: React.FC = () => {
         )}
       </Modal>
       <Modal
-  title="Cập nhật nhãn hàng"
-  open={isUpdateModalOpen}
-  onOk={handleUpdateBrand}
-  onCancel={() => setIsUpdateModalOpen(false)}
->
-  <h2 className="text-lg font-semibold mb-4">Tên nhãn hàng</h2>
-  <input
-    type="text"
-    value={updateBrandName} // Hiển thị tên cũ
-    onChange={(e) => setUpdateBrandName(e.target.value)} // Cho phép sửa
-    placeholder="Tên nhãn hàng"
-    className="w-full p-2 border border-gray-300 rounded-md bg-gray-100 mb-4"
-  />
-  
-  <h2 className="text-lg font-semibold mb-4">Hình ảnh</h2>
-  <Upload {...uploadProps} fileList={updateFileList}>
-    <Button icon={<UploadOutlined />}>Upload</Button>
-  </Upload>
-</Modal>
+        title="Cập nhật nhãn hàng"
+        open={isUpdateModalOpen}
+        onOk={handleUpdateBrand}
+        onCancel={() => setIsUpdateModalOpen(false)}
+      >
+        <h2 className="text-lg font-semibold mb-4">Tên nhãn hàng</h2>
+        <input
+          type="text"
+          value={updateBrandName} // Hiển thị tên cũ
+          onChange={(e) => setUpdateBrandName(e.target.value)} // Cho phép sửa
+          placeholder="Tên nhãn hàng"
+          className="w-full p-2 border border-gray-300 rounded-md bg-gray-100 mb-4"
+        />
 
+        <h2 className="text-lg font-semibold mb-4">Hình ảnh</h2>
+        <Upload {...uploadProps} fileList={updateFileList}>
+          <Button icon={<UploadOutlined />}>Upload</Button>
+        </Upload>
+      </Modal>
     </div>
   );
 };
