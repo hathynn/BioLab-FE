@@ -22,6 +22,7 @@ import ShippingInfo from "../pages/payment/shipping-info";
 import Payment from "../pages/payment";
 import Product from "../components/templates/product";
 import BrandAdmin from "../components/templates/brand";
+import SOP from "../pages/sop";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,14 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: USER_ROUTES.HOME,
+        element: <HomePage />,
+      },
+      {
+        path: USER_ROUTES.SOP,
+        element: <SOP />,
       },
     ],
   },
@@ -100,15 +109,15 @@ export const router = createBrowserRouter([
       },
       {
         path: ADMIN_ROUTES.BLOG,
-        element: <CreateBlog/>,
+        element: <CreateBlog />,
       },
       {
         path: ADMIN_ROUTES.PRODUCT,
-        element: <Product/>,
+        element: <Product />,
       },
       {
         path: ADMIN_ROUTES.BRAND,
-        element: <BrandAdmin/>,
+        element: <BrandAdmin />,
       },
     ],
   },
