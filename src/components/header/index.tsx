@@ -5,6 +5,7 @@ import { CiSearch } from "react-icons/ci";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import useCartStore from "../../store/cartStore";
+import { USER_ROUTES } from "../../constants/routes";
 
 function Header({ navbarType = "light" }) {
   const { cart } = useCartStore();
@@ -16,6 +17,15 @@ function Header({ navbarType = "light" }) {
       : navbarType === "light"
       ? "bg-white text-black"
       : "bg-gray-100 text-black";
+
+  const nav_items = [
+    { label: "Giới thiệu", href: "#" },
+    { label: "Danh mục sản phẩm", href: "#", hasDropdown: true },
+    { label: "Hoạt động xã hội", href: "#" },
+    { label: "Tin tức sự kiện", href: "#" },
+    { label: "SOP", href: USER_ROUTES.SOP },
+    { label: "Cẩm nang sức khỏe", href: USER_ROUTES.BLOG },
+  ];
 
   return (
     <header className="px-10 pt-7">
@@ -70,27 +80,16 @@ function Header({ navbarType = "light" }) {
 
       <div className={` mt-3 py-3 rounded-full  ${navbarBackground}`}>
         <nav className="flex justify-between text-sm px-10">
-          <a href="#" className="hover:text-green-500">
-            Giới thiệu
-          </a>
-          <a href="#" className="flex hover:text-green-500">
-            Danh mục sản phẩm{" "}
-            <span>
-              <RiArrowDropDownLine className="text-xl" />
-            </span>
-          </a>
-          <a href="#" className="hover:text-green-500">
-            Hoạt động xã hội
-          </a>
-          <a href="#" className="hover:text-green-500">
-            Tin tức sự kiện
-          </a>
-          <a href="#" className="hover:text-green-500">
-            SOP
-          </a>
-          <a href="#" className="hover:text-green-500">
-            Cẩm nang sức khỏe
-          </a>
+          {nav_items.map((item, index) => (
+            <a
+              key={index}
+              href={item.href}
+              className="flex hover:text-green-500"
+            >
+              {item.label}
+              {item.hasDropdown && <RiArrowDropDownLine className="text-xl" />}
+            </a>
+          ))}
         </nav>
       </div>
     </header>
