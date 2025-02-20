@@ -1,4 +1,5 @@
 .brand-admin {
+  
   .ant-pagination .ant-pagination-item-active {
     border: none;
   }
@@ -7,11 +8,16 @@
     color: black;
   }
 
-  .ant-btn-variant-solid {
+ .create-brand {
+.ant-modal .ant-modal-footer >.ant-btn+.ant-btn  {
     background: #62d985 !important;
   }
-
+  .ant-btn .ant-btn-primary .ant-btn-color-primary .ant-btn-variant-solid {
+    background: #62d985 !important;
+    background-color: #62d985 !important;
+  }
   .ant-btn-color-primary {
     background-color: #62d985 !important;
   }
+ }
 }

@@ -8,3 +8,7 @@ export enum USER_API {
 export enum BRAND {
   DEFAULT = "brands"
 }
+
+export enum CATEGORY {
+  DEFAULT = "categories"
+}
