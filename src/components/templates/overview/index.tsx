@@ -1,3 +1,4 @@
+import CustomLineChart from "../../../chart/line-chart";
 import CustomizedCard from "../../card";
 
 function OverviewTeamplate() {
@@ -28,12 +29,13 @@ function OverviewTeamplate() {
       </div>
       <div className="w-2/3 h-full gap-6 flex flex-col">
         <div className="h-[calc(50%)]">
-          <CustomizedCard styleClass="border border-[#D5D5D7] border-[1px] rounded-2xl">
-            <div className="flex justify-between items-center mb-4">
+          <CustomizedCard styleClass="border border-[#D5D5D7] border-[1px] rounded-2xl overflow-y-scroll">
+            <div className="flex flex-col justify-between items-left gap-5 mb-4 "> 
               <h3 className="text-sm font-medium">
                 Biểu đồ phân tích lợi nhuận
               </h3>
-            </div>
+              <CustomLineChart />
+           </div> 
           </CustomizedCard>
         </div>
         <div className="h-[calc(50%-12px)]">
