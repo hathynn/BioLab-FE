@@ -1,226 +1,187 @@
-import React, { useState } from "react";
-import { Modal, Space, Table, Tag } from "antd";
+import React, { useEffect, useState } from "react";
+import { Descriptions, Image, Modal, Table } from "antd";
 import type { TableProps } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
-import { Image, Upload } from "antd";
-import type { GetProp, UploadFile, UploadProps } from "antd";
-import './index.scss'
-
-type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
-
-const getBase64 = (file: FileType): Promise<string> =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
-  });
-
-interface DataType {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-  tags: string[];
-}
-
-const columns: TableProps<DataType>["columns"] = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-    render: (text) => <a>{text}</a>,
-  },
-  {
-    title: "Age",
-    dataIndex: "age",
-    key: "age",
-  },
-  {
-    title: "Address",
-    dataIndex: "address",
-    key: "address",
-  },
-  {
-    title: "Tags",
-    key: "tags",
-    dataIndex: "tags",
-    render: (_, { tags }) => (
-      <>
-        {tags.map((tag) => {
-          let color = tag.length > 5 ? "geekblue" : "green";
-          if (tag === "loser") {
-            color = "volcano";
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          );
-        })}
-      </>
-    ),
-  },
-  {
-    title: "Action",
-    key: "action",
-    render: (_, record) => (
-      <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
-      </Space>
-    ),
-  },
-];
-
-const data: DataType[] = [
-  {
-    key: "1",
-    name: "John Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
-  },
-  {
-    key: "2",
-    name: "Jim Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["loser"],
-  },
-  {
-    key: "3",
-    name: "Joe Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-];
+import "./index.scss";
+import { useNavigate } from "react-router-dom";
+import { ProductType } from "../../../types/product.type";
+import useProductService from "../../../services/useProductService";
+import { CategoryType } from "../../../types/category.type";
+import { BrandType } from "../../../types/brand.type";
 
 const Product: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
-  const [previewOpen, setPreviewOpen] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-  const [fileList, setFileList] = useState<UploadFile[]>([
-    {
-      uid: "-1",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-2",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-3",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-4",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-xxx",
-      percent: 50,
-      name: "image.png",
-      status: "uploading",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-5",
-      name: "image.png",
-      status: "error",
-    },
-  ]);
-
-  const handlePreview = async (file: UploadFile) => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj as FileType);
-    }
-
-    setPreviewImage(file.url || (file.preview as string));
-    setPreviewOpen(true);
-  };
-
-  const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
-    setFileList(newFileList);
-
-  const uploadButton = (
-    <button style={{ border: 0, background: "none" }} type="button">
-      <PlusOutlined />
-      <div style={{ marginTop: 8 }}>Upload</div>
-    </button>
+  const nav = useNavigate();
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(
+    null
   );
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const { getProducts, getProductById } = useProductService();
+  const fetch = async () => {
+    try {
+      const response = await getProducts();
+      console.log("API Response:", response);
+      setProducts(response);
+    } catch (error) {
+      console.error("Lỗi khi fetch sản phẩm:", error);
+    }
+  };
+
+  const handleViewDetail = async (productId: string) => {
+    try {
+      const productDetail = await getProductById(productId);
+      setSelectedProduct(productDetail);
+      setIsDetailModalOpen(true);
+    } catch (error) {
+      console.error("Lỗi khi lấy chi tiết sản phẩm:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetch();
+  }, []);
+
+  const columns: TableProps<ProductType>["columns"] = [
+    {
+      title: "Tên sản phẩm",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Danh mục",
+      dataIndex: "category",
+      key: "category",
+      render: (cat: CategoryType) => <p>{cat.category_name}</p>,
+    },
+    {
+      title: "Thương hiệu",
+      dataIndex: "brand",
+      key: "brand",
+      render: (brand: BrandType) => <p>{brand?.brand_name}</p>,
+    },
+    {
+      title: "Giá",
+      dataIndex: "price",
+      key: "price",
+    },
+    {
+      title: "Đơn vị",
+      dataIndex: "unit",
+      key: "unit",
+    },
+    {
+      title: "Số lượng",
+      dataIndex: "stock",
+      key: "stock",
+    },
+    {
+      title: "Chi tiết sản phẩm",
+      dataIndex: "_id",
+      key: "_id",
+      render: (_id) => (
+        <button
+          onClick={() => handleViewDetail(_id)}
+          className="px-4 py-2 border rounded-lg hover:bg-green-500 hover:text-white"
+        >
+          Chi tiết
+        </button>
+      ),
+    },
+    {
+      title: "Cập nhật thông tin",
+      dataIndex: "_id",
+      key: "_id",
+      render: (_id) => (
+        <button className="px-4 py-2 border rounded-lg bg-customGreen text-white hover:bg-green-500 hover:text-white">
+          Cập nhật
+        </button>
+      ),
+    },
+  ];
 
   return (
     <div className="product-admin">
       <button
-        onClick={showModal}
+        onClick={() => nav("/admin/create-product")}
         className="my-5 px-6 py-3 bg-customGreen text-white rounded-lg shadow-md hover:bg-green-500"
       >
         Tạo sản phẩm
       </button>
-      <Table<DataType> columns={columns} dataSource={data} />
-      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        {" "}
-        <h2 className="text-lg font-semibold mb-4">Tạo sản phẩm</h2>
-        <input
-          type="text"
-          placeholder="Tên"
-          className="w-full p-2 border border-gray-300 rounded-md bg-gray-100 mb-4"
-        />
-        <input
-          type="number"
-          placeholder="Giá"
-          className="w-full p-2 border border-gray-300 rounded-md bg-gray-100 mb-4"
-        />
-        <h2 className="text-lg font-semibold mb-4">Thông tin chi tiết</h2>
-        <input
-          type="text"
-          placeholder="Hông biết, tự thêm zô ik"
-          className="w-full p-2 border border-gray-300 rounded-md bg-gray-100 mb-4"
-        />
-        <h2 className="text-lg font-semibold mb-4">Hình ảnh</h2>
-        <Upload
-          action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
-          listType="picture-card"
-          fileList={fileList}
-          onPreview={handlePreview}
-          onChange={handleChange}
-        >
-          {fileList.length >= 8 ? null : uploadButton}
-        </Upload>
-        {previewImage && (
-          <Image
-            wrapperStyle={{ display: "none" }}
-            preview={{
-              visible: previewOpen,
-              onVisibleChange: (visible) => setPreviewOpen(visible),
-              afterOpenChange: (visible) => !visible && setPreviewImage(""),
-            }}
-            src={previewImage}
-          />
-        )}
+      <Table<ProductType> columns={columns} dataSource={products} />
+      <Modal
+        open={selectedProduct !== null}
+        onCancel={() => {
+          setIsDetailModalOpen(false);
+          setSelectedProduct(null);
+        }}
+        footer={null}
+    
+      >
+        <Descriptions title="Thông tin sản phẩm" column={1} bordered>
+    
+          <Descriptions.Item label="Tên sản phẩm">
+            {selectedProduct?.name || "Không có thông tin"}
+          </Descriptions.Item>
+
+          <Descriptions.Item label="Mô tả">
+            {selectedProduct?.description || "Không có mô tả"}
+          </Descriptions.Item>
+
+          <Descriptions.Item label="Danh mục">
+            {selectedProduct?.category?.category_name || "Không có danh mục"}
+          </Descriptions.Item>
+
+          <Descriptions.Item label="Giá">
+            {selectedProduct?.price
+              ? `${selectedProduct.price.toLocaleString()} VNĐ`
+              : "Không có giá"}
+          </Descriptions.Item>
+
+          <Descriptions.Item label="Đơn vị">
+            {selectedProduct?.unit || "Không có đơn vị"}
+          </Descriptions.Item>
+
+          <Descriptions.Item label="Số lượng">
+            {selectedProduct?.stock ?? "Không có thông tin"}
+          </Descriptions.Item>
+
+          <Descriptions.Item label="Hình ảnh sản phẩm">
+            {selectedProduct?.image_url?.length
+              ? selectedProduct.image_url.map((img) => (
+                  <Image
+                    src={img}
+                    alt="Hình ảnh sản phẩm"
+                    style={{
+                      width: "200px",
+                      height: "200px",
+                      objectFit: "cover",
+                      display: "inline-block",
+                      marginBottom:'10px',
+                  
+                    }}
+                  />
+                ))
+              : "Không có hình ảnh"}
+          </Descriptions.Item>
+        </Descriptions>
+
+        <Descriptions title="Thông tin nhãn hàng" column={1} bordered>
+          <Descriptions.Item label="Tên nhãn hàng">
+            {selectedProduct?.brand?.brand_name || "Không có thông tin"}
+          </Descriptions.Item>
+
+
+          <Descriptions.Item label="Logo">
+            {selectedProduct?.brand?.image_url ? (
+              <img
+                src={selectedProduct.brand.image_url}
+                alt="Logo nhãn hàng"
+                style={{ width: "100px", height: "100px", objectFit: "cover" }}
+              />
+            ) : (
+              "Không có logo"
+            )}
+          </Descriptions.Item>
+        </Descriptions>
       </Modal>
     </div>
   );

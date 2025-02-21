@@ -12,3 +12,7 @@ export enum BRAND {
 export enum CATEGORY {
   DEFAULT = "categories"
 }
+
+export enum PRODUCT {
+  DEFAULT = "products"
+}
