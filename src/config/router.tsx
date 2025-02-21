@@ -26,6 +26,7 @@ import BrandAdmin from "../components/templates/brand";
 import Category from "../components/templates/category";
 
 import SOP from "../pages/sop";
+import SOPDetail from "../pages/sop/sop-detail";
 
 
 export const router = createBrowserRouter([
@@ -64,6 +65,7 @@ export const router = createBrowserRouter([
         path: USER_ROUTES.SOP,
         element: <SOP />,
       },
+      
     ],
   },
   {
@@ -79,6 +81,10 @@ export const router = createBrowserRouter([
       {
         path: USER_ROUTES.BLOG,
         element: <Blog />,
+      },
+      {
+        path: USER_ROUTES.SOP_DETAIL,
+        element: <SOPDetail />,
       },
       {
         path: PRODUCT_ROUTES.CART,

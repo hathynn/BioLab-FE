@@ -5,6 +5,7 @@ export enum USER_ROUTES {
   HOME = "home",
   BLOG = "blog",
   SOP = "sop",
+  SOP_DETAIL = "sop-detail",
 }
 
 export enum PRODUCT_ROUTES {
