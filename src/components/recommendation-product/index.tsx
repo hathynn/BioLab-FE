@@ -52,11 +52,8 @@ function RecommendationProduct({
     toast.success("Đã thêm sản phẩm vào giỏ hàng");
   };
   return (
-    <div
-      onClick={handleNavigate}
-      className=" cursor-pointer bg-[#F0F5F2]   border border-[#D4DBE3] rounded-[30px] flex-col justify-center items-center"
-    >
-      <div className="relative">
+    <div className=" cursor-pointer bg-[#F0F5F2]   border border-[#D4DBE3] rounded-[30px] flex-col justify-center items-center">
+      <div className="relative" onClick={handleNavigate}>
         <img src={img} className="mx-auto my-2 w-[80%] h-full object-cover" />
         {discount && (
           <div className="text-white text-[16px] bg-[#F0DA66] font-semibold max-w-max p-2 absolute top-9 right-0 rounded-l-[8px]">
