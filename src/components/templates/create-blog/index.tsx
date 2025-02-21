@@ -1,14 +1,22 @@
 import { useState, useRef } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
+import { parseDocument } from "htmlparser2";
+import serialize from "dom-serializer";
 import "./index.scss";
 
-function CreateBlog() {
 
+
+function CreateBlog() {
   const [value, setValue] = useState("");
   const reactQuillRef = useRef<ReactQuill>(null);
+  const handleChange = (content: string) => {
+    setValue(content);
+  };
 
+  const htmlString = value;
+  const dom = parseDocument(htmlString);
+  const fixedHtml = serialize(dom);
 
   // // Hàm upload ảnh
   // const uploadImage = async (file: File): Promise<string | null> => {
@@ -45,7 +53,6 @@ function CreateBlog() {
   //   };
   // };
 
-
   return (
     <div className="mt-10">
       <ReactQuill
@@ -64,9 +71,8 @@ function CreateBlog() {
                 { indent: "-1" },
                 { indent: "+1" },
               ],
-              ["link", "image", "video"],
-              ["code-block"],
-              ["clean"],
+              ["image"],
+      
             ],
           },
           clipboard: {
@@ -87,11 +93,10 @@ function CreateBlog() {
           "indent",
           "link",
           "image",
-          "video",
-          "code-block",
+        
         ]}
         value={value}
-        onChange={setValue}
+        onChange={handleChange}
       />
 
       <button
@@ -100,6 +105,8 @@ function CreateBlog() {
       >
         Đăng bài
       </button>
+
+      <div dangerouslySetInnerHTML={{ __html: fixedHtml }} />
     </div>
   );
 }
