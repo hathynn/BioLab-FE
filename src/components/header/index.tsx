@@ -5,6 +5,7 @@ import { CiSearch } from "react-icons/ci";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import useCartStore from "../../store/cartStore";
+import { headerItems } from "../../constants/menuItems";
 import { USER_ROUTES } from "../../constants/routes";
 
 function Header({ navbarType = "light" }) {
@@ -17,15 +18,6 @@ function Header({ navbarType = "light" }) {
       : navbarType === "light"
       ? "bg-white text-black"
       : "bg-gray-100 text-black";
-
-  const nav_items = [
-    { label: "Giới thiệu", href: "#" },
-    { label: "Danh mục sản phẩm", href: "#", hasDropdown: true },
-    { label: "Hoạt động xã hội", href: "#" },
-    { label: "Tin tức sự kiện", href: "#" },
-    { label: "SOP", href: USER_ROUTES.SOP },
-    { label: "Cẩm nang sức khỏe", href: USER_ROUTES.BLOG },
-  ];
 
   return (
     <header className="px-10 pt-7">
@@ -52,7 +44,7 @@ function Header({ navbarType = "light" }) {
           <a
             href="#"
             className="flex items-center font-bold space-x-2 hover:text-white hover:bg-black w-18 py-3 px-4 rounded-full"
-            onClick={() => nav("/login")}
+            onClick={() => nav(`/${USER_ROUTES.LOGIN}`)}
           >
             <i aria-hidden="true">
               <AiOutlineUser className="text-xl" />
@@ -80,7 +72,7 @@ function Header({ navbarType = "light" }) {
 
       <div className={` mt-3 py-3 rounded-full  ${navbarBackground}`}>
         <nav className="flex justify-between text-sm px-10">
-          {nav_items.map((item, index) => (
+          {headerItems.map((item, index) => (
             <a
               key={index}
               href={item.href}
