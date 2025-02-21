@@ -1,4 +1,4 @@
-import CustomLineChart from "../../../chart/line-chart";
+import CustomLineChart from "../../line-chart";
 import CustomizedCard from "../../card";
 
 function OverviewTeamplate() {
