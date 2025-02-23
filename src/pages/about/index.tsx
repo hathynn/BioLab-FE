@@ -1,7 +1,7 @@
 import FeatureBar from "../../components/feature-bar";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
-
+import { motion } from "framer-motion";
 function About() {
   const tags = [
     "Chất lượng",
@@ -15,7 +15,13 @@ function About() {
         <Header navbarType="green" />
         <div className="relative pl-10">
           <div className="flex justify-center items-center">
-            <img src="/src/assets/vitamin.png" className="z-10" />
+            <motion.img
+              src="/src/assets/vitamin.png"
+              className="z-10"
+              initial={{ y: -200, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+            />
           </div>
           <div className="w-1/3 text-white font-light text-[17px] leading-6 absolute bottom-[20%] pl-10">
             <p>
@@ -32,18 +38,38 @@ function About() {
             </p>
           </div>
         </div>
-        <div className="absolute top-1/3 p-5 ">
+        {/* <div className="absolute top-1/3 p-5 ">
           <h1 className="pl-8 text-9xl leading-[170px] font-semibold bg-gradient-to-b from-white to-[#FFFFFF1A] bg-clip-text text-transparent">
             SỨC KHỎE
           </h1>
+        </div> */}
+        <div className="absolute top-1/3 p-5 ">
+          <motion.h1
+            className="pl-8 text-9xl leading-[170px] font-semibold bg-gradient-to-b from-white to-[#FFFFFF1A] bg-clip-text text-transparent"
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            SỨC KHỎE
+          </motion.h1>
         </div>
         <div className="absolute top-[60%] left-[59%] p-5 ">
-          <h1 className="text-9xl leading-[150px] font-semibold text-[#FFFFFFF2] ">
+          <motion.h1
+            className="text-9xl leading-[150px] font-semibold text-[#FFFFFFF2] "
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
             NGƯỜI
-          </h1>
-          <h1 className="-mt-2 text-9xl leading-[150px] font-semibold bg-gradient-to-b from-white to-[#FFFFFF1A] bg-clip-text text-transparent">
+          </motion.h1>
+          <motion.h1
+            className="-mt-2 text-9xl leading-[150px] font-semibold bg-gradient-to-b from-white to-[#FFFFFF1A] bg-clip-text text-transparent"
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
             VIỆT
-          </h1>
+          </motion.h1>
         </div>
 
         <div className="flex justify-center items-center p-5">
