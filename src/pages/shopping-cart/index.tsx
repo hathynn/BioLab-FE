@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./index.scss";
 import { Checkbox, ConfigProvider } from "antd";
 import useCartStore from "../../store/cartStore";
+import { PAYMENT_ROUTES, USER_ROUTES } from "../../constants/routes";
 
 function ShoppingCart() {
   const { cart,removeFromCart } = useCartStore();
@@ -159,7 +160,7 @@ function ShoppingCart() {
 
           <div>
             <button
-              onClick={() => nav("/home")}
+              onClick={() => nav(`/${USER_ROUTES.HOME}`)}
               className="px-6 py-3 text-gray-600 font-semibold border-gray-100 bg-gray-100 border-2 rounded-lg hover:bg-gray-500 hover:text-white"
             >
               Tiếp tục mua sắm
@@ -200,7 +201,7 @@ function ShoppingCart() {
             </div>
           </div>
 
-          <button className="w-full mt-4 px-6 py-3 bg-customGreen text-white rounded-lg shadow-md hover:bg-green-500">
+          <button onClick={() => nav(`/${PAYMENT_ROUTES.SHIPPING_INFO}`)} className="w-full mt-4 px-6 py-3 bg-customGreen text-white rounded-lg shadow-md hover:bg-green-500">
             Tiến hành đặt mua
           </button>
           <p className="text-sm text-gray-500 mt-2">
