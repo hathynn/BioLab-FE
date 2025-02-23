@@ -25,7 +25,7 @@ import SOP from "../pages/sop";
 import SOPDetail from "../pages/sop/sop-detail";
 import CreateProduct from "../components/templates/product/create-product";
 import ProductPage from "../pages/product";
-
+import About from "../pages/about";
 
 export const router = createBrowserRouter([
   {
@@ -63,7 +63,6 @@ export const router = createBrowserRouter([
         path: USER_ROUTES.SOP,
         element: <SOP />,
       },
-      
     ],
   },
   {
@@ -80,6 +79,11 @@ export const router = createBrowserRouter([
         path: USER_ROUTES.BLOG,
         element: <Blog />,
       },
+      {
+        path: USER_ROUTES.ABOUT,
+        element: <About />,
+      },
+
       {
         path: USER_ROUTES.SOP_DETAIL,
         element: <SOPDetail />,
@@ -99,10 +103,6 @@ export const router = createBrowserRouter([
         ],
       },
 
-      {
-        path: PRODUCT_ROUTES.DETAIL,
-        element: <ProductDetail />,
-      },
       {
         path: PAYMENT_ROUTES.SHIPPING_INFO,
         element: <ShippingInfo />,
@@ -154,7 +154,7 @@ export const router = createBrowserRouter([
       },
       {
         path: ADMIN_ROUTES.CATEGORY,
-        element: <Category/>,
+        element: <Category />,
       },
     ],
   },
