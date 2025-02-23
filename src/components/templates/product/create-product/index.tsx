@@ -20,6 +20,7 @@ import serialize from "dom-serializer";
 import { BrandType } from "../../../../types/brand.type";
 import useBrandService from "../../../../services/useBrandService";
 import useProductService from "../../../../services/useProductService";
+import TextArea from "antd/es/input/TextArea";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -100,7 +101,7 @@ function CreateProduct() {
       categoryId: categoryData.id,
       categoryName: categoryData.name,
       imageUrls: imageUrls,
-      brandId: brandData.id, 
+      brandId: brandData.id,
       brandName: brandData.name,
       brandImageUrl: brandData.img,
       unit,
@@ -113,8 +114,7 @@ function CreateProduct() {
         },
       ],
     };
-    console.log(productData)
-
+    console.log(productData);
 
     try {
       const response = await createProduct(productData);
@@ -256,15 +256,15 @@ function CreateProduct() {
           type="number"
           placeholder="Giá"
           className="w-[33%] border p-2 rounded-md  mb-4"
-          value={price}
-          onChange={(e) => setPrice(Number(e.target.value))}
+          value={price === 0 ? "" : price}
+          onChange={(e) => setPrice(Number(e.target.value) || 0)}
         />
         <input
           type="number"
           placeholder="Số lượng"
           className="w-[33%] border p-2 rounded-md  mb-4"
-          value={stock}
-          onChange={(e) => setStock(Number(e.target.value))}
+          value={stock === 0 ? "" : price}
+          onChange={(e) => setStock(Number(e.target.value) || 0)}
         />
       </div>
       <input
@@ -314,6 +314,7 @@ function CreateProduct() {
         </select>
       </div>
       <h2 className="text-lg font-semibold mb-4">Thông tin chi tiết</h2>
+      <h2 className="text-base font-semibold mb-4">Mô tả sản phẩm</h2>
       <input
         type="text"
         placeholder="Tiêu đề"
@@ -363,6 +364,260 @@ function CreateProduct() {
         onChange={handleChange}
         className="mb-4"
       />
+      <h2 className="text-base font-semibold mb-4">Thành phần</h2>
+      <input
+        type="text"
+        placeholder="Tiêu đề"
+        className="border p-2 rounded-md w-full mb-4"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <ReactQuill
+        ref={reactQuillRef}
+        theme="snow"
+        placeholder="Nhập nội dung..."
+        modules={{
+          toolbar: {
+            container: [
+              [{ header: "1" }, { header: "2" }, { font: [] }],
+              [{ size: [] }],
+              ["bold", "italic", "underline", "strike", "blockquote"],
+              [
+                { list: "ordered" },
+                { list: "bullet" },
+                { indent: "-1" },
+                { indent: "+1" },
+              ],
+              ["image"],
+            ],
+          },
+          clipboard: {
+            matchVisual: false,
+          },
+        }}
+        formats={[
+          "header",
+          "font",
+          "size",
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "blockquote",
+          "list",
+          "bullet",
+          "indent",
+          "link",
+          "image",
+        ]}
+        value={value}
+        onChange={handleChange}
+        className="mb-4"
+      />
+     
+      <h2 className="text-base font-semibold mb-4">Công dụng</h2>
+      <input
+        type="text"
+        placeholder="Tiêu đề"
+        className="border p-2 rounded-md w-full mb-4"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <ReactQuill
+        ref={reactQuillRef}
+        theme="snow"
+        placeholder="Nhập nội dung..."
+        modules={{
+          toolbar: {
+            container: [
+              [{ header: "1" }, { header: "2" }, { font: [] }],
+              [{ size: [] }],
+              ["bold", "italic", "underline", "strike", "blockquote"],
+              [
+                { list: "ordered" },
+                { list: "bullet" },
+                { indent: "-1" },
+                { indent: "+1" },
+              ],
+              ["image"],
+            ],
+          },
+          clipboard: {
+            matchVisual: false,
+          },
+        }}
+        formats={[
+          "header",
+          "font",
+          "size",
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "blockquote",
+          "list",
+          "bullet",
+          "indent",
+          "link",
+          "image",
+        ]}
+        value={value}
+        onChange={handleChange}
+        className="mb-4"
+      />
+      <h2 className="text-base font-semibold mb-4">Tác dụng phụ</h2>
+      <input
+        type="text"
+        placeholder="Tiêu đề"
+        className="border p-2 rounded-md w-full mb-4"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <ReactQuill
+        ref={reactQuillRef}
+        theme="snow"
+        placeholder="Nhập nội dung..."
+        modules={{
+          toolbar: {
+            container: [
+              [{ header: "1" }, { header: "2" }, { font: [] }],
+              [{ size: [] }],
+              ["bold", "italic", "underline", "strike", "blockquote"],
+              [
+                { list: "ordered" },
+                { list: "bullet" },
+                { indent: "-1" },
+                { indent: "+1" },
+              ],
+              ["image"],
+            ],
+          },
+          clipboard: {
+            matchVisual: false,
+          },
+        }}
+        formats={[
+          "header",
+          "font",
+          "size",
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "blockquote",
+          "list",
+          "bullet",
+          "indent",
+          "link",
+          "image",
+        ]}
+        value={value}
+        onChange={handleChange}
+        className="mb-4"
+      />
+      <h2 className="text-base font-semibold mb-4">Lưu ý</h2>
+      <input
+        type="text"
+        placeholder="Tiêu đề"
+        className="border p-2 rounded-md w-full mb-4"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <ReactQuill
+        ref={reactQuillRef}
+        theme="snow"
+        placeholder="Nhập nội dung..."
+        modules={{
+          toolbar: {
+            container: [
+              [{ header: "1" }, { header: "2" }, { font: [] }],
+              [{ size: [] }],
+              ["bold", "italic", "underline", "strike", "blockquote"],
+              [
+                { list: "ordered" },
+                { list: "bullet" },
+                { indent: "-1" },
+                { indent: "+1" },
+              ],
+              ["image"],
+            ],
+          },
+          clipboard: {
+            matchVisual: false,
+          },
+        }}
+        formats={[
+          "header",
+          "font",
+          "size",
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "blockquote",
+          "list",
+          "bullet",
+          "indent",
+          "link",
+          "image",
+        ]}
+        value={value}
+        onChange={handleChange}
+        className="mb-4"
+      />
+      <h2 className="text-base font-semibold mb-4">Bảo quản</h2>
+      <input
+        type="text"
+        placeholder="Tiêu đề"
+        className="border p-2 rounded-md w-full mb-4"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <ReactQuill
+        ref={reactQuillRef}
+        theme="snow"
+        placeholder="Nhập nội dung..."
+        modules={{
+          toolbar: {
+            container: [
+              [{ header: "1" }, { header: "2" }, { font: [] }],
+              [{ size: [] }],
+              ["bold", "italic", "underline", "strike", "blockquote"],
+              [
+                { list: "ordered" },
+                { list: "bullet" },
+                { indent: "-1" },
+                { indent: "+1" },
+              ],
+              ["image"],
+            ],
+          },
+          clipboard: {
+            matchVisual: false,
+          },
+        }}
+        formats={[
+          "header",
+          "font",
+          "size",
+          "bold",
+          "italic",
+          "underline",
+          "strike",
+          "blockquote",
+          "list",
+          "bullet",
+          "indent",
+          "link",
+          "image",
+        ]}
+        value={value}
+        onChange={handleChange}
+        className="mb-4"
+      />
+      
+      <h2 className="text-lg font-semibold mb-4">Ghi chú</h2>
+      <TextArea rows={4} placeholder="maxLength is 100" maxLength={100} className="mb-4"/>
       <h2 className="text-lg font-semibold mb-4">Hình ảnh</h2>
       <Upload
         listType="picture-card"
