@@ -171,7 +171,7 @@ function HomePage() {
             />
           </div>
         </div> */}
-        <Flex align="center" justify="center">
+        <Flex align="center" justify="center" className="container mx-auto">
           <Row gutter={[16, 16]}>
             <Col lg={17}>
               <Carousel arrows infinite={false} dots={false}>
@@ -207,7 +207,7 @@ function HomePage() {
           </Row>
         </Flex>
 
-        <div className="flex justify-center items-center gap-4 h-[335px] pt-7">
+        <div className="flex justify-center items-center gap-4 h-[170px] lg:h-[335px] pt-7">
           <img
             src="https://s3-alpha-sig.figma.com/img/b24e/d6b4/3baa0caeaa29aaab596c684ab438ac20?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=t72kRf6FaZadqWuzYbZeo4bBk27FixJ6EWeHYoXekwSh50vDLWOHDoroFODnt7LcAY5QoVxTlcszYVJmKdSr9LXKx1ard0AwzDJfPRblhGNxgI8SYGH85sZE6RIVQvPidiRKXPSDpNfRDEYbjattk4xARaNT-o9vKcPFgx3PdPz9yUebRtq-Ehty2MeEHiMfisplaeydWKvABrP~wyvaouoxGkT57VryxF0-bBDYf1tkz2XQ5IALkR15-poo5dfGQR2DLQKcV-MdqMlhMlMLDaYCnBbiBHbhr0ZtiV1~VkD8xkb2tV6w0p68sYzHN8OWHAOP-bRQ0sGDt9OvY8GGPQ__"
             className="rounded-2xl w-[30%] h-full object-cover "
@@ -231,7 +231,7 @@ function HomePage() {
             <h1 className="text-2xl lg:text-4xl text-white font-normal flex justify-center items-center gap-2">
               <RiVipCrown2Fill /> Đề xuất của chuyên gia
             </h1>
-            <button className="bg-[#373737] text-white text-[16px] rounded-full p-3 px-4 flex justify-between items-center gap-3">
+            <button className="bg-[#373737] text-white text-[16px] rounded-full p-3 px-4 flex justify-between items-center gap-3 text-nowrap">
               Xem tất cả <FaArrowRight />
             </button>
           </div>
@@ -283,7 +283,7 @@ function HomePage() {
                 </h1>
                 <button
                   onClick={handleNavigate}
-                  className="bg-white text-[#006DC0] text-[16px] font-semibold rounded-full p-3 px-4 flex justify-between items-center gap-3 hover:bg-slate-200"
+                  className="bg-white text-[#006DC0] text-[16px] font-semibold rounded-full p-3 px-4 flex justify-between items-center gap-3 hover:bg-slate-200 text-nowrap"
                 >
                   Xem tất cả <FaArrowRight />
                 </button>
@@ -296,7 +296,7 @@ function HomePage() {
                   <h1 className="text-4xl text-[#FC853E] font-normal flex justify-start items-center gap-2">
                     <AiFillLike /> Sản phẩm theo đối tượng
                   </h1>
-                  <button className="bg-gradient-to-l from-[#FC853E] to-[#F05334] text-white text-[16px] font-semibold rounded-full p-3 px-4 flex justify-between items-center gap-3">
+                  <button className="bg-gradient-to-l from-[#FC853E] to-[#F05334] text-white text-[16px] font-semibold rounded-full p-3 px-4 flex justify-between items-center gap-3 text-nowrap">
                     Xem tất cả <FaArrowRight />
                   </button>
                 </div>
