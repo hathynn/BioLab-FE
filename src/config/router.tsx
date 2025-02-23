@@ -89,7 +89,7 @@ export const router = createBrowserRouter([
         element: <SOPDetail />,
       },
       {
-        path: PRODUCT_ROUTES.CART,
+        path: USER_ROUTES.CART,
         element: <ShoppingCart />,
       },
       {

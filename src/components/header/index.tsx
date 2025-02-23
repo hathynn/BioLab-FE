@@ -123,7 +123,7 @@ function Header({ navbarType = "light" }) {
               <i aria-hidden="true">
                 <AiOutlineShoppingCart className="text-xl" />
               </i>
-              <span onClick={() => nav("/shopping-cart")} className="text-sm">
+              <span onClick={() => nav(`/${USER_ROUTES.CART}`)} className="text-sm">
                 Giỏ hàng
               </span>
               {cart.length != 0 && (

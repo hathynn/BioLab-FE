@@ -6,13 +6,14 @@ export enum USER_ROUTES {
   BLOG = "blog",
   ABOUT = "about",
   SOP = "sop",
+  CART = "cart",
   SOP_DETAIL = "sop-detail",
 }
 
 export enum PRODUCT_ROUTES {
   PRODUCT = "product",
   DETAIL = "product-detail",
-  CART = "cart",
+
 }
 
 export enum PAYMENT_ROUTES {
