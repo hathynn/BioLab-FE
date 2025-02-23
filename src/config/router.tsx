@@ -40,6 +40,10 @@ export const router = createBrowserRouter([
     path: USER_ROUTES.REGISTER,
     element: <SignUp />,
   },
+  {
+    path: USER_ROUTES.ABOUT,
+    element: <About />,
+  },
 
   {
     path: "/",
@@ -78,10 +82,6 @@ export const router = createBrowserRouter([
       {
         path: USER_ROUTES.BLOG,
         element: <Blog />,
-      },
-      {
-        path: USER_ROUTES.ABOUT,
-        element: <About />,
       },
 
       {
