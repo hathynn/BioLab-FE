@@ -1,8 +1,6 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import Login from "../pages/auth/Login";
-
 import SignUp from "../pages/auth/SignUp";
-
 import {
   ADMIN_ROUTES,
   PAYMENT_ROUTES,
@@ -22,9 +20,7 @@ import ShippingInfo from "../pages/payment/shipping-info";
 import Payment from "../pages/payment";
 import Product from "../components/templates/product";
 import BrandAdmin from "../components/templates/brand";
-
 import Category from "../components/templates/category";
-
 import SOP from "../pages/sop";
 import SOPDetail from "../pages/sop/sop-detail";
 import CreateProduct from "../components/templates/product/create-product";
