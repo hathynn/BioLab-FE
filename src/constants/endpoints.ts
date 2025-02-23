@@ -6,13 +6,14 @@ export enum USER_API {
 }
 
 export enum BRAND {
-  DEFAULT = "brands"
+  DEFAULT = "brands",
+  FEATURE = "feature",
 }
 
 export enum CATEGORY {
-  DEFAULT = "categories"
+  DEFAULT = "categories",
 }
 
 export enum PRODUCT {
-  DEFAULT = "products"
+  DEFAULT = "products",
 }

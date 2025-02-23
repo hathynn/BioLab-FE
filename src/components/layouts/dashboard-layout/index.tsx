@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Layout, Menu, theme } from "antd";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { getLabel, adminMenuItems } from "../../../constants/menuItems";
 import { LogoutOutlined } from "@ant-design/icons";
 // import { useDispatch } from "react-redux";
@@ -38,10 +38,12 @@ const DashboardLayout: React.FC = () => {
         style={{ position: "fixed", height: "100vh" }}
       >
         <div className="flex py-9 flex-col justify-between h-full">
-          <img
-            className="demo-logo-vertical h-16 "
-            src="/src/assets/logo2.png"
-          />
+          <Link to={"/"}>
+            <img
+              className="demo-logo-vertical h-16 "
+              src="/src/assets/logo2.png"
+            />
+          </Link>
           <Menu
             theme="dark"
             defaultSelectedKeys={["1"]}

@@ -1,100 +1,61 @@
-import { Radio } from "antd";
 import { FaStar } from "react-icons/fa";
 import "./index.scss";
 import useCartStore from "../../store/cartStore";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { PRODUCT_ROUTES } from "../../constants/routes";
-interface RecommendationProductProps {
-  id?: string;
-  title?: string;
-  name: string;
-  img: string;
-  note?: string;
-  price: number;
-  quantity?: string[];
-  rate: number;
-  discount?: number;
-}
+import { ProductType } from "../../types/product.type";
 
-function RecommendationProduct({
-  id,
-  title,
-  name,
-  img,
-  note,
-  price,
-  // quantity,
-  // rate,
-  discount,
-}: RecommendationProductProps) {
+function RecommendationProduct({ ...product }: ProductType) {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate("/" + PRODUCT_ROUTES.PRODUCT + "/" + `${id}`);
+    navigate("/" + PRODUCT_ROUTES.PRODUCT + "/" + `${product._id}`);
   };
-  const options = [
-    { label: "Chai", value: "a" },
-    { label: "Vỉ", value: "b" },
-  ];
   const { addToCart } = useCartStore();
 
   const handleAddToCart = () => {
-    const product = {
-      id,
-      name,
-      img,
-      discount,
-      price,
+    const initProduct = {
+      id: product._id,
+      name: product.name,
+      img: product.image_url?.[0],
+      price: product.price,
+      quantity: 1,
     };
 
-    addToCart(product);
+    addToCart(initProduct);
     toast.success("Đã thêm sản phẩm vào giỏ hàng");
   };
   return (
-    <div className=" cursor-pointer bg-[#F0F5F2]   border border-[#D4DBE3] rounded-[30px] flex-col justify-center items-center">
-      <div className="relative" onClick={handleNavigate}>
-        <img src={img} className="mx-auto my-2 w-[80%] h-full object-cover" />
-        {discount && (
-          <div className="text-white text-[16px] bg-[#F0DA66] font-semibold max-w-max p-2 absolute top-9 right-0 rounded-l-[8px]">
-            Giảm {discount}%
-          </div>
-        )}
+    <div className=" cursor-pointer bg-[#F0F5F2] border border-[#D4DBE3] rounded-[30px] flex flex-col gap-4 justify-end items-center">
+      <div className="h-auto" onClick={handleNavigate}>
+        <img
+          src={product.image_url?.[0]}
+          className="mx-auto my-2 w-[80%] h-full object-cover"
+        />
       </div>
-      <div className="bg-white rounded-[30px] min-h-[320px] p-5 flex flex-col justify-between">
-        <div className="product-quantity">
-          <Radio.Group
-            options={options}
-            // onChange={onChange4}
-            // value={value4}
-            optionType="button"
-            buttonStyle="solid"
-            size="small"
-            defaultValue="a"
-          />
-        </div>
+      <div className="bg-white rounded-[30px] min-h-[320px] w-full p-5 flex flex-col justify-between">
+        <div className="product-quantity">{product.unit}</div>
 
         <div className="flex justify-between text-[13px] text-[#B5BCC8] pb-4">
-          <p>{title}</p>
+          <p>{product.category?.category_name}</p>
           <div className="flex justify-center items-center gap-[2px] text-center">
             <FaStar color="#FC853E" size={16} />
-            <p>(4.5)</p>
+            <p>(0)</p>
           </div>
         </div>
 
         {/* To truncate text after two lines and add an ellipsis ==> line-champ-2 */}
-        <h3 className="text-[16px] font-bold  line-clamp-2">{name}</h3>
+        <h3 className="text-[16px] font-bold  line-clamp-2">{product.name}</h3>
         <div className="bg-[#EFEFEF] max-w-max p-1 rounded-lg text-[12px] text-[#6F6F6F] font-semibold mt-3">
-          {note}
+          {"note"}
         </div>
 
         <div className="py-5 text-[16px] leading-5">
           <p className="font-bold">
-            1.295.000đ <span className="font-semibold">/ Hộp</span>
+            {product.price}
+            <span className="font-semibold">/ {product.unit}</span>
           </p>
-          {discount && (
-            <p className="line-through text-[#B5BCC8]">1.500.000đ</p>
-          )}
         </div>
 
         <div>

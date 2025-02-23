@@ -2,12 +2,11 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface Product {
-  id: string;
-  name: string;
-  img: string;
-  price: number;
+  id?: string;
+  name?: string;
+  img?: string;
+  price?: number;
   quantity: number;
-  discount?: number;
 }
 interface CartState {
   cart: Product[];

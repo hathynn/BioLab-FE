@@ -26,37 +26,62 @@ const useBrandService = () => {
     } finally {
       setIsLoading(false);
     }
-  }, []);  
-  const createBrands = useCallback(async (brandName: string, imageUrl: string) => {
+  }, []);
+  const getBrandFeatured = useCallback(async (_id: string) => {
     try {
       setIsLoading(true);
-      const response = await callApi("post", BRAND.DEFAULT, {
-        brand_name: brandName,
-        image_url: imageUrl,
-      });
+      const response = await callApi(
+        "get",
+        `${BRAND.DEFAULT}/${BRAND.FEATURE}/${_id}`
+      );
+
       return response?.data;
     } catch (e: any) {
-      console.error("Lỗi khi tạo brand:", e?.response?.data || "Có lỗi xảy ra");
+      console.error("Lỗi khi lấy feature của brand:", e);
     } finally {
       setIsLoading(false);
     }
   }, []);
-  
-  const updateBrands = useCallback(async (id: string, brandName: string, imageUrl: string) => {
-    try {
-      setIsLoading(true);
-      const response = await callApi("put", `${BRAND.DEFAULT}/${id}`, {
-        brand_name: brandName,
-        image_url: imageUrl,
-      });
-      return response?.data;
-    } catch (e: any) {
-      console.error("Lỗi khi cập nhật brand:", e);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-  
+
+  const createBrands = useCallback(
+    async (brandName: string, imageUrl: string) => {
+      try {
+        setIsLoading(true);
+        const response = await callApi("post", BRAND.DEFAULT, {
+          brand_name: brandName,
+          image_url: imageUrl,
+        });
+        return response?.data;
+      } catch (e: any) {
+        console.error(
+          "Lỗi khi tạo brand:",
+          e?.response?.data || "Có lỗi xảy ra"
+        );
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    []
+  );
+
+  const updateBrands = useCallback(
+    async (id: string, brandName: string, imageUrl: string) => {
+      try {
+        setIsLoading(true);
+        const response = await callApi("put", `${BRAND.DEFAULT}/${id}`, {
+          brand_name: brandName,
+          image_url: imageUrl,
+        });
+        return response?.data;
+      } catch (e: any) {
+        console.error("Lỗi khi cập nhật brand:", e);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    []
+  );
+
   return {
     loading,
     setIsLoading,
@@ -64,6 +89,7 @@ const useBrandService = () => {
     updateBrands,
     createBrands,
     getBrandById,
+    getBrandFeatured,
   };
 };
 
