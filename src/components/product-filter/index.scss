@@ -1,0 +1,25 @@
+.product-filter {
+    .ant-collapse .ant-collapse-item .ant-collapse-header {
+        border:none;
+        margin-bottom: 0;
+        border-bottom:1px solid rgb(232, 229, 229);
+        border-radius: 0;
+    }
+
+    /* Đổi màu dot mặc định */
+.ant-slider-dot {
+    border-color: black !important; /* Viền đen */
+  }
+  
+  /* Đổi màu dot khi active */
+  .ant-slider-dot-active {
+    border-color: black !important;
+    background-color: black !important;
+  }
+  
+  /* Đổi màu dot khi hover */
+  .ant-slider:hover .ant-slider-dot {
+    border-color: black !important;
+  }
+  
+}

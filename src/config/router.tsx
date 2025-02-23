@@ -28,6 +28,7 @@ import Category from "../components/templates/category";
 import SOP from "../pages/sop";
 import SOPDetail from "../pages/sop/sop-detail";
 import CreateProduct from "../components/templates/product/create-product";
+import ProductPage from "../pages/product";
 
 
 export const router = createBrowserRouter([
@@ -93,7 +94,7 @@ export const router = createBrowserRouter([
       },
       {
         path: PRODUCT_ROUTES.PRODUCT,
-        element: <ProductDetail />,
+        element: <ProductPage />,
         children: [
           {
             path: ":id",
