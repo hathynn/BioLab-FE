@@ -46,16 +46,24 @@ const adminItems = [
   { label: "Đăng blog", key: "create-blog", icon: <PaperClipOutlined /> },
 ];
 
-
 export const adminMenuItems: MenuItem[] = adminItems.map((item) =>
   getItem(item.label, item.key, item.icon)
 );
 
+//  const headerItems = [
+//   { label: "Giới thiệu", href: "#" },
+//   { label: "Danh mục sản phẩm", href: "#", hasDropdown: true },
+//   { label: "Hoạt động xã hội", href: "#" },
+//   { label: "Gói dịch vụ", href: "#" },
+//   { label: "SOP", href: "/" + USER_ROUTES.SOP },
+//   { label: "Cẩm nang sức khỏe", href: "/" + USER_ROUTES.BLOG },
+// ];
+
 export const headerItems = [
-  { label: "Giới thiệu", href: "#" },
-  { label: "Danh mục sản phẩm", href: "#", hasDropdown: true },
-  { label: "Hoạt động xã hội", href: "#" },
-  { label: "Gói dịch vụ", href: "#" },
-  { label: "SOP", href: "/" + USER_ROUTES.SOP },
-  { label: "Cẩm nang sức khỏe", href: "/" + USER_ROUTES.BLOG },
+  { label: "Giới thiệu", key: "about" },
+  { label: "Danh mục sản phẩm", key: "product" },
+  { label: "Hoạt động xã hội", key: "/" },
+  { label: "Gói dịch vụ", key: "/" },
+  { label: "SOP", key: "sop" },
+  { label: "Cẩm nang sức khỏe", key: "blog" },
 ];
