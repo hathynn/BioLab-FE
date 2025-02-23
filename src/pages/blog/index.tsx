@@ -90,15 +90,15 @@ function Blog() {
   return (
     <div className="px-5 blog">
       <MediaInfoCard />
-      <div className="p-5 flex justify-between items-start gap-4">
-        <div className="w-3/5">
+      <div className="p-5 flex flex-col lg:flex-row justify-between items-start gap-4">
+        <div className="w-full lg:w-3/5">
           <Tabs
             // tabPosition={"left"}
             items={menu}
             className="w-full"
           />
         </div>
-        <div className="w-1/4 flex flex-col justify-start items-start gap-4">
+        <div className="w-full lg:w-1/4 flex flex-col justify-start items-start gap-4">
           <div className="relative w-full">
             <i className="absolute left-4 top-5 transform -translate-y-1/2">
               <CiSearch className="text-xl text-gray-800" />
