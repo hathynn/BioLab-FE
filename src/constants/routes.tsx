@@ -27,7 +27,7 @@ export enum ADMIN_ROUTES {
   SETTING = "setting",
   BLOG = "create-blog",
   PRODUCT = "product",
-  CREATE_PRODUCT = "create-product",
+  CREATE_PRODUCT = "create",
   BRAND = "brand",
   CATEGORY = "category",
   BLOG_CATEGORY = "blog-category",

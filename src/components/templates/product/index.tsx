@@ -7,6 +7,7 @@ import { ProductType } from "../../../types/product.type";
 import useProductService from "../../../services/useProductService";
 import { CategoryType } from "../../../types/category.type";
 import { BrandType } from "../../../types/brand.type";
+import { ADMIN_ROUTES } from "../../../constants/routes";
 
 const Product: React.FC = () => {
   const nav = useNavigate();
@@ -101,7 +102,7 @@ const Product: React.FC = () => {
   return (
     <div className="product-admin">
       <button
-        onClick={() => nav("/admin/create-product")}
+        onClick={() => nav(`/${ADMIN_ROUTES.ADMIN}/${ADMIN_ROUTES.PRODUCT}/${ADMIN_ROUTES.CREATE_PRODUCT}`)}
         className="my-5 px-6 py-3 bg-customGreen text-white rounded-lg shadow-md hover:bg-green-500"
       >
         Tạo sản phẩm
