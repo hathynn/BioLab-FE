@@ -44,10 +44,10 @@ function CreateBlog() {
   const handleCategoriesChange = async (value: string[]) => {
     const cates: PostCategoryType[] = await Promise.all(
       value.map(async (item) => {
-        const categoryName = await getCategoryById(item);
+        const category: PostCategoryType = await getCategoryById(item);
         return {
           _id: item,
-          post_category_name: categoryName,
+          post_category_name: category.post_category_name,
         };
       })
     );
