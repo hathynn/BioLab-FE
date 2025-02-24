@@ -21,6 +21,7 @@ import { BrandType } from "../../../../types/brand.type";
 import useBrandService from "../../../../services/useBrandService";
 import useProductService from "../../../../services/useProductService";
 import TextArea from "antd/es/input/TextArea";
+import { ADMIN_ROUTES } from "../../../../constants/routes";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -120,7 +121,8 @@ function CreateProduct() {
       const response = await createProduct(productData);
       console.log("Sản phẩm được tạo:", response);
       alert("Tạo sản phẩm thành công!");
-      nav("/admin/product"); // Chuyển hướng sau khi tạo xong
+      nav(`/${ADMIN_ROUTES.PRODUCT}`);
+     
     } catch (error) {
       console.error("Lỗi khi tạo sản phẩm:", error);
       alert("Tạo sản phẩm thất bại!");
@@ -269,7 +271,7 @@ function CreateProduct() {
       </div>
       <input
         type="text"
-        placeholder="Mô tả sản phẩm"
+        placeholder="Mô tả ngắn sản phẩm"
         className="border p-2 rounded-md w-full mb-4"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
