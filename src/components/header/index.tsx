@@ -49,7 +49,7 @@ function Header({ navbarType = "light" }) {
       : "bg-gray-100 text-black";
 
   const onClick: MenuProps["onClick"] = (e) => {
-    nav(e.key);
+    nav(`/${e.key}`);
     onClose();
   };
   return (
