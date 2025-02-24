@@ -1,4 +1,5 @@
-import Avatar from "antd/es/avatar/avatar";
+// import Avatar from "antd/es/avatar/avatar";
+import { Avatar } from "antd";
 import { FC } from "react";
 
 interface AccountProps {
