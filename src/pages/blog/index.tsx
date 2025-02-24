@@ -16,7 +16,7 @@ function MiniBlog({ post }: { post: PostType }) {
   const nav=useNavigate();
   const categoryName =
     post.category?.length > 0
-      ? post.category.map((cat) => cat.post_category_name).join(", ")
+      ? post?.category?.map((cat) => cat?.post_category_name).join(", ")
       : "Chưa phân loại";
 
   const formattedDate = post.created_date
@@ -112,7 +112,7 @@ function Blog() {
           {isLoading ? (
             <p>Loading...</p>
           ) : (
-            filteredPosts.map((post) => <MiniBlog key={post._id} post={post} />)
+            filteredPosts?.map((post) => <MiniBlog key={post._id} post={post} />)
           )}
         </div>
       ),
@@ -145,7 +145,7 @@ function Blog() {
           </div>
           <div className="blog__tag">
             <Flex gap={3} wrap align="center" className="type-media">
-              {categories.map((tag) => (
+              {categories?.map((tag) => (
                 <Tag.CheckableTag
                   key={tag._id}
                   checked={selectedTags.includes(tag._id)}
