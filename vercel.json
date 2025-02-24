@@ -1,0 +1,120 @@
+{
+    "rewrites": [
+      {
+        "source": "/(.*)",
+        "destination": "/index.html"
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/login",
+        "destination": "/login",
+        "status": 301
+      },
+      {
+        "source": "/register",
+        "destination": "/register",
+        "status": 301
+      },
+      {
+        "source": "/home",
+        "destination": "/home",
+        "status": 301
+      },
+      {
+        "source": "/blog",
+        "destination": "/blog",
+        "status": 301
+      },
+      {
+        "source": "/blog/:id",
+        "destination": "/blog/:id",
+        "status": 301
+      },
+      {
+        "source": "/about",
+        "destination": "/about",
+        "status": 301
+      },
+      {
+        "source": "/sop",
+        "destination": "/sop",
+        "status": 301
+      },
+      {
+        "source": "/sop-detail",
+        "destination": "/sop-detail",
+        "status": 301
+      },
+      {
+        "source": "/cart",
+        "destination": "/cart",
+        "status": 301
+      },
+      {
+        "source": "/product",
+        "destination": "/product",
+        "status": 301
+      },
+      {
+        "source": "/product/:id",
+        "destination": "/product/:id",
+        "status": 301
+      },
+      {
+        "source": "/payment/shipping-info",
+        "destination": "/payment/shipping-info",
+        "status": 301
+      },
+      {
+        "source": "/payment/:id",
+        "destination": "/payment/:id",
+        "status": 301
+      },
+      {
+        "source": "/admin",
+        "destination": "/admin",
+        "status": 301
+      },
+      {
+        "source": "/admin/overview",
+        "destination": "/admin/overview",
+        "status": 301
+      },
+      {
+        "source": "/admin/setting",
+        "destination": "/admin/setting",
+        "status": 301
+      },
+      {
+        "source": "/admin/blog-category",
+        "destination": "/admin/blog-category",
+        "status": 301
+      },
+      {
+        "source": "/admin/create-blog",
+        "destination": "/admin/create-blog",
+        "status": 301
+      },
+      {
+        "source": "/admin/product",
+        "destination": "/admin/product",
+        "status": 301
+      },
+      {
+        "source": "/admin/create-product",
+        "destination": "/admin/create-product",
+        "status": 301
+      },
+      {
+        "source": "/admin/brand",
+        "destination": "/admin/brand",
+        "status": 301
+      },
+      {
+        "source": "/admin/category",
+        "destination": "/admin/category",
+        "status": 301
+      }
+    ]
+  }
