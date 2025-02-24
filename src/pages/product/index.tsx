@@ -48,6 +48,7 @@ const ProductPage: React.FC = () => {
             <RecommendationProduct
               key={index}
               _id={product._id}
+              note={product.note}
               category={product.category}
               name={product.name}
               image_url={product.image_url}

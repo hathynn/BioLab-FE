@@ -5,6 +5,7 @@ import { PostType } from "../../types/post.type";
 import { useNavigate } from "react-router-dom";
 import empty from "../../assets/box.png";
 function ListMedia({ posts }: { posts: PostType[] }) {
+  const nav =useNavigate();
   return (
     <div className="w-[300px] lg:w-1/3 lg:h-[400px] flex flex-row lg:flex-col gap-2 lg:overflow-y-auto overflow-x-auto">
       {posts.map((post) => {
@@ -13,7 +14,8 @@ function ListMedia({ posts }: { posts: PostType[] }) {
           : "Chưa phân loại";
 
         return (
-          <div
+          <div 
+          onClick={() => nav(`/blog/${post._id}`)}
             key={post._id || post._id}
             className="flex flex-col lg:flex-row justify-center items-start gap-4"
           >

@@ -4,6 +4,7 @@ import { BrandType } from './brand.type'
 
 export interface ProductType {
   _id?: string
+  note: string
   name: string
   description?: string
   category?: CategoryType
