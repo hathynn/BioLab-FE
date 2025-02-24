@@ -36,7 +36,7 @@ function RecommendationProduct({ ...product }: ProductType) {
         />
       </div>
       <div className="bg-white rounded-[30px] min-h-[320px] w-full p-5 flex flex-col justify-between">
-        <div className="product-quantity">{product.unit}</div>
+        
 
         <div className="flex justify-between text-[13px] text-[#B5BCC8] pb-4">
           <p>{product.category?.category_name}</p>
@@ -49,7 +49,7 @@ function RecommendationProduct({ ...product }: ProductType) {
         {/* To truncate text after two lines and add an ellipsis ==> line-champ-2 */}
         <h3 className="text-[16px] font-bold  line-clamp-2">{product.name}</h3>
         <div className="bg-[#EFEFEF] max-w-max p-1 rounded-lg text-[12px] text-[#6F6F6F] font-semibold mt-3">
-          {"note"}
+          {product?.note || "Hộp 10 viên"}
         </div>
 
         <div className="py-5 text-[16px] leading-5">
@@ -62,7 +62,7 @@ function RecommendationProduct({ ...product }: ProductType) {
         <div>
           <button
             onClick={handleAddToCart}
-            className="w-full border border-[1.5px] border-[#02321C] rounded-full max-h-max p-2 font-bold text-sm hover:bg-slate-200"
+            className="w-full  border-[1.5px] border-[#02321C] rounded-full max-h-max p-2 font-bold text-sm hover:bg-slate-200"
           >
             + Thêm vào giỏ hàng
           </button>
