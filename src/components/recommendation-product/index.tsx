@@ -20,6 +20,7 @@ function RecommendationProduct({ ...product }: ProductType) {
       name: product.name,
       img: product.image_url?.[0],
       price: product.price,
+      unit: product.unit,
       quantity: 1,
     };
 
