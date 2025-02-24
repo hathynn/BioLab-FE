@@ -2,7 +2,7 @@
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import { motion } from "framer-motion";
-import vitamin from "../../assets/vitamin.png"
+import vitamin from "../../assets/vitamin.png";
 function About() {
   const tags = [
     "Chất lượng",
@@ -24,7 +24,12 @@ function About() {
               transition={{ duration: 1.2, ease: "easeOut" }}
             />
           </div>
-          <div className="w-1/3 text-white font-light text-[17px] leading-6 absolute bottom-[20%] pl-10">
+          <motion.div
+            initial={{ x: -100, opacity: 0 }} // Bắt đầu từ bên trái (-100px) và ẩn
+            animate={{ x: 0, opacity: 1 }} // Dịch vào vị trí chuẩn và hiển thị
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="w-1/3 text-white font-light text-[17px] leading-6 absolute bottom-[20%] pl-10"
+          >
             <p>
               BioLab là một thương hiệu tiên phong trong lĩnh vực phân phối thực
               phẩm chức năng tại Việt Nam, chuyên cung cấp các sản phẩm bổ sung
@@ -37,7 +42,7 @@ function About() {
               an tâm trên hành trình nâng cao sức khỏe và cải thiện chất lượng
               cuộc sống.
             </p>
-          </div>
+          </motion.div>
         </div>
         {/* <div className="absolute top-1/3 p-5 ">
           <h1 className="pl-8 text-9xl leading-[170px] font-semibold bg-gradient-to-b from-white to-[#FFFFFF1A] bg-clip-text text-transparent">
