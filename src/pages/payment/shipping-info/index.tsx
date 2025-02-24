@@ -230,12 +230,62 @@ function ShippingInfo() {
   });
 
   
-  const handleSubmit = (values: typeof initialValues) => {
+  const handleSubmit = async (values: typeof initialValues) => {
     if (!input.trim()) {
       toast.error("Thieu");
     } else toast(input) 
     console.log("Form Submitted:", values);
     console.log(input)
+
+
+    const orderData = {
+      customerName: values.name,
+      phoneNumber: values.phone,
+      email: values.email,
+      address: input,
+      paymentMethod: values.paymentMethod,
+      totalPrice: calculateTotalPrice(),
+      note,
+      orderDetails: cart.map((item) => ({
+        productId: item.id,
+        quantity: item.quantity,
+        price: item.price,
+      })),
+    };
+    try {
+      const order: OrderType = {
+        address: orderData.address,
+        customer_name: orderData.customerName,
+        email: orderData.email,
+        payment_method: paymentMethod == PaymentMethod.COD ? "COD" : "VNPAY",
+        payment_status: PaymentStatus.UNPAID,
+        phone: orderData.phoneNumber,
+        status: OrderStatus.PROCESSING,
+        total_amount: orderData.totalPrice,
+      };
+      const response = await createOrder(order);
+      if (response) {
+        const order_id = response?.order_id;
+        cart.map(async (item) => {
+          console.log(order_id, item.id);
+          const order_detail: OrderDetailType = {
+            order_id: order_id,
+            product_id: item.id || "",
+            quantity: item.quantity,
+            subtotal: item.quantity * (item.price || 1),
+          };
+          await createOrderDetail(order_detail);
+        });
+      }
+      if (!response) throw new Error("Lỗi khi tạo đơn hàng");
+      toast.success("Đơn hàng đã được tạo thành công!");
+      if (paymentMethod !== PaymentMethod.COD) {
+        nav("/payment/" + response?.order_id);
+      }
+    } catch (error) {
+      console.error("Error creating order:", error);
+      toast.error("Có lỗi xảy ra khi tạo đơn hàng, vui lòng thử lại.");
+    }
   };
 
   return (
