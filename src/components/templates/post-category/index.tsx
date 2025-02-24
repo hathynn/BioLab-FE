@@ -15,7 +15,7 @@ const PostCategory: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType | null>(
     null
   );
-  const [_isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [_isDetailModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [updateCategoryName, setUpdateCategoryName] = useState("");
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(

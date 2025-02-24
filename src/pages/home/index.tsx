@@ -1,4 +1,4 @@
-import { Button, Carousel, Drawer,  Input } from "antd";
+import { Button, Carousel, Drawer, Input } from "antd";
 import "./index.scss";
 import { RiVipCrown2Fill } from "react-icons/ri";
 import { FaArrowRight, FaHeart } from "react-icons/fa";
@@ -221,7 +221,7 @@ function HomePage() {
                   Xem tất cả <FaArrowRight />
                 </button>
               </div>
-              <MediaInfoCard tags={true} />
+              <MediaInfoCard />
             </div>
             <div className="bg-white h-full w-full rounded-3xl">
               <div className="p-10">

@@ -1,8 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { parseDocument } from "htmlparser2";
-import serialize from "dom-serializer";
 import { UploadOutlined } from "@ant-design/icons";
 
 import "./index.scss";
@@ -72,8 +70,6 @@ function CreateBlog() {
     }
   };
 
-  const htmlString = value;
-  const dom = parseDocument(htmlString);
   // const fixedHtml = serialize(dom);
 
   const handleRemove = async (file: UploadFile) => {

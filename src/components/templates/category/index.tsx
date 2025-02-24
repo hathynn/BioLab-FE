@@ -8,18 +8,21 @@ import { BrandType } from "../../../types/brand.type";
 import { CategoryType } from "../../../types/category.type";
 import useCategoryService from "../../../services/useCategoryService";
 
-
 const Category: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { getCategories, getCategoryById, createCategory, updateCategory } =
     useCategoryService();
   const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<CategoryType | null>(null);
-  const [_isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType | null>(
+    null
+  );
+  const [_isDetailModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [updateCategoryName, setUpdateCategoryName] = useState("");
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
+    null
+  );
 
   const fetch = async () => {
     try {
@@ -48,7 +51,6 @@ const Category: React.FC = () => {
     }
 
     try {
-    
       await createCategory(categoryName);
       console.log("Tạo category thành công!");
       setIsModalOpen(false);
@@ -64,10 +66,8 @@ const Category: React.FC = () => {
     if (!selectedCategoryId) return;
 
     try {
-    
- 
       await updateCategory(selectedCategoryId, updateCategoryName);
-      console.log("CategoryID: ", selectedCategoryId)
+      console.log("CategoryID: ", selectedCategoryId);
       console.log("Cập nhật category thành công!");
       setIsUpdateModalOpen(false);
       fetch(); // Refresh danh sách
@@ -117,7 +117,7 @@ const Category: React.FC = () => {
       console.log(categoryId);
       setSelectedCategoryId(categoryDetail._id);
       setUpdateCategoryName(categoryDetail.category_name);
-     
+
       setIsUpdateModalOpen(true);
     } catch (error) {
       console.error("Lỗi khi lấy thông tin category:", error);
@@ -164,7 +164,6 @@ const Category: React.FC = () => {
             <Descriptions.Item label="Tên nhãn hàng">
               {selectedCategory.category_name}
             </Descriptions.Item>
-           
           </Descriptions>
         ) : (
           <p>Đang tải...</p>

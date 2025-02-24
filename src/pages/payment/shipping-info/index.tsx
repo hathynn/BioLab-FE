@@ -20,7 +20,7 @@ import useOrderDetailService from "../../../services/useOrderDetailService";
 import { OrderDetailType } from "../../../types/orderDetail.type";
 
 function ShippingInfo() {
-  const { cart, clearCart } = useCartStore();
+  const { cart } = useCartStore();
   const { createOrder } = useOrderService();
   const { createOrderDetail } = useOrderDetailService();
   const { getProvinces, getDistricts, getWards } = useLocationService();

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import demo from "../../assets/demo.png";
 import { FaTrash } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
@@ -35,7 +34,9 @@ function ShoppingCart() {
   const calculateTotalPrice = () => {
     return cart.reduce(
       (total, item) =>
-        checkedItems[item.id || ""] ? total + (item.price || 0 ) * item.quantity : total,
+        checkedItems[item.id || ""]
+          ? total + (item.price || 0) * item.quantity
+          : total,
       0
     );
   };
@@ -111,7 +112,9 @@ function ShoppingCart() {
                   >
                     <Checkbox
                       checked={checkedItems[p.id || ""] || false}
-                      onChange={(e) => handleItemChange(p.id || "", e.target.checked)}
+                      onChange={(e) =>
+                        handleItemChange(p.id || "", e.target.checked)
+                      }
                     />
                   </ConfigProvider>
                   <img
@@ -152,7 +155,10 @@ function ShoppingCart() {
                   </select>
 
                   <i>
-                    <FaTrash onClick={() => removeFromCart(p?.id || "")} className="cursor-pointer hover:text-red-500" />
+                    <FaTrash
+                      onClick={() => removeFromCart(p?.id || "")}
+                      className="cursor-pointer hover:text-red-500"
+                    />
                   </i>
                 </div>
               </div>
