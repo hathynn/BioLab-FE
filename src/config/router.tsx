@@ -26,6 +26,7 @@ import SOPDetail from "../pages/sop/sop-detail";
 import CreateProduct from "../components/templates/product/create-product";
 import ProductPage from "../pages/product";
 import About from "../pages/about";
+import PostCategory from "../components/templates/post-category";
 
 export const router = createBrowserRouter([
   {
@@ -135,6 +136,10 @@ export const router = createBrowserRouter([
       {
         path: ADMIN_ROUTES.SETTING,
         element: <></>,
+      },
+      {
+        path: ADMIN_ROUTES.BLOG_CATEGORY,
+        element: <PostCategory />,
       },
       {
         path: ADMIN_ROUTES.BLOG,

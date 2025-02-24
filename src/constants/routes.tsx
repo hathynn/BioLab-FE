@@ -13,7 +13,6 @@ export enum USER_ROUTES {
 export enum PRODUCT_ROUTES {
   PRODUCT = "product",
   DETAIL = "product-detail",
-
 }
 
 export enum PAYMENT_ROUTES {
@@ -31,4 +30,5 @@ export enum ADMIN_ROUTES {
   CREATE_PRODUCT = "create-product",
   BRAND = "brand",
   CATEGORY = "category",
+  BLOG_CATEGORY = "blog-category",
 }
