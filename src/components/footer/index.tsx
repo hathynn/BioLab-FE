@@ -2,6 +2,12 @@ import zalo from "../../assets/zalo.png";
 import fb from "../../assets/fb.png";
 import xanh from "../../assets/xanh.png";
 import duong from "../../assets/duong.png";
+import cod from "../../assets/cod1.png";
+import visa from "../../assets/visa.png";
+import mastercard from "../../assets/master.png";
+import jcb from "../../assets/jcb.png";
+import momo from "../../assets/momo.png";
+import zalo2  from "../../assets/zalo2.png";
 
 const Footer = () => {
   return (
@@ -117,12 +123,12 @@ const Footer = () => {
         <h5 className="font-bold mb-2">Hỗ trợ thanh toán</h5>
         <div className="flex justify-center space-x-4">
           {[
-            { src: "/images/payment-cod.png", alt: "COD" },
-            { src: "/images/payment-visa.png", alt: "Visa" },
-            { src: "/images/payment-mastercard.png", alt: "Mastercard" },
-            { src: "/images/payment-jcb.png", alt: "JCB" },
-            { src: "/images/payment-momo.png", alt: "MoMo" },
-            { src: "/images/payment-zalopay.png", alt: "ZaloPay" },
+            { src: cod, alt: "COD" },
+            { src: visa, alt: "Visa" },
+            { src: mastercard, alt: "Mastercard" },
+            { src: jcb, alt: "JCB" },
+            { src: momo, alt: "MoMo" },
+            { src: zalo2, alt: "ZaloPay" },
           ].map((payment, index) => (
             <img
               key={index}
