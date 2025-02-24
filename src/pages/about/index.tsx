@@ -2,6 +2,7 @@
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import { motion } from "framer-motion";
+import vitamin from "../../assets/vitamin.png"
 function About() {
   const tags = [
     "Chất lượng",
@@ -16,7 +17,7 @@ function About() {
         <div className="relative pl-10">
           <div className="flex justify-center items-center">
             <motion.img
-              src="/src/assets/vitamin.png"
+              src={vitamin}
               className="z-10"
               initial={{ y: -200, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
