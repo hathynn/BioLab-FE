@@ -9,7 +9,7 @@ import { LogoutOutlined } from "@ant-design/icons";
 // import { useCurrentUser } from "../../../utils/getcurrentUser";
 import "./index.scss";
 import HeaderDashboard from "../../header-dashboard";
-import logo from "../../../assets/logo2.png"
+import logo from "../../../assets/logo2.png";
 
 const { Content, Sider } = Layout;
 
@@ -39,12 +39,8 @@ const DashboardLayout: React.FC = () => {
         style={{ position: "fixed", height: "100vh" }}
       >
         <div className="flex py-9 flex-col justify-between h-full">
-          <Link to={"/about"}>
-            <img
-              className="demo-logo-vertical h-16 "
-              src={logo}
-            />
-          </Link>
+          <img className="demo-logo-vertical h-16 " src={logo} />
+
           <Menu
             theme="dark"
             defaultSelectedKeys={["1"]}

@@ -71,6 +71,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "/",
     element: (
@@ -101,12 +102,10 @@ export const router = createBrowserRouter([
       {
         path: PRODUCT_ROUTES.PRODUCT,
         element: <ProductPage />,
-        children: [
-          {
-            path: ":id",
-            element: <ProductDetail />,
-          },
-        ],
+      },
+      {
+        path: `${PRODUCT_ROUTES.PRODUCT}/:id`,
+        element: <ProductDetail />,
       },
 
       {
@@ -121,16 +120,6 @@ export const router = createBrowserRouter([
             element: <Payment />,
           },
         ],
-      },
-    ],
-  },
-  {
-    path: PRODUCT_ROUTES.PRODUCT,
-    element: <ProductDetail />,
-    children: [
-      {
-        path: ":id",
-        element: <ProductDetail />,
       },
     ],
   },
@@ -158,13 +147,10 @@ export const router = createBrowserRouter([
       {
         path: ADMIN_ROUTES.PRODUCT,
         element: <Product />,
-
-        children: [
-          {
-            path: ADMIN_ROUTES.CREATE_PRODUCT,
-            element: <CreateProduct />,
-          },
-        ],
+      },
+      {
+        path: `${ADMIN_ROUTES.PRODUCT}/${ADMIN_ROUTES.CREATE_PRODUCT}`,
+        element: <CreateProduct />,
       },
 
       {
