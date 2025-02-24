@@ -84,12 +84,10 @@ export const router = createBrowserRouter([
       {
         path: USER_ROUTES.BLOG,
         element: <Blog />,
-       
       },
       {
         path: `${USER_ROUTES.BLOG}/:id`,
         element: <BlogDetail />,
-       
       },
 
       {
@@ -160,11 +158,15 @@ export const router = createBrowserRouter([
       {
         path: ADMIN_ROUTES.PRODUCT,
         element: <Product />,
+
+        children: [
+          {
+            path: ADMIN_ROUTES.CREATE_PRODUCT,
+            element: <CreateProduct />,
+          },
+        ],
       },
-      {
-        path: ADMIN_ROUTES.CREATE_PRODUCT,
-        element: <CreateProduct />,
-      },
+
       {
         path: ADMIN_ROUTES.BRAND,
         element: <BrandAdmin />,
