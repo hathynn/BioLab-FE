@@ -1,5 +1,4 @@
 import { PostCategoryType } from "./postCategory.type";
-import { PostContentType } from "./postContent.type";
 
 export enum PostStatus {
   PUBLISHED,

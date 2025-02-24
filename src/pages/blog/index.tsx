@@ -12,31 +12,31 @@ import moment from "moment";
 import { PostType } from "../../types/post.type";
 
 function MiniBlog({ post }: { post: PostType }) {
-  // Lấy danh mục bài viết
   const categoryName =
-  post.category?.length > 0
-    ? post.category.map((cat) => cat.post_category_name).join(", ")
-    : "Chưa phân loại";
+    post.category?.length > 0
+      ? post.category.map((cat) => cat.post_category_name).join(", ")
+      : "Chưa phân loại";
 
-    const formattedDate = post.created_date ? moment(post.created_date).format("DD/MM/YYYY") : "N/A";
+  const formattedDate = post.created_date
+    ? moment(post.created_date).format("DD/MM/YYYY")
+    : "N/A";
 
   return (
     <div className="flex justify-center items-start gap-4 border-b pb-5">
-
       <div className="flex flex-col justify-center items-start gap-3 w-3/4">
         <div className="flex justify-center items-center gap-4">
-   
           <div className="bg-[#F2F2F2] px-3 py-1 rounded-[10px] text-sm font-light">
             {categoryName}
           </div>
-        
+
           <p className="text-[#757575] text-sm">Selected for you</p>
         </div>
 
-        <h1 className="text-[#191919] text-[22px] font-normal">{post?.title}</h1>
+        <h1 className="text-[#191919] text-[22px] font-normal">
+          {post?.title}
+        </h1>
         <p className="text-[#757575] text-sm font-light">{formattedDate}</p>
       </div>
-
 
       <div className="w-1/4 h-[140px]">
         <img
@@ -49,17 +49,15 @@ function MiniBlog({ post }: { post: PostType }) {
   );
 }
 
-
-
 function Blog() {
   const { getCategories } = usePostCategoryService();
   const { getPosts } = usePostService();
   const [categories, setCategories] = useState<PostCategoryType[]>([]);
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<PostType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  // Gọi API lấy danh mục bài viết
+
   const fetchCategories = async () => {
     try {
       const response = await getCategories();
@@ -71,40 +69,15 @@ function Blog() {
 
   const fetchPosts = async () => {
     try {
-        setIsLoading(true);
-        const response = await getPosts();
-
-        console.log("📢 Full API Response:", response);
-
-        // Kiểm tra API response có đúng dạng hay không
-        if (!response || typeof response !== "object") {
-            console.error("❌ Response không hợp lệ:", response);
-            return;
-        }
-
-        // Nếu response là một mảng, thì set trực tiếp
-        if (Array.isArray(response)) {
-            console.log("✅ Response là một mảng:", response);
-            setPosts(response);
-            return;
-        }
-
-        // Nếu response là object có thuộc tính `data`, thì lấy `response.data`
-        if (response?.data && Array.isArray(response.data)) {
-            console.log("✅ Response.data hợp lệ:", response.data);
-            setPosts(response.data);
-            return;
-        }
-
-        // Nếu không có dữ liệu hợp lệ
-        console.warn("⚠️ API trả về không đúng định dạng mong đợi:", response);
+      setIsLoading(true);
+      const response = await getPosts();
+      setPosts(response);
     } catch (error) {
-        console.error("❌ Lỗi khi lấy danh sách bài viết:", error);
+      console.error("Lỗi khi lấy danh sách bài viết:", error);
     } finally {
-        setIsLoading(false);
+      setIsLoading(false);
     }
-};
-
+  };
 
   useEffect(() => {
     fetchCategories();
@@ -113,7 +86,7 @@ function Blog() {
 
   // Lọc bài viết theo danh mục đã chọn
   const filteredPosts = selectedTags.length
-    ? posts.filter((post) => selectedTags.includes(post.category_id))
+    ? posts.filter((post) => selectedTags.includes(post?.category?._id))
     : posts;
 
   const handleChange = (tag: string, checked: boolean) => {
@@ -130,7 +103,11 @@ function Blog() {
       key: "1",
       children: (
         <div className="flex flex-col justify-center items-start gap-5">
-          {isLoading ? <p>Loading...</p> : filteredPosts.map((post) => <MiniBlog key={post._id} post={post} />)}
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            filteredPosts.map((post) => <MiniBlog key={post._id} post={post} />)
+          )}
         </div>
       ),
     },
@@ -156,7 +133,9 @@ function Blog() {
           </div>
           <div className="flex justify-center items-center gap-1">
             <GoDotFill size={18} color="#1A8917" />
-            <h3 className="font-semibold text-[16px]">What We’re Reading Today</h3>
+            <h3 className="font-semibold text-[16px]">
+              What We’re Reading Today
+            </h3>
           </div>
           <div className="blog__tag">
             <Flex gap={3} wrap align="center" className="type-media">
@@ -170,7 +149,9 @@ function Blog() {
                 </Tag.CheckableTag>
               ))}
             </Flex>
-            <p className="text-[#1A8917] text-sm font-light">See the full list</p>
+            <p className="text-[#1A8917] text-sm font-light">
+              See the full list
+            </p>
           </div>
         </div>
       </div>
