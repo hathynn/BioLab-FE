@@ -57,18 +57,18 @@ function SOP() {
   return (
     <div className="bg-navColor py-6 px-32 flex flex-col gap-10">
       <div className="bg-[#8ce9a7] rounded-lg flex justify-center items-center">
-        <img src="/src/assets/bannerSOP.png" />
+        <img src="/assets/bannerSOP.png" />
       </div>
-      {/* <img src="/src/assets/imgSOP1.png" /> */}
+      {/* <img src="/assets/imgSOP1.png" /> */}
       <h1 className="text-[#2cbb57] font-extrabold text-4xl leading-10">
         CHƯƠNG TRÌNH <br /> KHÁCH HÀNG THÂN THIẾT SOP LÀ GÌ?
       </h1>
       <div className="flex justify-center items-center px-10">
-        <img src="/src/assets/AD_SOP.png" className="w-3/4" />
+        <img src="/assets/AD_SOP.png" className="w-3/4" />
       </div>
       <div className="flex justify-center items-center px-10">
-        <img src="/src/assets/Rule_SOP.png" />
-        <img src="/src/assets/Rule_2_SOP.png" />
+        <img src="/assets/Rule_SOP.png" />
+        <img src="/assets/Rule_2_SOP.png" />
       </div>
       <h1 className="text-[#2cbb57] font-extrabold text-4xl">
         LÝ DO BẠN NÊN THAM GIA SOP
@@ -84,33 +84,33 @@ function SOP() {
         ƯU ĐÃI KHI THAM GIA SOP
       </h1>
       <div className="flex justify-center items-center px-10 ">
-        <img src="/src/assets/UD1_SOP.png" />
-        <img src="/src/assets/UD2_SOP.png" />
+        <img src="/assets/UD1_SOP.png" />
+        <img src="/assets/UD2_SOP.png" />
       </div>
       <h1 className="text-[#2cbb57] font-extrabold text-4xl">
         KINH DOANH AMWAY CÙNG SOP
       </h1>
       <div className="flex justify-center items-center px-10 ">
         <img
-          src="/src/assets/AW_1_SOP.png"
+          src="/assets/AW_1_SOP.png"
           className="w-full h-full object-cover"
         />
-        <img src="/src/assets/AW_2_SOP.png" />
+        <img src="/assets/AW_2_SOP.png" />
       </div>
       <h1 className="text-[#2cbb57] font-extrabold text-4xl">
         CÁC GÓI SOP ĐANG ÁP DỤNG
       </h1>
       <div className="flex flex-row justify-center items-center gap-5">
-        <img src="/src/assets/SOP_1_Sep2024.jpg" className="w-1/4" />
-        <img src="/src/assets/SOP_2_Sep2024.jpg" className="w-1/4" />
-        <img src="/src/assets/SOP_2_Sep2024.jpg" className="w-1/4" />
-        <img src="/src/assets/SOP_2_Sep2024.jpg" className="w-1/4" />
+        <img src="/assets/SOP_1_Sep2024.jpg" className="w-1/4" />
+        <img src="/assets/SOP_2_Sep2024.jpg" className="w-1/4" />
+        <img src="/assets/SOP_2_Sep2024.jpg" className="w-1/4" />
+        <img src="/assets/SOP_2_Sep2024.jpg" className="w-1/4" />
       </div>
       <div className="flex flex-row justify-center items-center gap-5">
-        <img src="/src/assets/SOP_1_Sep2024.jpg" className="w-1/4" />
-        <img src="/src/assets/SOP_2_Sep2024.jpg" className="w-1/4" />
-        <img src="/src/assets/SOP_2_Sep2024.jpg" className="w-1/4" />
-        <img src="/src/assets/SOP_2_Sep2024.jpg" className="w-1/4" />
+        <img src="/assets/SOP_1_Sep2024.jpg" className="w-1/4" />
+        <img src="/assets/SOP_2_Sep2024.jpg" className="w-1/4" />
+        <img src="/assets/SOP_2_Sep2024.jpg" className="w-1/4" />
+        <img src="/assets/SOP_2_Sep2024.jpg" className="w-1/4" />
       </div>
       <p className="text-center font-light">
         (*) Giá sản phẩm và các thông tin liên quan đến sản phẩm xem tại{" "}
@@ -123,21 +123,21 @@ function SOP() {
         </a>
       </p>
       <h1 className="text-[#2cbb57] font-extrabold text-4xl">QUY TRÌNH SOP</h1>
-      <img src="/src/assets/ProcessSOP.jpg" />
+      <img src="/assets/ProcessSOP.jpg" />
       <h1 className="text-[#2cbb57] font-extrabold text-4xl text-center">
         ĐĂNG KÍ THAM GIA SOP
       </h1>
       <div className="flex justify-center items-center">
         <img
-          src="/src/assets/onlineSOP.png"
+          src="/assets/onlineSOP.png"
           className="w-2/6 h-full object-cover cursor-pointer"
         />
         <img
-          src="/src/assets/offlineSOP.png"
+          src="/assets/offlineSOP.png"
           className="w-2/6 h-full object-cover cursor-pointer"
         />
         <img
-          src="/src/assets/offlineSOP.png"
+          src="/assets/offlineSOP.png"
           className="w-2/6 h-full object-cover cursor-pointer"
         />
       </div>
@@ -146,23 +146,23 @@ function SOP() {
       </h1>
       <div className="flex justify-center items-center">
         <img
-          src="/src/assets/videoSOP.png"
+          src="/assets/videoSOP.png"
           className="w-1/5 h-full object-cover cursor-pointer"
         />
         <img
-          src="/src/assets/packageSOP.png"
+          src="/assets/packageSOP.png"
           className="w-1/5 h-full object-cover cursor-pointer"
         />
         <img
-          src="/src/assets/documentSOP.png"
+          src="/assets/documentSOP.png"
           className="w-1/5 h-full object-cover cursor-pointer"
         />
         <img
-          src="/src/assets/guideSOP.png"
+          src="/assets/guideSOP.png"
           className="w-1/5 h-full object-cover cursor-pointer"
         />
         <img
-          src="/src/assets/EXSOP.png"
+          src="/assets/EXSOP.png"
           className="w-1/5 h-full object-cover cursor-pointer"
         />
       </div>
