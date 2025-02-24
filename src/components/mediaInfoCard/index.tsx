@@ -1,10 +1,9 @@
-
 import { useEffect, useState } from "react";
 import "./index.scss";
 import usePostService from "../../services/usePostService";
 import { PostType } from "../../types/post.type";
 import { useNavigate } from "react-router-dom";
-
+import empty from "../../assets/box.png";
 function ListMedia({ posts }: { posts: PostType[] }) {
   return (
     <div className="w-[300px] lg:w-1/3 lg:h-[400px] flex flex-row lg:flex-col gap-2 lg:overflow-y-auto overflow-x-auto">
@@ -15,7 +14,7 @@ function ListMedia({ posts }: { posts: PostType[] }) {
 
         return (
           <div
-            key={post._id || post._id} 
+            key={post._id || post._id}
             className="flex flex-col lg:flex-row justify-center items-start gap-4"
           >
             <img
@@ -36,7 +35,6 @@ function ListMedia({ posts }: { posts: PostType[] }) {
   );
 }
 
-
 // interface MediaInfoCardProps {
 //   tags?: boolean;
 // }
@@ -45,7 +43,7 @@ function MediaInfoCard() {
   const { getPosts } = usePostService();
   const [posts, setPosts] = useState<PostType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-const nav = useNavigate();
+  const nav = useNavigate();
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -63,8 +61,12 @@ const nav = useNavigate();
   }, []);
 
   if (isLoading) return <div>Đang tải...</div>;
-  if (!posts?.length) return <div>Không có bài viết nào</div>;
-
+  if (!posts?.length)
+    return (
+      <div className="flex justify-center items-center h-96 p-6">
+        <img src={empty} className="h-48 "/>
+      </div>
+    );
 
   const firstPost = posts[0];
   const otherPosts = posts.slice(1);
@@ -75,8 +77,10 @@ const nav = useNavigate();
 
   return (
     <div>
-      <div onClick={() => nav(`/blog/${firstPost._id}`)} className="p-5 bg-white rounded-2xl flex flex-col lg:flex-row gap-5">
-       
+      <div
+        onClick={() => nav(`/blog/${firstPost._id}`)}
+        className="p-5 bg-white rounded-2xl flex flex-col lg:flex-row gap-5"
+      >
         <div className="w-full lg:w-3/5">
           <img
             src={firstPost.banner}
@@ -98,4 +102,3 @@ const nav = useNavigate();
 }
 
 export default MediaInfoCard;
-
