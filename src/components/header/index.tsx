@@ -135,7 +135,7 @@ function Header({ navbarType = "light" }) {
           </div>
         </div>
 
-        <div className={` mt-3 py-3 rounded-full  ${navbarBackground}`}>
+        <div className={`hidden lg:block mt-3 py-3 rounded-full  ${navbarBackground}`}>
           <nav className="hidden lg:flex justify-between text-sm px-10">
             {headerItems.map((item, index) => (
               <a
@@ -151,7 +151,7 @@ function Header({ navbarType = "light" }) {
             ))}
           </nav>
         </div>
-        <div className="lg:hidden">
+        <div className="pt-2 lg:hidden">
           <Search />
         </div>
       </header>
