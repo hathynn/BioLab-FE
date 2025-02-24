@@ -74,7 +74,7 @@ function Header({ navbarType = "light" }) {
 
           <div className="lg:hidden flex">
             <a
-              href="#"
+          
               className="flex items-center font-bold space-x-2 hover:text-white hover:bg-black w-18 py-3 px-4 rounded-full"
               onClick={() => nav(`/${USER_ROUTES.LOGIN}`)}
             >
@@ -84,7 +84,7 @@ function Header({ navbarType = "light" }) {
               <span className="text-sm">Đăng nhập</span>
             </a>
             <a
-              href="#"
+             
               className="relative flex items-center bg-cartColor text-gray-100 hover:text-white hover:bg-black font-bold w-18 py-3 px-3 space-x-2 rounded-full"
             >
               <i aria-hidden="true">
