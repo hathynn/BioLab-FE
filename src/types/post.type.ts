@@ -7,11 +7,11 @@ export enum PostStatus {
 }
 
 export interface PostType {
-  post_id?: string;
-  title: string;
-  category: PostCategoryType[];
-  created_date: Date;
-  user_id: string;
-  status: PostStatus;
-  postContents: PostContentType[];
+  _id?: string
+  title: string
+  banner: string
+  category: PostCategoryType[]
+  created_date: Date
+  status: PostStatus
+  post_contents: string
 }
