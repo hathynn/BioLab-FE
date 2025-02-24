@@ -4,18 +4,19 @@ import usePostService from "../../services/usePostService";
 import { PostType } from "../../types/post.type";
 import { useNavigate } from "react-router-dom";
 import empty from "../../assets/box.png";
+import { Skeleton } from "antd";
 function ListMedia({ posts }: { posts: PostType[] }) {
-  const nav =useNavigate();
+  const nav = useNavigate();
   return (
-    <div className="w-[300px] lg:w-1/3 lg:h-[400px] flex flex-row lg:flex-col gap-2 lg:overflow-y-auto overflow-x-auto">
+    <div className="cursor-pointer w-[300px] lg:w-1/3 lg:h-[435px] flex flex-row lg:flex-col gap-2 lg:overflow-y-auto overflow-x-auto">
       {posts.map((post) => {
         const categoryName = post?.category?.length
           ? post?.category?.map((cat) => cat?.post_category_name).join(", ")
           : "Chưa phân loại";
 
         return (
-          <div 
-          onClick={() => nav(`/blog/${post._id}`)}
+          <div
+            onClick={() => nav(`/blog/${post._id}`)}
             key={post._id || post._id}
             className="flex flex-col lg:flex-row justify-center items-start gap-4"
           >
@@ -62,11 +63,26 @@ function MediaInfoCard() {
     fetchPosts();
   }, []);
 
-  if (isLoading) return <div>Đang tải...</div>;
+  if (isLoading)
+    return (
+      <div className="p-5 rounded-2xl flex flex-col lg:flex-row gap-5">
+        <Skeleton.Image
+          active={true}
+          style={{ width: 750, height: 400 }}
+          className="w-3/4"
+        />
+
+        <div className="flex flex-col items-cent w-1/4 gap-4">
+          <Skeleton active />
+          <Skeleton active />
+          <Skeleton active />
+        </div>
+      </div>
+    );
   if (!posts?.length)
     return (
       <div className="flex justify-center items-center h-96 p-6">
-        <img src={empty} className="h-48 "/>
+        <img src={empty} className="h-48 " />
       </div>
     );
 
