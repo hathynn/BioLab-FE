@@ -68,7 +68,7 @@ function HomePage() {
   }, []);
 
   useEffect(() => {
-    if (brands.length > 0) {
+    if (brands?.length > 0) {
       fetchAllFeatures();
     }
   }, [brands]);
@@ -210,7 +210,7 @@ function HomePage() {
           </div>
           <div className="bg-gradient-to-l from-[#99DBF7] to-[#90CCFA] h-full w-full rounded-3xl">
             <div className="p-10">
-              <div className="flex justify-start items-center gap-3">
+              <div className="flex justify-start items-center gap-3 pb-6">
                 <h1 className="text-4xl text-white font-normal flex justify-start items-center gap-2">
                   <IoIosAddCircle /> Cẩm nang sức khỏe
                 </h1>

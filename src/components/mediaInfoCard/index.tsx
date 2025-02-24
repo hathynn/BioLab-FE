@@ -9,8 +9,8 @@ function ListMedia({ posts }: { posts: PostType[] }) {
   return (
     <div className="w-[300px] lg:w-1/3 lg:h-[400px] flex flex-row lg:flex-col gap-2 lg:overflow-y-auto overflow-x-auto">
       {posts.map((post) => {
-        const categoryName = post.category?.length
-          ? post.category.map((cat) => cat.post_category_name).join(", ")
+        const categoryName = post?.category?.length
+          ? post?.category?.map((cat) => cat?.post_category_name).join(", ")
           : "Chưa phân loại";
 
         return (
@@ -63,7 +63,7 @@ const nav = useNavigate();
   }, []);
 
   if (isLoading) return <div>Đang tải...</div>;
-  if (!posts.length) return <div>Không có bài viết nào</div>;
+  if (!posts?.length) return <div>Không có bài viết nào</div>;
 
 
   const firstPost = posts[0];
