@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Image, Upload } from "antd";
 import type { GetProp, UploadFile, UploadProps } from "antd";
@@ -15,8 +15,6 @@ import { storage } from "../../../../config/firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { parseDocument } from "htmlparser2";
-import serialize from "dom-serializer";
 import { BrandType } from "../../../../types/brand.type";
 import useBrandService from "../../../../services/useBrandService";
 import useProductService from "../../../../services/useProductService";
@@ -44,8 +42,8 @@ function CreateProduct() {
   const [price, setPrice] = useState(0);
   const [stock, setStock] = useState(0);
   const [note, setNote] = useState("");
-  const [_titles, setTitles] = useState<string[]>([]);
-  const [_contents, setContents] = useState<string[]>([]);
+  const [_titles] = useState<string[]>([]);
+  const [_contents] = useState<string[]>([]);
   const [details, setDetails] = useState([
     { title: "Mô tả sản phẩm", content: "" },
     { title: "Thành phần", content: "" },
@@ -59,13 +57,10 @@ function CreateProduct() {
   const [previewImage, setPreviewImage] = useState("");
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const nav = useNavigate();
-  const [value, setValue] = useState("");
   // const reactQuillRef = useRef<ReactQuill>(null);
   // const handleChange = (content: string) => {
   //   setValue(content);
   // };
-  const htmlString = value;
-  const dom = parseDocument(htmlString);
   // const fixedHtml = serialize(dom);
   const uploadButton = (
     <div>
@@ -118,7 +113,6 @@ function CreateProduct() {
       alert("Vui lòng điền đầy đủ thông tin!");
       return;
     }
-    
 
     const categoryData = JSON.parse(selectedCategory);
     const brandData = JSON.parse(selectedBrand);
@@ -137,7 +131,7 @@ function CreateProduct() {
       stock,
       details, // Danh sách thông tin sản phẩm
     };
-    
+
     console.log("Product", productData);
 
     try {

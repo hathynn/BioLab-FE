@@ -2,7 +2,6 @@
 import { useCallback } from "react";
 import useApiService from "../hooks/useApi";
 import { POST_CATEGORY } from "../constants/endpoints";
-import { PostCategoryType } from "../types/postCategory.type";
 
 const usePostCategoryService = () => {
   const { callApi, loading, setIsLoading } = useApiService();

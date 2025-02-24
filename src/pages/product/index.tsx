@@ -1,52 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import { CiFilter } from "react-icons/ci";
 
 import FilterSidebar from "../../components/product-filter";
 import RecommendationProduct from "../../components/recommendation-product";
+import useProductService from "../../services/useProductService";
+import { ProductType } from "../../types/product.type";
 
 const ProductPage: React.FC = () => {
-  const data = [
-    {
-      title: "Thực phẩm chức năng",
-      name: "Siro ho thảo mộc Tanacol siro ho cảm cho trẻ sơ sinh",
-      img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/Frame%2011.png?alt=media&token=6e79df5f-8d6b-4633-847e-6c89f8231b77",
-      note: "Hộp 60 viên",
-      price: 1295000,
-      quantity: ["60 viên"],
-      rate: 4.5,
-    },
-    {
-      title: "Thực phẩm chức năng",
-      name: "Bột Hapacol 150 DHG giảm đau, hạ sốt (24 gói)",
-      img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/a.png?alt=media&token=26bf348e-28bc-45cc-ba99-39d2864f57f1",
-      note: "Hộp 24 gói",
-      price: 1295000,
-      quantity: ["60 viên"],
-      rate: 4.5,
-      discount: 25,
-    },
+  const { getProducts } = useProductService();
+  const [products, setProducts] = useState<ProductType[]>([]);
+  const fetchProducts = async () => {
+    try {
+      const response = await getProducts();
+      setProducts(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    {
-      title: "Mỹ phẩm",
-      name: "Sữa rửa mặt Reihaku Hatomugi Acne Care and Facial Washing ngừa mụn, dưỡng ẩm và làm sáng da (130g)",
-      img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/b.png?alt=media&token=a27a383e-b7b1-4789-9e4f-7584ba22a888",
-      note: "Chai 140ml",
-      price: 1295000,
-      quantity: ["60 viên"],
-      rate: 4.5,
-      discount: 20,
-    },
-    {
-      title: "Mỹ phẩm",
-      name: "Sữa rửa mặt Reihaku Hatomugi Acne Care and Facial Washing ngừa mụn, dưỡng ẩm và làm sáng da (130g)",
-      img: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/b.png?alt=media&token=a27a383e-b7b1-4789-9e4f-7584ba22a888",
-      note: "Chai 140ml",
-      price: 1295000,
-      quantity: ["60 viên"],
-      rate: 4.5,
-      discount: 20,
-    },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetchProducts();
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="flex p-10">
@@ -67,17 +44,17 @@ const ProductPage: React.FC = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
-          {data.map((product, index) => (
+          {products.map((product, index) => (
             <RecommendationProduct
               key={index}
-              title={product.title}
+              _id={product._id}
+              category={product.category}
               name={product.name}
-              img={product.img}
-              note={product.note}
+              image_url={product.image_url}
               price={product.price}
-              quantity={product.quantity}
-              rate={product.rate}
-              discount={product.discount}
+              stock={product.stock}
+              brand={product.brand}
+              unit={product.unit}
             />
           ))}
         </div>
