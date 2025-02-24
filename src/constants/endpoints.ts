@@ -17,3 +17,11 @@ export enum CATEGORY {
 export enum PRODUCT {
   DEFAULT = "products",
 }
+
+export enum POST {
+  DEFAULT = "posts",
+}
+
+export enum POST_CATEGORY {
+  DEFAULT = "post-categories",
+}

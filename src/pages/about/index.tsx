@@ -11,7 +11,7 @@ function About() {
   ];
   return (
     <>
-      <div className="bg-[url('/src/assets/bgAbout.png')] object-cover bg-cover bg-center max-h-fit w-full">
+      <div className="bg-[url('/src/assets/bgAbout.png')] object-cover object-center bg-cover bg-center h-full min-h-fit w-full">
         <Header navbarType="green" />
         <div className="relative pl-10">
           <div className="flex justify-center items-center">
@@ -72,7 +72,7 @@ function About() {
           </motion.h1>
         </div>
 
-        <div className="flex justify-center items-center p-5">
+        <div className="flex justify-center items-center p-5 py-20">
           <div className="w-[30%]">
             <h1 className="text-white text-[40px] text-left">Biolab đề cao</h1>
 

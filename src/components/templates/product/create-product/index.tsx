@@ -414,7 +414,7 @@ function CreateProduct() {
         onChange={handleChange}
         className="mb-4"
       />
-     
+
       <h2 className="text-base font-semibold mb-4">Công dụng</h2>
       <input
         type="text"
@@ -615,9 +615,14 @@ function CreateProduct() {
         onChange={handleChange}
         className="mb-4"
       />
-      
+
       <h2 className="text-lg font-semibold mb-4">Ghi chú</h2>
-      <TextArea rows={4} placeholder="maxLength is 100" maxLength={100} className="mb-4"/>
+      <TextArea
+        rows={4}
+        placeholder="maxLength is 100"
+        maxLength={100}
+        className="mb-4"
+      />
       <h2 className="text-lg font-semibold mb-4">Hình ảnh</h2>
       <Upload
         listType="picture-card"
