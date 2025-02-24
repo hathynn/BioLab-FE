@@ -27,6 +27,7 @@ import CreateProduct from "../components/templates/product/create-product";
 import ProductPage from "../pages/product";
 import About from "../pages/about";
 import PostCategory from "../components/templates/post-category";
+import BlogDetail from "../pages/blog/blog-detail";
 
 export const router = createBrowserRouter([
   {
@@ -83,6 +84,12 @@ export const router = createBrowserRouter([
       {
         path: USER_ROUTES.BLOG,
         element: <Blog />,
+       
+      },
+      {
+        path: `${USER_ROUTES.BLOG}/:id`,
+        element: <BlogDetail />,
+       
       },
 
       {
