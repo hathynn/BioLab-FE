@@ -21,6 +21,7 @@ function Test() {
   
     const handleSelectAddress = (description: string) => {
       setInput(description);
+      console.log(input)
       setSuggestions([]);
     };
 
