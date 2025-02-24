@@ -117,7 +117,12 @@ export const router = createBrowserRouter([
       },
       {
         path: PAYMENT_ROUTES.PAYMENT,
-        element: <Payment />,
+        children: [
+          {
+            path: ":id",
+            element: <Payment />,
+          },
+        ],
       },
     ],
   },

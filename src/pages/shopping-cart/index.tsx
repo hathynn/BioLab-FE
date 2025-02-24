@@ -8,13 +8,12 @@ import useCartStore from "../../store/cartStore";
 import { PAYMENT_ROUTES, USER_ROUTES } from "../../constants/routes";
 
 function ShoppingCart() {
-  const { cart,removeFromCart } = useCartStore();
+  const { cart, removeFromCart } = useCartStore();
   const [quantity, setQuantity] = useState(1);
   const [selectAll, setSelectAll] = useState(false);
   const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>(
     cart.reduce((acc, item) => ({ ...acc, [item.id || ""]: false }), {})
   );
-  const [prices] = useState([295000, 150000, 50000]);
   // const [discountPercentage] = useState(0);
   const nav = useNavigate();
 
@@ -94,7 +93,10 @@ function ShoppingCart() {
             </div>
 
             {cart?.map((p, index) => (
-              <div key={index} className="flex justify-between items-center mb-4">
+              <div
+                key={index}
+                className="flex justify-between items-center mb-4"
+              >
                 <div className="flex w-2/3 space-x-4">
                   <ConfigProvider
                     theme={{
@@ -146,8 +148,7 @@ function ShoppingCart() {
                   </div>
 
                   <select className="border-2 border-gray-400 text-sm px-1 rounded-full text-gray-600 h-6  ">
-                    <option>Hộp</option>
-                    <option>Chai</option>
+                    <option>{p?.unit}</option>
                   </select>
 
                   <i>
@@ -201,7 +202,10 @@ function ShoppingCart() {
             </div>
           </div>
 
-          <button onClick={() => nav(`/${PAYMENT_ROUTES.SHIPPING_INFO}`)} className="w-full mt-4 px-6 py-3 bg-customGreen text-white rounded-lg shadow-md hover:bg-green-500">
+          <button
+            onClick={() => nav(`/${PAYMENT_ROUTES.SHIPPING_INFO}`)}
+            className="w-full mt-4 px-6 py-3 bg-customGreen text-white rounded-lg shadow-md hover:bg-green-500"
+          >
             Tiến hành đặt mua
           </button>
           <p className="text-sm text-gray-500 mt-2">

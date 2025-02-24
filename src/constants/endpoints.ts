@@ -25,3 +25,11 @@ export enum POST {
 export enum POST_CATEGORY {
   DEFAULT = "post-categories",
 }
+
+export enum ORDER {
+  DEFAULT = "orders",
+}
+
+export enum ORDER_DETAIL {
+  DEFAULT = "order-details",
+}
