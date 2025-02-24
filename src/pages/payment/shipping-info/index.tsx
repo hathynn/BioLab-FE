@@ -1,8 +1,8 @@
 // import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GrDocumentVerified } from "react-icons/gr";
-import cod from "../../../assets/cod.png";
-import vnpay from "../../../assets/vnpay.png";
+// import cod from "../../../assets/cod.png";
+// import vnpay from "../../../assets/vnpay.png";
 import { Switch } from "antd";
 import "./index.scss";
 import useCartStore, { Product } from "../../../store/cartStore";
@@ -312,7 +312,7 @@ function ShippingInfo() {
                     setPaymentMethod(PaymentMethod.COD);
                   }}
                 >
-                  <img src={cod} className="w-6" />
+                  <img src="/assets/cod.png" className="w-6" />
                   Thanh toán khi nhận hàng (COD)
                 </button>
               </div>
@@ -325,7 +325,7 @@ function ShippingInfo() {
                   }`}
                   onClick={() => setPaymentMethod(PaymentMethod.VNPAY)}
                 >
-                  <img src={vnpay} className="w-6 h-6 object-cover" />
+                  <img src="/assets/vnpay.png" className="w-6 h-6 object-cover" />
                   Thanh toán qua VnPay
                 </button>
               </div>
