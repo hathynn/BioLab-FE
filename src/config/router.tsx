@@ -28,11 +28,14 @@ import ProductPage from "../pages/product";
 import About from "../pages/about";
 import PostCategory from "../components/templates/post-category";
 import BlogDetail from "../pages/blog/blog-detail";
+import Test from "../pages/test";
 
 export const router = createBrowserRouter([
   {
     path: "test",
-    element: <div className="m-10 flex gap-10"></div>,
+    element: <div className="m-10 flex gap-10">
+      <Test/>
+    </div>,
   },
   {
     path: USER_ROUTES.LOGIN,
