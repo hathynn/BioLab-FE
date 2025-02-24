@@ -50,7 +50,7 @@ function HomePage() {
   const fetchAllFeatures = async () => {
     const featureMap: { [key: string]: string } = {};
     await Promise.all(
-      brands.map(async (brand) => {
+      brands?.map(async (brand) => {
         featureMap[brand._id] =
           ((await getBrandFeatured(brand._id)) as ProductType)
             ?.image_url?.[0] || "";
@@ -168,7 +168,7 @@ function HomePage() {
             </button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
-            {products.map((product, index) => (
+            {products?.map((product, index) => (
               <RecommendationProduct
                 key={index}
                 _id={product._id}
@@ -234,7 +234,7 @@ function HomePage() {
                   </button>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
-                  {products.map((product, index) => (
+                  {products?.map((product, index) => (
                     <RecommendationProduct
                       key={index}
                       _id={product._id}
