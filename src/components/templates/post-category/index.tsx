@@ -15,7 +15,7 @@ const PostCategory: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType | null>(
     null
   );
-  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [_isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [updateCategoryName, setUpdateCategoryName] = useState("");
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
@@ -31,15 +31,15 @@ const PostCategory: React.FC = () => {
     }
   };
 
-  const handleViewDetail = async (categoryId: string) => {
-    try {
-      const categoryDetail = await getCategoryById(categoryId);
-      setSelectedCategory(categoryDetail);
-      setIsDetailModalOpen(true);
-    } catch (error) {
-      console.error("Lỗi khi lấy chi tiết category:", error);
-    }
-  };
+  // const handleViewDetail = async (categoryId: string) => {
+  //   try {
+  //     const categoryDetail = await getCategoryById(categoryId);
+  //     setSelectedCategory(categoryDetail);
+  //     setIsDetailModalOpen(true);
+  //   } catch (error) {
+  //     console.error("Lỗi khi lấy chi tiết category:", error);
+  //   }
+  // };
 
   const handleCreateCategory = async () => {
     if (!categoryName) {

@@ -23,7 +23,7 @@ const BrandAdmin: React.FC = () => {
   const [brands, setBrands] = useState([]);
   const [brandName, setBrandName] = useState("");
   const [selectedBrand, setSelectedBrand] = useState<BrandType | null>(null);
-  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [_isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [updateBrandName, setUpdateBrandName] = useState("");
   const [updateFileList, setUpdateFileList] = useState<UploadFile[]>([]);

@@ -37,11 +37,11 @@ function ListMedia({ posts }: { posts: PostType[] }) {
 }
 
 
-interface MediaInfoCardProps {
-  tags?: boolean;
-}
+// interface MediaInfoCardProps {
+//   tags?: boolean;
+// }
 
-function MediaInfoCard({ tags }: MediaInfoCardProps) {
+function MediaInfoCard() {
   const { getPosts } = usePostService();
   const [posts, setPosts] = useState<PostType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);

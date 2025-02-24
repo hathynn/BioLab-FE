@@ -1,4 +1,4 @@
-import { Button, Carousel, Col, Drawer, Flex, Input, Row, Space } from "antd";
+import { Button, Carousel, Drawer,  Input } from "antd";
 import "./index.scss";
 import { RiVipCrown2Fill } from "react-icons/ri";
 import { FaArrowRight, FaHeart } from "react-icons/fa";
