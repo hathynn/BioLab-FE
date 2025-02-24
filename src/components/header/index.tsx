@@ -2,7 +2,7 @@ import logo2 from "../../assets/logo2.png";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { AiOutlineUser } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
-import { RiArrowDropDownLine } from "react-icons/ri";
+// import { RiArrowDropDownLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import useCartStore from "../../store/cartStore";
 import { headerItems } from "../../constants/menuItems";
@@ -74,7 +74,7 @@ function Header({ navbarType = "light" }) {
 
           <div className="lg:hidden flex">
             <a
-              href="#"
+          
               className="flex items-center font-bold space-x-2 hover:text-white hover:bg-black w-18 py-3 px-4 rounded-full"
               onClick={() => nav(`/${USER_ROUTES.LOGIN}`)}
             >
@@ -84,7 +84,7 @@ function Header({ navbarType = "light" }) {
               <span className="text-sm">Đăng nhập</span>
             </a>
             <a
-              href="#"
+             
               className="relative flex items-center bg-cartColor text-gray-100 hover:text-white hover:bg-black font-bold w-18 py-3 px-3 space-x-2 rounded-full"
             >
               <i aria-hidden="true">
@@ -135,7 +135,7 @@ function Header({ navbarType = "light" }) {
           </div>
         </div>
 
-        <div className={` mt-3 py-3 rounded-full  ${navbarBackground}`}>
+        <div className={`hidden lg:block mt-3 py-3 rounded-full  ${navbarBackground}`}>
           <nav className="hidden lg:flex justify-between text-sm px-10">
             {headerItems.map((item, index) => (
               <a
@@ -151,7 +151,7 @@ function Header({ navbarType = "light" }) {
             ))}
           </nav>
         </div>
-        <div className="lg:hidden">
+        <div className="pt-2 lg:hidden">
           <Search />
         </div>
       </header>

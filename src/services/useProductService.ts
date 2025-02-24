@@ -35,6 +35,7 @@ const useProductService = () => {
   const createProduct = useCallback(
     async ({
       name,
+      note,
       description,
       categoryId,
       categoryName,
@@ -48,6 +49,7 @@ const useProductService = () => {
       details,
     }: {
       name: string;
+      note:string,
       description: string;
       categoryId: string;
       categoryName: string;
@@ -64,6 +66,7 @@ const useProductService = () => {
         setIsLoading(true);
         console.log({
             name,
+            note,
             description,
             category: { _id: categoryId, category_name: categoryName },
             image_url: imageUrls,
@@ -75,6 +78,7 @@ const useProductService = () => {
           })
         const response = await callApi("post", PRODUCT.DEFAULT, {
           name,
+          note,
           description,
           category: { _id: categoryId, category_name: categoryName },
           image_url: imageUrls,

@@ -10,7 +10,7 @@ import { BrandType } from "../../../types/brand.type";
 
 const Product: React.FC = () => {
   const nav = useNavigate();
-  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [_isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(
     null
   );

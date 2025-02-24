@@ -21,6 +21,7 @@ import { BrandType } from "../../../../types/brand.type";
 import useBrandService from "../../../../services/useBrandService";
 import useProductService from "../../../../services/useProductService";
 import TextArea from "antd/es/input/TextArea";
+import { ADMIN_ROUTES } from "../../../../constants/routes";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -42,19 +43,30 @@ function CreateProduct() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [stock, setStock] = useState(0);
-  const [title, setTitle] = useState("");
+  const [note, setNote] = useState("");
+  const [_titles, setTitles] = useState<string[]>([]);
+  const [_contents, setContents] = useState<string[]>([]);
+  const [details, setDetails] = useState([
+    { title: "Mô tả sản phẩm", content: "" },
+    { title: "Thành phần", content: "" },
+    { title: "Công dụng", content: "" },
+    { title: "Tác dụng phụ", content: "" },
+    { title: "Lưu ý", content: "" },
+    { title: "Bảo quản", content: "" },
+  ]);
+
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const nav = useNavigate();
   const [value, setValue] = useState("");
-  const reactQuillRef = useRef<ReactQuill>(null);
-  const handleChange = (content: string) => {
-    setValue(content);
-  };
+  // const reactQuillRef = useRef<ReactQuill>(null);
+  // const handleChange = (content: string) => {
+  //   setValue(content);
+  // };
   const htmlString = value;
   const dom = parseDocument(htmlString);
-  const fixedHtml = serialize(dom);
+  // const fixedHtml = serialize(dom);
   const uploadButton = (
     <div>
       <PlusOutlined />
@@ -64,6 +76,21 @@ function CreateProduct() {
   const { getCategories } = useCategoryService();
   const { getBrands } = useBrandService();
   const { createProduct } = useProductService();
+  // const handleTitleChange = (index: number, placeholder: string) => {
+  //   setTitles((prevTitles) => {
+  //     const updatedTitles = [...prevTitles];
+  //     updatedTitles[index] = placeholder; // Lưu giá trị theo placeholder
+  //     return updatedTitles;
+  //   });
+  // };
+
+  // const handleContentChange = (index: number, newValue: string) => {
+  //   setContents((prevContents) => {
+  //     const updatedContents = [...prevContents];
+  //     updatedContents[index] = newValue;
+  //     return updatedContents;
+  //   });
+  // };
 
   const fetch = async () => {
     try {
@@ -78,25 +105,26 @@ function CreateProduct() {
 
   const handleCreateProduct = async () => {
     if (
-      !name ||
-      !description ||
-      !price ||
-      !stock ||
+      !name.trim() ||
+      !note.trim() ||
+      !description.trim() ||
+      price <= 0 ||
+      stock < 0 ||
       !selectedCategory ||
       !selectedBrand ||
       !unit ||
-      imageUrls.length === 0 ||
-      !title ||
-      !value
+      imageUrls.length === 0
     ) {
       alert("Vui lòng điền đầy đủ thông tin!");
       return;
     }
+    
 
     const categoryData = JSON.parse(selectedCategory);
     const brandData = JSON.parse(selectedBrand);
     const productData = {
       name,
+      note,
       description,
       categoryId: categoryData.id,
       categoryName: categoryData.name,
@@ -107,20 +135,16 @@ function CreateProduct() {
       unit,
       price,
       stock,
-      details: [
-        {
-          title,
-          content: value, // Nội dung từ ReactQuill
-        },
-      ],
+      details, // Danh sách thông tin sản phẩm
     };
-    console.log(productData);
+    
+    console.log("Product", productData);
 
     try {
       const response = await createProduct(productData);
       console.log("Sản phẩm được tạo:", response);
       alert("Tạo sản phẩm thành công!");
-      nav("/admin/product"); // Chuyển hướng sau khi tạo xong
+      nav(`admin/${ADMIN_ROUTES.PRODUCT}`);
     } catch (error) {
       console.error("Lỗi khi tạo sản phẩm:", error);
       alert("Tạo sản phẩm thất bại!");
@@ -216,17 +240,17 @@ function CreateProduct() {
     }
   };
 
-  const uploadProps: UploadProps = {
-    beforeUpload: (file) => {
-      if (!file.type.startsWith("image/")) {
-        console.error("Chỉ được phép tải lên file hình ảnh!");
-        return Upload.LIST_IGNORE;
-      }
-      return true;
-    },
-    onChange: handleUpload,
-    onRemove: handleRemove,
-  };
+  // const uploadProps: UploadProps = {
+  //   beforeUpload: (file) => {
+  //     if (!file.type.startsWith("image/")) {
+  //       console.error("Chỉ được phép tải lên file hình ảnh!");
+  //       return Upload.LIST_IGNORE;
+  //     }
+  //     return true;
+  //   },
+  //   onChange: handleUpload,
+  //   onRemove: handleRemove,
+  // };
 
   return (
     <div>
@@ -263,13 +287,13 @@ function CreateProduct() {
           type="number"
           placeholder="Số lượng"
           className="w-[33%] border p-2 rounded-md  mb-4"
-          value={stock === 0 ? "" : price}
+          value={stock === 0 ? "" : stock}
           onChange={(e) => setStock(Number(e.target.value) || 0)}
         />
       </div>
       <input
         type="text"
-        placeholder="Mô tả sản phẩm"
+        placeholder="Mô tả ngắn sản phẩm"
         className="border p-2 rounded-md w-full mb-4"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
@@ -314,307 +338,22 @@ function CreateProduct() {
         </select>
       </div>
       <h2 className="text-lg font-semibold mb-4">Thông tin chi tiết</h2>
-      <h2 className="text-base font-semibold mb-4">Mô tả sản phẩm</h2>
-      <input
-        type="text"
-        placeholder="Tiêu đề"
-        className="border p-2 rounded-md w-full mb-4"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <ReactQuill
-        ref={reactQuillRef}
-        theme="snow"
-        placeholder="Nhập nội dung..."
-        modules={{
-          toolbar: {
-            container: [
-              [{ header: "1" }, { header: "2" }, { font: [] }],
-              [{ size: [] }],
-              ["bold", "italic", "underline", "strike", "blockquote"],
-              [
-                { list: "ordered" },
-                { list: "bullet" },
-                { indent: "-1" },
-                { indent: "+1" },
-              ],
-              ["image"],
-            ],
-          },
-          clipboard: {
-            matchVisual: false,
-          },
-        }}
-        formats={[
-          "header",
-          "font",
-          "size",
-          "bold",
-          "italic",
-          "underline",
-          "strike",
-          "blockquote",
-          "list",
-          "bullet",
-          "indent",
-          "link",
-          "image",
-        ]}
-        value={value}
-        onChange={handleChange}
-        className="mb-4"
-      />
-      <h2 className="text-base font-semibold mb-4">Thành phần</h2>
-      <input
-        type="text"
-        placeholder="Tiêu đề"
-        className="border p-2 rounded-md w-full mb-4"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <ReactQuill
-        ref={reactQuillRef}
-        theme="snow"
-        placeholder="Nhập nội dung..."
-        modules={{
-          toolbar: {
-            container: [
-              [{ header: "1" }, { header: "2" }, { font: [] }],
-              [{ size: [] }],
-              ["bold", "italic", "underline", "strike", "blockquote"],
-              [
-                { list: "ordered" },
-                { list: "bullet" },
-                { indent: "-1" },
-                { indent: "+1" },
-              ],
-              ["image"],
-            ],
-          },
-          clipboard: {
-            matchVisual: false,
-          },
-        }}
-        formats={[
-          "header",
-          "font",
-          "size",
-          "bold",
-          "italic",
-          "underline",
-          "strike",
-          "blockquote",
-          "list",
-          "bullet",
-          "indent",
-          "link",
-          "image",
-        ]}
-        value={value}
-        onChange={handleChange}
-        className="mb-4"
-      />
-
-      <h2 className="text-base font-semibold mb-4">Công dụng</h2>
-      <input
-        type="text"
-        placeholder="Tiêu đề"
-        className="border p-2 rounded-md w-full mb-4"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <ReactQuill
-        ref={reactQuillRef}
-        theme="snow"
-        placeholder="Nhập nội dung..."
-        modules={{
-          toolbar: {
-            container: [
-              [{ header: "1" }, { header: "2" }, { font: [] }],
-              [{ size: [] }],
-              ["bold", "italic", "underline", "strike", "blockquote"],
-              [
-                { list: "ordered" },
-                { list: "bullet" },
-                { indent: "-1" },
-                { indent: "+1" },
-              ],
-              ["image"],
-            ],
-          },
-          clipboard: {
-            matchVisual: false,
-          },
-        }}
-        formats={[
-          "header",
-          "font",
-          "size",
-          "bold",
-          "italic",
-          "underline",
-          "strike",
-          "blockquote",
-          "list",
-          "bullet",
-          "indent",
-          "link",
-          "image",
-        ]}
-        value={value}
-        onChange={handleChange}
-        className="mb-4"
-      />
-      <h2 className="text-base font-semibold mb-4">Tác dụng phụ</h2>
-      <input
-        type="text"
-        placeholder="Tiêu đề"
-        className="border p-2 rounded-md w-full mb-4"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <ReactQuill
-        ref={reactQuillRef}
-        theme="snow"
-        placeholder="Nhập nội dung..."
-        modules={{
-          toolbar: {
-            container: [
-              [{ header: "1" }, { header: "2" }, { font: [] }],
-              [{ size: [] }],
-              ["bold", "italic", "underline", "strike", "blockquote"],
-              [
-                { list: "ordered" },
-                { list: "bullet" },
-                { indent: "-1" },
-                { indent: "+1" },
-              ],
-              ["image"],
-            ],
-          },
-          clipboard: {
-            matchVisual: false,
-          },
-        }}
-        formats={[
-          "header",
-          "font",
-          "size",
-          "bold",
-          "italic",
-          "underline",
-          "strike",
-          "blockquote",
-          "list",
-          "bullet",
-          "indent",
-          "link",
-          "image",
-        ]}
-        value={value}
-        onChange={handleChange}
-        className="mb-4"
-      />
-      <h2 className="text-base font-semibold mb-4">Lưu ý</h2>
-      <input
-        type="text"
-        placeholder="Tiêu đề"
-        className="border p-2 rounded-md w-full mb-4"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <ReactQuill
-        ref={reactQuillRef}
-        theme="snow"
-        placeholder="Nhập nội dung..."
-        modules={{
-          toolbar: {
-            container: [
-              [{ header: "1" }, { header: "2" }, { font: [] }],
-              [{ size: [] }],
-              ["bold", "italic", "underline", "strike", "blockquote"],
-              [
-                { list: "ordered" },
-                { list: "bullet" },
-                { indent: "-1" },
-                { indent: "+1" },
-              ],
-              ["image"],
-            ],
-          },
-          clipboard: {
-            matchVisual: false,
-          },
-        }}
-        formats={[
-          "header",
-          "font",
-          "size",
-          "bold",
-          "italic",
-          "underline",
-          "strike",
-          "blockquote",
-          "list",
-          "bullet",
-          "indent",
-          "link",
-          "image",
-        ]}
-        value={value}
-        onChange={handleChange}
-        className="mb-4"
-      />
-      <h2 className="text-base font-semibold mb-4">Bảo quản</h2>
-      <input
-        type="text"
-        placeholder="Tiêu đề"
-        className="border p-2 rounded-md w-full mb-4"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <ReactQuill
-        ref={reactQuillRef}
-        theme="snow"
-        placeholder="Nhập nội dung..."
-        modules={{
-          toolbar: {
-            container: [
-              [{ header: "1" }, { header: "2" }, { font: [] }],
-              [{ size: [] }],
-              ["bold", "italic", "underline", "strike", "blockquote"],
-              [
-                { list: "ordered" },
-                { list: "bullet" },
-                { indent: "-1" },
-                { indent: "+1" },
-              ],
-              ["image"],
-            ],
-          },
-          clipboard: {
-            matchVisual: false,
-          },
-        }}
-        formats={[
-          "header",
-          "font",
-          "size",
-          "bold",
-          "italic",
-          "underline",
-          "strike",
-          "blockquote",
-          "list",
-          "bullet",
-          "indent",
-          "link",
-          "image",
-        ]}
-        value={value}
-        onChange={handleChange}
-        className="mb-4"
-      />
+      {details.map((detail, index) => (
+        <div key={index}>
+          <h2 className="text-base font-semibold mb-4">{detail.title}</h2>
+          <ReactQuill
+            theme="snow"
+            placeholder={`Nhập ${detail.title.toLowerCase()}...`}
+            value={detail.content}
+            onChange={(value) => {
+              const newDetails = [...details];
+              newDetails[index].content = value;
+              setDetails(newDetails);
+            }}
+            className="mb-4"
+          />
+        </div>
+      ))}
 
       <h2 className="text-lg font-semibold mb-4">Ghi chú</h2>
       <TextArea
@@ -622,6 +361,8 @@ function CreateProduct() {
         placeholder="maxLength is 100"
         maxLength={100}
         className="mb-4"
+        value={note}
+        onChange={(e) => setNote(e.target.value)}
       />
       <h2 className="text-lg font-semibold mb-4">Hình ảnh</h2>
       <Upload
