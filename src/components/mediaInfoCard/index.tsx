@@ -1,87 +1,100 @@
-import { Flex, Tag } from "antd";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import "./index.scss";
+import usePostService from "../../services/usePostService";
+import { PostType } from "../../types/post.type";
 
-function ListMedia() {
+function ListMedia({ posts }: { posts: PostType[] }) {
   return (
-    <div className="flex flex-col  lg:flex-row justify-center items-start gap-4">
-      <img
-        src="https://s3-alpha-sig.figma.com/img/646d/1797/a009f5a12690b71cb92c1c37579cba68?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=D523hgvPtZL9JrcY2AEjUdHTTdGCiDq9hVRqOJGEGxMxLgHXFg7Mbxa9S8FwnH85CgY-81TFQ8P2e3xjEGv~yJcJTO4EbIoum0NLHokSHyX9Tmgc1pe4g17CBJvnjMUvZ4EteBQUP~FvUbJgPy~C8Vv5C87h7B-q73j3OvTAD6PMdL-WBhFFZZ0zFh2TNoadWjDqHwLgRpnh7C280zJ~JjbepxOTAuEnsrcvTu4Mpb02sKUUiL1H~eyyZWdyRd54ib2ry4qfKIVFeUmpIRa-xQ1zZYzqxPUXX0ZId3F1uBvK50jJag8FOoyUf4jlMTE1F2MEzN5gnEb3CqIh9-A9dg__"
-        className="w-full lg:w-2/5 rounded-lg min-h-[105px] object-cover"
-      />
+    <div className="w-[300px] lg:w-1/3 lg:h-[400px] flex flex-row lg:flex-col gap-2 lg:overflow-y-auto overflow-x-auto">
+      {posts.map((post) => {
+        const categoryName = post.category?.length
+          ? post.category.map((cat) => cat.post_category_name).join(", ")
+          : "Chưa phân loại";
 
-      <div className="w-[160px] mt-2 flex flex-col justify-center items-start gap-2">
-        <div className="bg-[#EFEFEF] text-[#6F6F6F] text-xs font-semibold max-w-fit p-1 px-2 rounded-full ">
-          Truyền thông
-        </div>
-        <h1 className="text-sm font-bold  line-clamp-2">
-          Viên uống LéAna Ocavill hỗ trợ cân bằng nội tiết tố (60 viên).
-        </h1>
-      </div>
+        return (
+          <div
+            key={post._id || post._id} 
+            className="flex flex-col lg:flex-row justify-center items-start gap-4"
+          >
+            <img
+              src={post.banner}
+              alt={post.title}
+              className="w-full lg:w-2/5 rounded-lg min-h-[105px] object-cover"
+            />
+            <div className="w-[160px] mt-2 flex flex-col justify-center items-start gap-2">
+              <div className="bg-[#EFEFEF] text-[#6F6F6F] text-xs font-semibold max-w-fit p-1 px-2 rounded-full">
+                {categoryName}
+              </div>
+              <h1 className="text-sm font-bold line-clamp-2">{post.title}</h1>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
+
+
 interface MediaInfoCardProps {
-  tags?: boolean; // Define the prop type for `tags` (optional boolean)
+  tags?: boolean;
 }
 
 function MediaInfoCard({ tags }: MediaInfoCardProps) {
-  const tagsData = [
-    "Dinh dưỡng",
-    "Mẹ và bé",
-    "Người cao tuổi",
-    "Khoẻ đẹp",
-    "Tin tức sức khoẻ",
-  ];
-  const [selectedTags, setSelectedTags] = useState<string[]>([""]);
-  const handleChange = (tag: string, checked: boolean) => {
-    const nextSelectedTags = checked
-      ? [...selectedTags, tag]
-      : selectedTags.filter((t) => t !== tag);
-    console.log("You are interested in: ", nextSelectedTags);
-    setSelectedTags(nextSelectedTags);
-  };
+  const { getPosts } = usePostService();
+  const [posts, setPosts] = useState<PostType[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        setIsLoading(true);
+        const response = await getPosts();
+        setPosts(response);
+      } catch (error) {
+        console.error("Lỗi khi lấy danh sách bài viết:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  if (isLoading) return <div>Đang tải...</div>;
+  if (!posts.length) return <div>Không có bài viết nào</div>;
+
+
+  const firstPost = posts[0];
+  const otherPosts = posts.slice(1);
+
+  const firstCategoryName = firstPost.category?.length
+    ? firstPost.category.map((cat) => cat.post_category_name).join(", ")
+    : "Chưa phân loại";
+
   return (
     <div>
-      {tags == true && (
-        <Flex gap={3} wrap align="center" className="type-media">
-          {tagsData.map<React.ReactNode>((tag) => (
-            <Tag.CheckableTag
-              key={tag}
-              checked={selectedTags.includes(tag)}
-              onChange={(checked) => handleChange(tag, checked)}
-            >
-              {tag}
-            </Tag.CheckableTag>
-          ))}
-        </Flex>
-      )}
       <div className="p-5 bg-white rounded-2xl flex flex-col lg:flex-row gap-5">
+       
         <div className="w-full lg:w-3/5">
-          <div>
-            <img
-              src="https://s3-alpha-sig.figma.com/img/8009/711d/ee338228e49f8a5b89ed6718acb91e58?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=NLG6vrwH2NNENRi7AcqtSLn9LMDykWT2DSmjHM9k2TyHz~mx9ttXAQCpkkQjQcDDV9uj3VX2YKK29nMUKq4q7ImH8snqkmcIbcjHFUQP6GTW5Xa0tSe504VCrIi70hWlwhJ1RNFY-XBPafZZrxURphDLfEJ5yV-d4rid~u9WfeLK0uwm-rLPayjYdSabPUq2wzlGbCcvfbADkueiXyToPAQB4y8LlnH9yAlHJVQPklheT7EYO2gD3JFvIUC8U7s~bhkVBYy~vQ6l0Efa3gmZdIwsOX9H70iJuz6Ya~BgGc-emmufO8hcfgUerQlgFyQEoMSz0aT70OEPcV5~mg0z0A__"
-              className="rounded-lg"
-            />
-            <div className="bg-[#EFEFEF] text-[#6F6F6F] text-xs max-w-fit p-1 px-2 font-semibold rounded-full my-3">
-              Truyền thông
-            </div>
-            <h1 className="text-2xl font-semibold text-[#3D3D3D]">
-              Bảo vệ sức khoẻ của chính bạn
-            </h1>
+          <img
+            src={firstPost.banner}
+            alt={firstPost.title}
+            className="rounded-lg"
+          />
+          <div className="bg-[#EFEFEF] text-[#6F6F6F] text-xs max-w-fit p-1 px-2 font-semibold rounded-full my-3">
+            {firstCategoryName}
           </div>
+          <h1 className="text-2xl font-semibold text-[#3D3D3D]">
+            {firstPost.title}
+          </h1>
         </div>
-        <div className="w-[300px] lg:w-1/3 lg:h-[400px] flex flex-row lg:flex-col gap-2 lg:overflow-y-auto overflow-x-auto">
-          <ListMedia/>
-          <ListMedia />
-          <ListMedia />
-          <ListMedia />
-          <ListMedia />
-          <ListMedia />
-        </div>
+
+        <ListMedia posts={otherPosts} />
       </div>
     </div>
   );
 }
 
 export default MediaInfoCard;
+
