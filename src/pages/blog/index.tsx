@@ -10,8 +10,10 @@ import usePostService from "../../services/usePostService";
 
 import moment from "moment";
 import { PostType } from "../../types/post.type";
+import { Link, useNavigate } from "react-router-dom";
 
 function MiniBlog({ post }: { post: PostType }) {
+  const nav=useNavigate();
   const categoryName =
     post.category?.length > 0
       ? post.category.map((cat) => cat.post_category_name).join(", ")
@@ -22,7 +24,7 @@ function MiniBlog({ post }: { post: PostType }) {
     : "N/A";
 
   return (
-    <div className="flex justify-center items-start gap-4 border-b pb-5">
+   <div onClick={() => nav(`/blog/${post._id}`)} className="flex justify-center items-start gap-4 border-b pb-5">
       <div className="flex flex-col justify-center items-start gap-3 w-3/4">
         <div className="flex justify-center items-center gap-4">
           <div className="bg-[#F2F2F2] px-3 py-1 rounded-[10px] text-sm font-light">
@@ -46,6 +48,7 @@ function MiniBlog({ post }: { post: PostType }) {
         />
       </div>
     </div>
+   
   );
 }
 
@@ -86,8 +89,11 @@ function Blog() {
 
   // Lọc bài viết theo danh mục đã chọn
   const filteredPosts = selectedTags.length
-    ? posts.filter((post) => selectedTags.includes(post?.category?._id))
-    : posts;
+  ? posts.filter((post) =>
+      post.category?.some((cat) => selectedTags.includes(cat._id))
+    )
+  : posts;
+
 
   const handleChange = (tag: string, checked: boolean) => {
     const nextSelectedTags = checked

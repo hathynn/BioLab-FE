@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "./index.scss";
 import usePostService from "../../services/usePostService";
 import { PostType } from "../../types/post.type";
+import { useNavigate } from "react-router-dom";
 
 function ListMedia({ posts }: { posts: PostType[] }) {
   return (
@@ -44,7 +45,7 @@ function MediaInfoCard({ tags }: MediaInfoCardProps) {
   const { getPosts } = usePostService();
   const [posts, setPosts] = useState<PostType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
+const nav = useNavigate();
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -74,7 +75,7 @@ function MediaInfoCard({ tags }: MediaInfoCardProps) {
 
   return (
     <div>
-      <div className="p-5 bg-white rounded-2xl flex flex-col lg:flex-row gap-5">
+      <div onClick={() => nav(`/blog/${firstPost._id}`)} className="p-5 bg-white rounded-2xl flex flex-col lg:flex-row gap-5">
        
         <div className="w-full lg:w-3/5">
           <img
