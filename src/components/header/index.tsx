@@ -2,7 +2,7 @@ import logo2 from "../../assets/logo2.png";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { AiOutlineUser } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
-import { RiArrowDropDownLine } from "react-icons/ri";
+// import { RiArrowDropDownLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import useCartStore from "../../store/cartStore";
 import { headerItems } from "../../constants/menuItems";

@@ -44,8 +44,8 @@ function CreateProduct() {
   const [price, setPrice] = useState(0);
   const [stock, setStock] = useState(0);
   const [note, setNote] = useState("");
-  const [titles, setTitles] = useState<string[]>([]);
-  const [contents, setContents] = useState<string[]>([]);
+  const [_titles, setTitles] = useState<string[]>([]);
+  const [_contents, setContents] = useState<string[]>([]);
   const [details, setDetails] = useState([
     { title: "Mô tả sản phẩm", content: "" },
     { title: "Thành phần", content: "" },
@@ -60,13 +60,13 @@ function CreateProduct() {
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const nav = useNavigate();
   const [value, setValue] = useState("");
-  const reactQuillRef = useRef<ReactQuill>(null);
-  const handleChange = (content: string) => {
-    setValue(content);
-  };
+  // const reactQuillRef = useRef<ReactQuill>(null);
+  // const handleChange = (content: string) => {
+  //   setValue(content);
+  // };
   const htmlString = value;
   const dom = parseDocument(htmlString);
-  const fixedHtml = serialize(dom);
+  // const fixedHtml = serialize(dom);
   const uploadButton = (
     <div>
       <PlusOutlined />
@@ -76,21 +76,21 @@ function CreateProduct() {
   const { getCategories } = useCategoryService();
   const { getBrands } = useBrandService();
   const { createProduct } = useProductService();
-  const handleTitleChange = (index: number, placeholder: string) => {
-    setTitles((prevTitles) => {
-      const updatedTitles = [...prevTitles];
-      updatedTitles[index] = placeholder; // Lưu giá trị theo placeholder
-      return updatedTitles;
-    });
-  };
+  // const handleTitleChange = (index: number, placeholder: string) => {
+  //   setTitles((prevTitles) => {
+  //     const updatedTitles = [...prevTitles];
+  //     updatedTitles[index] = placeholder; // Lưu giá trị theo placeholder
+  //     return updatedTitles;
+  //   });
+  // };
 
-  const handleContentChange = (index: number, newValue: string) => {
-    setContents((prevContents) => {
-      const updatedContents = [...prevContents];
-      updatedContents[index] = newValue;
-      return updatedContents;
-    });
-  };
+  // const handleContentChange = (index: number, newValue: string) => {
+  //   setContents((prevContents) => {
+  //     const updatedContents = [...prevContents];
+  //     updatedContents[index] = newValue;
+  //     return updatedContents;
+  //   });
+  // };
 
   const fetch = async () => {
     try {
@@ -240,17 +240,17 @@ function CreateProduct() {
     }
   };
 
-  const uploadProps: UploadProps = {
-    beforeUpload: (file) => {
-      if (!file.type.startsWith("image/")) {
-        console.error("Chỉ được phép tải lên file hình ảnh!");
-        return Upload.LIST_IGNORE;
-      }
-      return true;
-    },
-    onChange: handleUpload,
-    onRemove: handleRemove,
-  };
+  // const uploadProps: UploadProps = {
+  //   beforeUpload: (file) => {
+  //     if (!file.type.startsWith("image/")) {
+  //       console.error("Chỉ được phép tải lên file hình ảnh!");
+  //       return Upload.LIST_IGNORE;
+  //     }
+  //     return true;
+  //   },
+  //   onChange: handleUpload,
+  //   onRemove: handleRemove,
+  // };
 
   return (
     <div>

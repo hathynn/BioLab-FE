@@ -10,7 +10,7 @@ import usePostService from "../../services/usePostService";
 
 import moment from "moment";
 import { PostType } from "../../types/post.type";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function MiniBlog({ post }: { post: PostType }) {
   const nav=useNavigate();

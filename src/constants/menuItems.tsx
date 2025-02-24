@@ -11,7 +11,7 @@ import {
 } from "@ant-design/icons";
 
 import { Key } from "react";
-import { USER_ROUTES } from "./routes";
+// import { USER_ROUTES } from "./routes";
 
 export type MenuItem = Required<MenuProps>["items"][number];
 

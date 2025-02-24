@@ -31,7 +31,7 @@ function CreateBlog() {
     []
   );
   const [banner, setBanner] = useState("");
-  const [categories, setCategories] = useState<PostCategoryType[]>([]);
+  const [_categories, setCategories] = useState<PostCategoryType[]>([]);
   const reactQuillRef = useRef<ReactQuill>(null);
   const { getCategories, getCategoryById } = usePostCategoryService();
   const { createPost } = usePostService();
@@ -74,7 +74,7 @@ function CreateBlog() {
 
   const htmlString = value;
   const dom = parseDocument(htmlString);
-  const fixedHtml = serialize(dom);
+  // const fixedHtml = serialize(dom);
 
   const handleRemove = async (file: UploadFile) => {
     if (file.url) {

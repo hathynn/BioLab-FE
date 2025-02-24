@@ -1,5 +1,5 @@
 import React from "react";
-import { CiFilter } from "react-icons/ci";
+// import { CiFilter } from "react-icons/ci";
 
 import FilterSidebar from "../../components/product-filter";
 import RecommendationProduct from "../../components/recommendation-product";

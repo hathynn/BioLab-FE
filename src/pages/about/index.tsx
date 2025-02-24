@@ -1,4 +1,4 @@
-import FeatureBar from "../../components/feature-bar";
+// import FeatureBar from "../../components/feature-bar";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import { motion } from "framer-motion";

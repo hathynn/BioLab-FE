@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import { PostType } from "../../../types/post.type";
 import usePostService from "../../../services/usePostService";
 import { Tag } from "antd";
-import he from "he";
-import { DomHandler, parseDocument, Parser } from "htmlparser2";
-import { default as serialize } from "dom-serializer"; // ✅ Đúng
+// import he from "he";
+import { parseDocument } from "htmlparser2";
+import { default as serialize } from "dom-serializer";
 
 function BlogDetail() {
   const { id } = useParams(); 

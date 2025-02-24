@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Descriptions, Modal, Table } from "antd";
 import type { TableProps } from "antd";
 import "./index.scss";
-import type { UploadFile } from "antd";
-import useBrandService from "../../../services/useBrandService";
+// import type { UploadFile } from "antd";
+// import useBrandService from "../../../services/useBrandService";
 import { BrandType } from "../../../types/brand.type";
 import { CategoryType } from "../../../types/category.type";
 import useCategoryService from "../../../services/useCategoryService";
@@ -16,7 +16,7 @@ const Category: React.FC = () => {
   const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<CategoryType | null>(null);
-  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [_isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [updateCategoryName, setUpdateCategoryName] = useState("");
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
@@ -31,15 +31,15 @@ const Category: React.FC = () => {
     }
   };
 
-  const handleViewDetail = async (categoryId: string) => {
-    try {
-      const categoryDetail = await getCategoryById(categoryId);
-      setSelectedCategory(categoryDetail);
-      setIsDetailModalOpen(true);
-    } catch (error) {
-      console.error("Lỗi khi lấy chi tiết category:", error);
-    }
-  };
+  // const handleViewDetail = async (categoryId: string) => {
+  //   try {
+  //     const categoryDetail = await getCategoryById(categoryId);
+  //     setSelectedCategory(categoryDetail);
+  //     setIsDetailModalOpen(true);
+  //   } catch (error) {
+  //     console.error("Lỗi khi lấy chi tiết category:", error);
+  //   }
+  // };
 
   const handleCreateCategory = async () => {
     if (!categoryName) {

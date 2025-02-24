@@ -12,7 +12,7 @@ function ShoppingCart() {
   const [quantity, setQuantity] = useState(1);
   const [selectAll, setSelectAll] = useState(false);
   const [checkedItems, setCheckedItems] = useState<{ [key: string]: boolean }>(
-    cart.reduce((acc, item) => ({ ...acc, [item.id]: false }), {})
+    cart.reduce((acc, item) => ({ ...acc, [item.id || ""]: false }), {})
   );
   const [prices] = useState([295000, 150000, 50000]);
   // const [discountPercentage] = useState(0);
@@ -21,7 +21,7 @@ function ShoppingCart() {
   const handleSelectAllChange = (checked: boolean) => {
     setSelectAll(checked);
     setCheckedItems(
-      cart.reduce((acc, item) => ({ ...acc, [item.id]: checked }), {})
+      cart.reduce((acc, item) => ({ ...acc, [item.id || ""]: checked }), {})
     );
   };
 
@@ -36,7 +36,7 @@ function ShoppingCart() {
   const calculateTotalPrice = () => {
     return cart.reduce(
       (total, item) =>
-        checkedItems[item.id] ? total + item.price * item.quantity : total,
+        checkedItems[item.id || ""] ? total + (item.price || 0 ) * item.quantity : total,
       0
     );
   };
@@ -108,8 +108,8 @@ function ShoppingCart() {
                     }}
                   >
                     <Checkbox
-                      checked={checkedItems[p.id] || false}
-                      onChange={(e) => handleItemChange(p.id, e.target.checked)}
+                      checked={checkedItems[p.id || ""] || false}
+                      onChange={(e) => handleItemChange(p.id || "", e.target.checked)}
                     />
                   </ConfigProvider>
                   <img
@@ -151,7 +151,7 @@ function ShoppingCart() {
                   </select>
 
                   <i>
-                    <FaTrash onClick={() => removeFromCart(p?.id)} className="cursor-pointer hover:text-red-500" />
+                    <FaTrash onClick={() => removeFromCart(p?.id || "")} className="cursor-pointer hover:text-red-500" />
                   </i>
                 </div>
               </div>
