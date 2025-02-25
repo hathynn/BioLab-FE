@@ -8,7 +8,7 @@ function OverviewTeamplate() {
       <div className="w-1/3 h-full gap-6 flex flex-col">
         <div className="h-1/3">
           <CustomizedCard
-            background="url('/src/assets/blue-abstract.svg')"
+            background="url('/assets/blue-abstract.svg')"
             styleClass="border-none "
           >
             <div className="h-full flex flex-col justify-between">
