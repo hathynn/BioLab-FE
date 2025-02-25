@@ -1,56 +1,96 @@
+import { useState } from "react";
+import axios from "axios";
+import { Button, Image, Upload, message } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 
-import { useState, useEffect, useCallback } from "react";
-import { debounce } from "lodash"; // Import debounce từ lodash
-import useAddressService from "../../services/useAddressService";
+const API_KEY = import.meta.env.VITE_API_KEY_REMOVE_BG;
 
+const Test: React.FC = () => {
+  const [originalImages, setOriginalImages] = useState<string[]>([]);
+  const [processedImages, setProcessedImages] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
-function Test() {
-    const [input, setInput] = useState<string>("");
-    const [suggestions, setSuggestions] = useState<{ place_id: string; description: string }[]>([]);
-    const { fetchSuggestions, loading } = useAddressService();
-  
-    useEffect(() => {
-      const debouncedFetch = debounce(async () => {
-        const results = await fetchSuggestions(input);
-        setSuggestions(results);
-      }, 300);
-  
-      if (input) debouncedFetch();
-      return () => debouncedFetch.cancel();
-    }, [input, fetchSuggestions]);
-  
-    const handleSelectAddress = (description: string) => {
-      setInput(description);
-      console.log(input)
-      setSuggestions([]);
-    };
-    
+  const handleUpload = async (files: File[]) => {
+    setLoading(true);
+
+    const originalUrls = files.map((file) => URL.createObjectURL(file));
+    setOriginalImages(originalUrls);
+
+    const formDataArray = files.map((file) => {
+      const formData = new FormData();
+      formData.append("image_file", file);
+      formData.append("size", "auto");
+      return formData;
+    });
+
+    try {
+      const responses = await Promise.all(
+        formDataArray.map((formData) =>
+          axios.post<Blob>("https://api.remove.bg/v1.0/removebg", formData, {
+            headers: {
+              "X-API-Key": API_KEY,
+              "Content-Type": "multipart/form-data",
+            },
+            responseType: "blob",
+          })
+        )
+      );
+
+      const processedUrls = responses.map((response) => {
+        const imageBlob = new Blob([response.data], { type: "image/png" });
+        return URL.createObjectURL(imageBlob);
+      });
+
+      setProcessedImages(processedUrls);
+      message.success("Background removed successfully!");
+    } catch (error) {
+      console.error("Error removing background:", error);
+      message.error("Failed to remove background.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="relative w-full mx-auto">
-      <input
-        type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Nhập địa chỉ..."
-        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-      />
-      {loading && <div className="absolute bg-white text-gray-500 px-4 py-2">Đang tải...</div>}
-      {suggestions.length > 0 && (
-        <ul className="absolute w-full bg-white border border-gray-300 rounded-lg mt-1 max-h-48 overflow-y-auto shadow-lg">
-          {suggestions.map((item) => (
-            <li
-              key={item.place_id}
-              onClick={() => handleSelectAddress(item.description)}
-              className="px-4 py-2 cursor-pointer hover:bg-gray-200"
-            >
-              {item.description}
-            </li>
-          ))}
-        </ul>
-      )}
+    <div style={{ textAlign: "center", padding: "20px" }}>
+      <Upload
+        multiple
+        beforeUpload={(file, fileList) => {
+          handleUpload(fileList as File[]);
+          return false;
+        }}
+        showUploadList={false}
+      >
+        <Button icon={<UploadOutlined />} loading={loading}>
+          Upload Images
+        </Button>
+      </Upload>
+
+      <div className="flex flex-wrap justify-center gap-5 mt-5">
+        {originalImages.length > 0 && (
+          <div>
+            <h3>Original Images:</h3>
+            <div className="grid grid-cols-3 gap-4">
+              {originalImages.map((url, index) => (
+                <Image key={index} src={url} alt={`Original ${index}`} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {processedImages.length > 0 && (
+          <div>
+            <h3>Processed Images:</h3>
+            <div className="grid grid-cols-3 gap-4">
+              {processedImages.map((url, index) => (
+                <Image key={index} src={url} alt={`Processed ${index}`} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
-}
+};
 
 export default Test;

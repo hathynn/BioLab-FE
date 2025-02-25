@@ -1,6 +1,7 @@
 import CustomLineChart from "../../line-chart";
 import CustomizedCard from "../../card";
 import { PieChart } from "../../pie-chart/PieChart";
+import LineChart from "../../line-chart/LineChart";
 
 function OverviewTeamplate() {
   return (
@@ -38,37 +39,42 @@ function OverviewTeamplate() {
                   <EyeOutlined />
                 </ButtonF> */}
               </div>
-              <PieChart
-                variant="secondary"
-                data={[
-                  {
-                    id: "bad",
-                    label: "Phần còn lại",
-                    value: 10,
-                  },
-                  {
-                    id: "good",
-                    label: "Phản hồi tốt",
-                    value: 90,
-                  },
-                ]}
-              />
+              <div className="h-full">
+                <PieChart
+                  variant="secondary"
+                  data={[
+                    {
+                      id: "bad",
+                      label: "Phần còn lại",
+                      value: 15,
+                    },
+                    {
+                      id: "good",
+                      label: "Phản hồi tốt",
+                      value: 85,
+                    },
+                  ]}
+                />
+              </div>
             </div>
           </CustomizedCard>
         </div>
       </div>
       <div className="w-2/3 h-full gap-6 flex flex-col">
-        <div className="h-[calc(50%)]">
-          <CustomizedCard styleClass="border border-[#D5D5D7] border-[1px] rounded-2xl overflow-y-scroll">
-            <div className="flex flex-col justify-between items-left gap-5 mb-4 ">
+        <div className="h-[calc(55%)]">
+          <CustomizedCard styleClass="border border-[#D5D5D7] border-[1px] rounded-2xl ">
+            <div className="h-72 flex flex-col justify-between items-left gap-5 mb-4 ">
               <h3 className="text-sm font-medium">
                 Biểu đồ phân tích lợi nhuận
               </h3>
-              <CustomLineChart />
+              {/* <CustomLineChart /> */}
+              <div className="h-full -mt-11">
+                <LineChart />
+              </div>
             </div>
           </CustomizedCard>
         </div>
-        <div className="h-[calc(50%-12px)]">
+        <div className="h-[calc(45%-10px)]">
           <CustomizedCard styleClass="border-none bg-gradient-to-b from-[#555555] to-[#353535] rounded-2xl">
             <div className="flex justify-between items-center mb-4 ">
               <h3 className="text-sm text-white">
