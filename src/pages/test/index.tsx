@@ -24,6 +24,7 @@ function Test() {
       console.log(input)
       setSuggestions([]);
     };
+    
 
   return (
     <div className="relative w-full mx-auto">
