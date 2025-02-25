@@ -140,7 +140,7 @@ function Header({ navbarType = "light" }) {
             {headerItems.map((item, index) => (
               <a
                 key={index}
-                href={item.key}
+                href={`/${item.key}`}
                 className="flex hover:text-green-500"
               >
                 {item.label}
