@@ -130,6 +130,21 @@ function LineChart() {
       //     ],
       //   },
       // ]}
+      tooltip={({ point }) => (
+        <div
+          style={{
+            background: "white",
+            padding: "10px",
+            border: "1px solid #ddd",
+            borderRadius: "5px",
+            boxShadow: "0 3px 6px rgba(0,0,0,0.1)",
+          }}
+        >
+          <strong>{point.data.x}</strong> {/* Chỉ hiển thị tháng */}
+          <br />
+          Doanh thu: <strong>{point.data.y} ngàn đồng</strong>
+        </div>
+      )}
       animate={false}
     />
   );
