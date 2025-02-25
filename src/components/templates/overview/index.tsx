@@ -1,5 +1,6 @@
 import CustomLineChart from "../../line-chart";
 import CustomizedCard from "../../card";
+import { PieChart } from "../../pie-chart/PieChart";
 
 function OverviewTeamplate() {
   return (
@@ -24,18 +25,47 @@ function OverviewTeamplate() {
           </CustomizedCard>
         </div>
         <div className="h-2/3">
-          <CustomizedCard styleClass="bg-gradient-to-b from-[#FF9873] to-[#FD3D20] border-none"></CustomizedCard>
+          <CustomizedCard styleClass="bg-gradient-to-b from-[#FF9873] to-[#FD3D20] border-none">
+            <div className="h-80 w-full">
+              <div className="text-white flex justify-between items-center">
+                <span className="text-xs-medium">
+                  Tỉ lệ phản hồi tích cực từ khách hàng (%)
+                </span>
+                {/* <ButtonF
+                  styleClass="bg-[#FFFFFF30] rounded-[12px] h-[43px] w-[43px] flex justify-center items-center"
+                  status="none"
+                >
+                  <EyeOutlined />
+                </ButtonF> */}
+              </div>
+              <PieChart
+                variant="secondary"
+                data={[
+                  {
+                    id: "bad",
+                    label: "Phần còn lại",
+                    value: 10,
+                  },
+                  {
+                    id: "good",
+                    label: "Phản hồi tốt",
+                    value: 90,
+                  },
+                ]}
+              />
+            </div>
+          </CustomizedCard>
         </div>
       </div>
       <div className="w-2/3 h-full gap-6 flex flex-col">
         <div className="h-[calc(50%)]">
           <CustomizedCard styleClass="border border-[#D5D5D7] border-[1px] rounded-2xl overflow-y-scroll">
-            <div className="flex flex-col justify-between items-left gap-5 mb-4 "> 
+            <div className="flex flex-col justify-between items-left gap-5 mb-4 ">
               <h3 className="text-sm font-medium">
                 Biểu đồ phân tích lợi nhuận
               </h3>
               <CustomLineChart />
-           </div> 
+            </div>
           </CustomizedCard>
         </div>
         <div className="h-[calc(50%-12px)]">

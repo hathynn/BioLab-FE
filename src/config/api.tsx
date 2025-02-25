@@ -1,11 +1,11 @@
 import axios from "axios";
 import { refreshAuthToken } from "../utils/authUtils";
 
-// const SERVER = import.meta.env.VITE_API_URL_SERVER;
-// const LOCAL = import.meta.env.VITE_API_URL_LOCAL;
+const SERVER = import.meta.env.VITE_API_URL_SERVER;
+const LOCAL = import.meta.env.VITE_API_URL_LOCAL;
 
 const api = axios.create({
-  baseURL: "https://biolab-backend-f6hr.onrender.com/",
+  baseURL: SERVER,
 });
 
 api.interceptors.request.use(
