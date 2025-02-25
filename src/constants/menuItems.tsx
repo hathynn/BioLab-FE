@@ -66,8 +66,8 @@ export const adminMenuItems: MenuItem[] = adminItems.map((item) =>
 export const headerItems = [
   { label: "Giới thiệu", key: "about" },
   { label: "Danh mục sản phẩm", key: "product" },
-  { label: "Hoạt động xã hội", key: "/" },
-  { label: "Gói dịch vụ", key: "/" },
+  { label: "Hoạt động xã hội", key: "blog" },
+  { label: "Gói dịch vụ", key: "package" },
   { label: "SOP", key: "sop" },
   { label: "Cẩm nang sức khỏe", key: "blog" },
 ];
