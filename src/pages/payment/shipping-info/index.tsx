@@ -243,7 +243,7 @@ function ShippingInfo() {
       phoneNumber: values.phone,
       email: values.email,
       address: input,
-      paymentMethod: values.paymentMethod,
+      paymentMethod: paymentMethod,
       totalPrice: calculateTotalPrice(),
       note,
       orderDetails: cart.map((item) => ({
