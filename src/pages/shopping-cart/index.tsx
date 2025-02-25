@@ -5,6 +5,7 @@ import "./index.scss";
 import { Checkbox, ConfigProvider } from "antd";
 import useCartStore from "../../store/cartStore";
 import { PAYMENT_ROUTES, USER_ROUTES } from "../../constants/routes";
+import { toast } from "react-toastify";
 
 function ShoppingCart() {
   const { cart, removeFromCart } = useCartStore();
@@ -55,6 +56,15 @@ function ShoppingCart() {
   // const handleQuantityChange = (value: number) => {
   //   if (value > 0) setQuantity(value);
   // };
+  const handleCheckout = () => {
+    const selectedProducts = cart.filter((item) => checkedItems[item.id || ""]);
+    if (selectedProducts?.length == 0) {
+      toast.error("Vui lòng chọn sản phẩm");
+    } else {
+      nav(`/${PAYMENT_ROUTES.SHIPPING_INFO}`);
+    }
+    console.log("Sản phẩm đã chọn:", selectedProducts);
+  };
 
   return (
     <div className="px-10 mx-auto p-6">
@@ -209,7 +219,7 @@ function ShoppingCart() {
           </div>
 
           <button
-            onClick={() => nav(`/${PAYMENT_ROUTES.SHIPPING_INFO}`)}
+            onClick={handleCheckout}
             className="w-full mt-4 px-6 py-3 bg-customGreen text-white rounded-lg shadow-md hover:bg-green-500"
           >
             Tiến hành đặt mua

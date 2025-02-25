@@ -7,7 +7,7 @@ import { IoIosAddCircle } from "react-icons/io";
 import { AiFillLike } from "react-icons/ai";
 import MediaInfoCard from "../../components/mediaInfoCard";
 import { useNavigate } from "react-router-dom";
-import { USER_ROUTES } from "../../constants/routes";
+import { PRODUCT_ROUTES, USER_ROUTES } from "../../constants/routes";
 import { useEffect, useState } from "react";
 import { sendMsgToOpenAI } from "../../config/openAI";
 import { marked } from "marked";
@@ -163,7 +163,10 @@ function HomePage() {
             <h1 className="text-2xl lg:text-4xl text-white font-normal flex justify-center items-center gap-2">
               <RiVipCrown2Fill /> Đề xuất của chuyên gia
             </h1>
-            <button className="bg-[#373737] text-white text-[16px] rounded-full p-3 px-4 flex justify-between items-center gap-3 text-nowrap">
+            <button
+              onClick={() => navigate("/" + PRODUCT_ROUTES.PRODUCT)}
+              className="bg-[#373737] text-white text-[16px] rounded-full p-3 px-4 flex justify-between items-center gap-3 text-nowrap"
+            >
               Xem tất cả <FaArrowRight />
             </button>
           </div>
@@ -230,7 +233,10 @@ function HomePage() {
                   <h1 className="text-4xl text-[#FC853E] font-normal flex justify-start items-center gap-2">
                     <AiFillLike /> Sản phẩm theo đối tượng
                   </h1>
-                  <button className="bg-gradient-to-l from-[#FC853E] to-[#F05334] text-white text-[16px] font-semibold rounded-full p-3 px-4 flex justify-between items-center gap-3 text-nowrap">
+                  <button
+                    onClick={() => navigate("/" + PRODUCT_ROUTES.PRODUCT)}
+                    className="bg-gradient-to-l from-[#FC853E] to-[#F05334] text-white text-[16px] font-semibold rounded-full p-3 px-4 flex justify-between items-center gap-3 text-nowrap"
+                  >
                     Xem tất cả <FaArrowRight />
                   </button>
                 </div>
