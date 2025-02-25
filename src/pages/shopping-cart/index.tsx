@@ -2,10 +2,11 @@ import { useState } from "react";
 import { FaTrash } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
-import { Checkbox, ConfigProvider } from "antd";
+import { Checkbox, ConfigProvider, Empty } from "antd";
 import useCartStore from "../../store/cartStore";
 import { PAYMENT_ROUTES, USER_ROUTES } from "../../constants/routes";
 import { toast } from "react-toastify";
+import cartempty from "../../assets/cartempty.png";
 
 function ShoppingCart() {
   const { cart, removeFromCart } = useCartStore();
@@ -103,6 +104,11 @@ function ShoppingCart() {
               </div>
             </div>
 
+            <div className="flex justify-center items-center">
+              {cart?.length == 0 && (
+                <Empty image={cartempty} description={false} />
+              )}
+            </div>
             {cart?.map((p, index) => (
               <div
                 key={index}
