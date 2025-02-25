@@ -29,6 +29,7 @@ import About from "../pages/about";
 import PostCategory from "../components/templates/post-category";
 import BlogDetail from "../pages/blog/blog-detail";
 import Test from "../pages/test";
+import Page404 from "../pages/error";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ export const router = createBrowserRouter([
       </>
     ),
     children: [
+      {
+        path: "*",
+        element: <Page404/>,
+      },
       {
         path: USER_ROUTES.BLOG,
         element: <Blog />,
