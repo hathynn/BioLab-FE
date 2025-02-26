@@ -16,6 +16,13 @@ const IMAGE_URLS = {
       "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/1.png?alt=media&token=de7ffe95-e255-408d-9bd0-ac73538843e2",
     INTRO:
       "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/3.png?alt=media&token=cc035ce7-c31e-4083-a4d8-6704846c0b53",
+    ADS: "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/4.png?alt=media&token=a61f7231-f2fc-4ee9-88bf-6a718c5f8133",
+    PROFIT:
+      "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/7.png?alt=media&token=ed8aa3bd-7bf7-43a6-88dd-7b3178e5d49c",
+    BUSINESS:
+      "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/9.png?alt=media&token=40c0b33c-1be3-4d6e-a8d4-9097d432e2e8",
+    PROCESS:
+      "https://firebasestorage.googleapis.com/v0/b/insta-clone-48dad.appspot.com/o/12.png?alt=media&token=651704dd-fa92-4727-94ee-9c128afa4556",
   },
 };
 

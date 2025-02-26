@@ -67,9 +67,9 @@ function SOP() {
       <div className="flex justify-center items-center px-10">
         <img src={IMAGE_URLS.SOP.INTRO} />
       </div>
-      <div className="flex justify-center items-center px-10">
-        <img src="/assets/Rule_SOP.png" />
-        <img src="/assets/Rule_2_SOP.png" />
+      <div className="flex justify-center items-center px-8">
+        <img src={IMAGE_URLS.SOP.ADS} />
+        {/* <img src="/assets/Rule_2_SOP.png" /> */}
       </div>
       <h1 className="text-[#2cbb57] font-extrabold text-4xl">
         LÝ DO BẠN NÊN THAM GIA SOP
@@ -85,18 +85,17 @@ function SOP() {
         ƯU ĐÃI KHI THAM GIA SOP
       </h1>
       <div className="flex justify-center items-center px-10 ">
-        <img src="/assets/UD1_SOP.png" />
-        <img src="/assets/UD2_SOP.png" />
+        <img src={IMAGE_URLS.SOP.PROFIT} />
       </div>
       <h1 className="text-[#2cbb57] font-extrabold text-4xl">
         KINH DOANH AMWAY CÙNG SOP
       </h1>
       <div className="flex justify-center items-center px-10 ">
         <img
-          src="/assets/AW_1_SOP.png"
+          src={IMAGE_URLS.SOP.BUSINESS}
           className="w-full h-full object-cover"
         />
-        <img src="/assets/AW_2_SOP.png" />
+        {/* <img src="/assets/AW_2_SOP.png" /> */}
       </div>
       <h1 className="text-[#2cbb57] font-extrabold text-4xl">
         CÁC GÓI SOP ĐANG ÁP DỤNG
@@ -124,7 +123,7 @@ function SOP() {
         </a>
       </p>
       <h1 className="text-[#2cbb57] font-extrabold text-4xl">QUY TRÌNH SOP</h1>
-      <img src="/assets/ProcessSOP.jpg" />
+      <img src={IMAGE_URLS.SOP.PROCESS} className="object-cover" />
       <h1 className="text-[#2cbb57] font-extrabold text-4xl text-center">
         ĐĂNG KÍ THAM GIA SOP
       </h1>
