@@ -1,5 +1,6 @@
 import { Collapse, CollapseProps } from "antd";
 import "./index.scss";
+import IMAGE_URLS from "../../constants/imageUrls";
 function SOP() {
   const items: CollapseProps["items"] = [
     {
@@ -56,15 +57,15 @@ function SOP() {
 
   return (
     <div className="bg-navColor py-6 px-32 flex flex-col gap-10">
-      <div className="bg-[#8ce9a7] rounded-lg flex justify-center items-center">
-        <img src="/assets/bannerSOP.png" />
+      <div className=" rounded-xl flex justify-center items-center">
+        <img src={IMAGE_URLS.SOP.BANNER} className="rounded-xl" />
       </div>
       {/* <img src="/assets/imgSOP1.png" /> */}
       <h1 className="text-[#2cbb57] font-extrabold text-4xl leading-10">
         CHƯƠNG TRÌNH <br /> KHÁCH HÀNG THÂN THIẾT SOP LÀ GÌ?
       </h1>
       <div className="flex justify-center items-center px-10">
-        <img src="/assets/AD_SOP.png" className="w-3/4" />
+        <img src={IMAGE_URLS.SOP.INTRO} />
       </div>
       <div className="flex justify-center items-center px-10">
         <img src="/assets/Rule_SOP.png" />
