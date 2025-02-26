@@ -30,7 +30,12 @@ import PostCategory from "../components/templates/post-category";
 import BlogDetail from "../pages/blog/blog-detail";
 import Test from "../pages/test";
 import Page404 from "../pages/error";
+
 import Create from "../components/templates/product/create-product/test";
+
+import PaymentSuccess from "../pages/payment/payment-sucess";
+import PaymentFailed from "../pages/payment/payment-fail";
+
 
 export const router = createBrowserRouter([
   {
@@ -120,6 +125,14 @@ export const router = createBrowserRouter([
       {
         path: PAYMENT_ROUTES.SHIPPING_INFO,
         element: <ShippingInfo />,
+      },
+      {
+        path: PAYMENT_ROUTES.SUCESS,
+        element: <PaymentSuccess />,
+      },
+      {
+        path: PAYMENT_ROUTES.FAIL,
+        element: <PaymentFailed />,
       },
       {
         path: PAYMENT_ROUTES.PAYMENT,

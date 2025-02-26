@@ -61,9 +61,7 @@ function Payment() {
           
         </div>
 
-        <div className="w-full rounded-lg  p-4">
-          <img src={qr}/>
-        </div>
+        
       </div>
     </div>
   );
