@@ -18,6 +18,8 @@ export enum PRODUCT_ROUTES {
 export enum PAYMENT_ROUTES {
   PAYMENT = "payment",
   SHIPPING_INFO = "shipping-info",
+  SUCESS = "payment-success",
+  FAIL = 'payment-fail',
 }
 
 // Admin Routes
