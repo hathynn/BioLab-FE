@@ -14,7 +14,7 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault(); 
 
-    if (phone === "0903999531" && password === "admin") {
+    if ((phone === "0903855310" || phone === "0939612916" || phone === "0847345766")  && password === "admin") {
       nav(`/admin/${ADMIN_ROUTES.OVERVIEW}`);
     } else {
       alert("Số điện thoại hoặc mật khẩu không đúng!"); 
