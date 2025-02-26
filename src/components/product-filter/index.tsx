@@ -18,7 +18,7 @@ const FilterSidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="product-filter w-64 p-4 bg-white rounded-2xl shadow-md">
+    <aside className="product-filter h-fit w-64 p-4 bg-white rounded-2xl border">
       {/* Tiêu đề + Icon */}
       <div className="flex justify-between items-center pb-2 mb-4 border-b">
         <h2 className="text-lg font-semibold">Bộ lọc nâng cao</h2>

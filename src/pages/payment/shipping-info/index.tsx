@@ -22,6 +22,7 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { debounce } from "lodash";
 import useAddressService from "../../../services/useAddressService";
+import { payOS } from "../../../utils/payment";
 function ShippingInfo() {
   const { cart } = useCartStore();
   const { createOrder } = useOrderService();
@@ -229,14 +230,12 @@ function ShippingInfo() {
     ),
   });
 
-  
   const handleSubmit = async (values: typeof initialValues) => {
     if (!input.trim()) {
-      toast.error("Thieu");
-    } else toast(input) 
+      toast.error("Vui lòng nhập địa chỉ.");
+    } 
     console.log("Form Submitted:", values);
-    console.log(input)
-
+    console.log(input);
 
     const orderData = {
       customerName: values.name,
@@ -263,6 +262,7 @@ function ShippingInfo() {
         status: OrderStatus.PROCESSING,
         total_amount: orderData.totalPrice,
       };
+
       const response = await createOrder(order);
       if (response) {
         const order_id = response?.order_id;
@@ -279,8 +279,11 @@ function ShippingInfo() {
       }
       if (!response) throw new Error("Lỗi khi tạo đơn hàng");
       toast.success("Đơn hàng đã được tạo thành công!");
+
       if (paymentMethod !== PaymentMethod.COD) {
-        nav("/payment/" + response?.order_id);
+        nav("/payment-success/" + response?.order_id);
+      } else {
+        nav("/payment-success/" + response?.order_id);
       }
     } catch (error) {
       console.error("Error creating order:", error);

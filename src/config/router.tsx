@@ -127,7 +127,7 @@ export const router = createBrowserRouter([
         element: <ShippingInfo />,
       },
       {
-        path: PAYMENT_ROUTES.SUCESS,
+        path: `${PAYMENT_ROUTES.SUCESS}/:id`,
         element: <PaymentSuccess />,
       },
       {
