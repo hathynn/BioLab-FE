@@ -299,15 +299,15 @@ function CreateProduct() {
           className="w-[49.5%] border p-2 rounded-md mb-4"
         >
           <option value="">Chọn danh mục</option>
-          {categories.map((category) => (
+          {categories?.map((category) => (
             <option
-              key={category._id}
+              key={category?._id}
               value={JSON.stringify({
-                id: category._id,
-                name: category.category_name,
+                id: category?._id,
+                name: category?.category_name,
               })}
             >
-              {category.category_name}
+              {category?.category_name}
             </option>
           ))}
         </select>
@@ -317,16 +317,16 @@ function CreateProduct() {
           className="w-[49.5%] border p-2 rounded-md  mb-4"
         >
           <option value="">Chọn thương hiệu</option>
-          {brands.map((brand) => (
+          {brands?.map((brand) => (
             <option
               key={brand._id}
               value={JSON.stringify({
                 id: brand._id,
-                name: brand.brand_name,
-                img: brand.image_url,
+                name: brand?.brand_name,
+                img: brand?.image_url,
               })}
             >
-              {brand.brand_name}
+              {brand?.brand_name}
             </option>
           ))}
         </select>
@@ -334,11 +334,11 @@ function CreateProduct() {
       <h2 className="text-lg font-semibold mb-4">Thông tin chi tiết</h2>
       {details.map((detail, index) => (
         <div key={index}>
-          <h2 className="text-base font-semibold mb-4">{detail.title}</h2>
+          <h2 className="text-base font-semibold mb-4">{detail?.title}</h2>
           <ReactQuill
             theme="snow"
-            placeholder={`Nhập ${detail.title.toLowerCase()}...`}
-            value={detail.content}
+            placeholder={`Nhập ${detail?.title.toLowerCase()}...`}
+            value={detail?.content}
             onChange={(value) => {
               const newDetails = [...details];
               newDetails[index].content = value;
