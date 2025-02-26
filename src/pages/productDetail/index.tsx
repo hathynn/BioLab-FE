@@ -18,8 +18,7 @@ import RecommendationProduct from "../../components/recommendation-product";
 import FeatureBar from "../../components/feature-bar";
 import { ProductType } from "../../types/product.type";
 import useProductService from "../../services/useProductService";
-import { useParams } from 'react-router-dom';
-
+import { useParams } from "react-router-dom";
 
 const ProductDetail = () => {
   const { getProducts } = useProductService();
@@ -200,7 +199,6 @@ const ProductDetail = () => {
     );
   };
 
-
   // const handleQuantityChange = (value: number) => {
   //   if (value > 0) setQuantity(value);
   // };
@@ -239,29 +237,26 @@ const ProductDetail = () => {
   ];
   const text = (
     <p style={{ paddingInlineStart: 24 }}>
-      Những trường hợp nên dùng: Phụ nữ sau 30 tuổi và phụ nữ tiền
-      mãn kinh. Phụ nữ da bị sạm nám, suy giảm sinh lý, khô âm đạo, rối loạn
-      kinh nguyệt, bốc hỏa, mất ngủ. Phụ nữ dưới 30 tuổi và phụ nữ sau khi sinh
-      nở nếu có dấu hiệu thiếu hụt hoặc rối loạn nội tiết tố nữ.
+      Những trường hợp nên dùng: Phụ nữ sau 30 tuổi và phụ nữ tiền mãn kinh. Phụ
+      nữ da bị sạm nám, suy giảm sinh lý, khô âm đạo, rối loạn kinh nguyệt, bốc
+      hỏa, mất ngủ. Phụ nữ dưới 30 tuổi và phụ nữ sau khi sinh nở nếu có dấu
+      hiệu thiếu hụt hoặc rối loạn nội tiết tố nữ.
     </p>
   );
   const items: CollapseProps["items"] = [
     {
       key: "1",
-      label:
-        "Những ai nên dùng thực phẩm chức năng",
+      label: "Những ai nên dùng thực phẩm chức năng",
       children: text,
     },
     {
       key: "2",
-      label:
-        "Những ai nên dùng thực phẩm chức năng cân bằng nội tiết tố",
+      label: "Những ai nên dùng thực phẩm chức năng cân bằng nội tiết tố",
       children: text,
     },
     {
       key: "3",
-      label:
-        "Những ai nên dùng thực phẩm chức năng cân bằng",
+      label: "Những ai nên dùng thực phẩm chức năng cân bằng",
       children: text,
     },
   ];
@@ -294,52 +289,25 @@ const ProductDetail = () => {
                       alt="Product"
                       className="rounded-lg w-full"
                     />
-
-                    <img
-                      src="https://bizweb.dktcdn.net/100/011/344/products/omega3-a223b96b-88f8-45b6-9c0e-89c7db4cd048.jpg?v=1639712259133"
-                      alt="Product"
-                      className="rounded-lg w-full"
-                    />
-                    <img
-                      src="https://bizweb.dktcdn.net/100/011/344/products/omega3-a223b96b-88f8-45b6-9c0e-89c7db4cd048.jpg?v=1639712259133"
-                      alt="Product"
-                      className="rounded-lg w-full"
-                    />
-                    <img
-                      src="https://bizweb.dktcdn.net/100/011/344/products/omega3-a223b96b-88f8-45b6-9c0e-89c7db4cd048.jpg?v=1639712259133"
-                      alt="Product"
-                      className="rounded-lg w-full"
-                    />
                   </Carousel>
                 </div>
                 <div className="flex space-x-2">
-                  <img
-                    src="https://s3-alpha-sig.figma.com/img/5444/5f36/4d8a152aa8343d7f9ecf66b67784bdc8?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Xx~orRdSMtjbu0Bp7ulbGcxlj4WnIzaznfidKJXNim16lEgDI9Qv~mgw1iC78~dEfC9lflULi959IqyVTnd-lSL3ivZsXJlFKkxmXj0flSnb3Kkvj9gxCZzMx7pP-29YEkUnH9uV83pUBWCO~0GPyWCxVNmYqPUydLVtm9-EU0gwkwlBxNJbNALkoJuXCbFgwmOSXM1EwM0ty6emd0rEstjAMi4CgtSRmxjwDt5f8SCO7FgysgMi9bXDniS9Yz~dnha7v-NMfWGRoFQfHhkeIfaAI2qMPC9jVocKZpRmajEmhxuy6ov5r4h0uhC2u3DLnCCBSP6Bi4O2V9bXXip2Fg__"
-                    alt="Thumbnail 1"
-                    className="rounded-lg w-32 h-32 object-cover"
-                  />
-                  <img
-                    src="https://bizweb.dktcdn.net/100/421/115/products/3-df21fc2a-f256-4144-a537-f4aa586f2a29.jpg?v=1680864997713"
-                    alt="Thumbnail 2"
-                    className="rounded-lg w-32 h-32 object-cover"
-                  />
-                  <img
-                    src="https://bizweb.dktcdn.net/100/421/115/products/3-df21fc2a-f256-4144-a537-f4aa586f2a29.jpg?v=1680864997713"
-                    alt="Thumbnail 3"
-                    className="rounded-lg w-32 h-32 object-cover"
-                  />
-                  <img
-                    src="https://s3-alpha-sig.figma.com/img/5444/5f36/4d8a152aa8343d7f9ecf66b67784bdc8?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Xx~orRdSMtjbu0Bp7ulbGcxlj4WnIzaznfidKJXNim16lEgDI9Qv~mgw1iC78~dEfC9lflULi959IqyVTnd-lSL3ivZsXJlFKkxmXj0flSnb3Kkvj9gxCZzMx7pP-29YEkUnH9uV83pUBWCO~0GPyWCxVNmYqPUydLVtm9-EU0gwkwlBxNJbNALkoJuXCbFgwmOSXM1EwM0ty6emd0rEstjAMi4CgtSRmxjwDt5f8SCO7FgysgMi9bXDniS9Yz~dnha7v-NMfWGRoFQfHhkeIfaAI2qMPC9jVocKZpRmajEmhxuy6ov5r4h0uhC2u3DLnCCBSP6Bi4O2V9bXXip2Fg__"
-                    alt="Thumbnail 1"
-                    className="rounded-lg w-32 h-32 object-cover"
-                  />
+                  {product?.image_url?.map((img) => (
+                    <img
+                      src={img}
+                      alt="Thumbnail 1"
+                      className="rounded-lg w-32 h-32 object-cover"
+                    />
+                  ))}
                 </div>
               </div>
 
               <div>
                 <h1 className=" mb-22">
                   Thương hiệu:&nbsp;
-                  <span className="text-green-600 font-extrabold">{product?.brand.brand_name}</span>
+                  <span className="text-green-600 font-extrabold">
+                    {product?.brand.brand_name}
+                  </span>
                 </h1>
                 <h1 className="text-2xl font-bold text-gray-800">
                   {product?.name}
@@ -353,7 +321,9 @@ const ProductDetail = () => {
                 </div>
                 <h1 className="flex text-black font-bold text-xl mt-4">
                   {product?.price} &nbsp;
-                  <span className="font-semibold text-green-900">/ {product?.unit}</span>
+                  <span className="font-semibold text-green-900">
+                    / {product?.unit}
+                  </span>
                 </h1>
                 <h1 className="line-through font-semibold text-lg text-gray-400">
                   500.000₫
@@ -363,20 +333,7 @@ const ProductDetail = () => {
                   <div className="flex items-start">
                     <p className="w-1/4 text-sm font-bold">Chọn đơn vị</p>
                     <p className="w-3/4 text-sm">
-                      {/* <Radio.Group
-                      options={options}
-                      optionType="button"
-                      buttonStyle="solid"
-                      size="small"
-                      defaultValue="a"
-                    /> */}
-                      <Radio.Group
-                        options={options}
-                        optionType="button"
-                        buttonStyle="solid"
-                        size="small"
-                        defaultValue="a"
-                      />
+                      <p className="w-3/4 text-sm"> {product?.unit}</p>
                     </p>
                   </div>
 
