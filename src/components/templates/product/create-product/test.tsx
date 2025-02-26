@@ -52,6 +52,7 @@ function Create() {
               getValueFromEvent={(e: any) => e?.fileList}
               noStyle
               label="Hình ảnh sản phẩm"
+              rules={[{ required: true, message: "Vui lòng chọn ảnh" }]}
             >
               <Upload.Dragger
                 name="files"
@@ -92,19 +93,50 @@ function Create() {
 
             className="w-3/5"
           >
-            <Form.Item label="Thương hiệu" name="brand">
+            <Form.Item
+              label="Thương hiệu"
+              name="brand"
+              required={false}
+              rules={[{ required: true, message: "Vui lòng chọn thương hiệu" }]}
+            >
+              <Select
+                options={[
+                  { label: "Designer", value: "designer" },
+                  { label: "Developer", value: "developer" },
+                  { label: "Product Manager", value: "product-manager" },
+                ]}
+              />
+            </Form.Item>
+            <Form.Item
+              label="Tên sản phẩm"
+              name="productName"
+              required={false}
+              rules={[{ required: true, message: "Vui lòng chọn thương hiệu" }]}
+            >
               <Input />
             </Form.Item>
-            <Form.Item label="Tên sản phẩm" name="productName">
+            <Form.Item
+              label="Giá sản phẩm"
+              name="price"
+              required={false}
+              rules={[{ required: true, message: "Vui lòng nhập giá" }]}
+            >
               <Input />
             </Form.Item>
-            <Form.Item label="Giá sản phẩm" name="price">
+            <Form.Item
+              label="Số lượng sản phẩm"
+              name="quantity"
+              required={false}
+              rules={[{ required: true, message: "Vui lòng nhập số lượng" }]}
+            >
               <Input />
             </Form.Item>
-            <Form.Item label="Số lượng sản phẩm" name="quantity">
-              <Input />
-            </Form.Item>
-            <Form.Item label="Chọn đơn vị" name="unit">
+            <Form.Item
+              label="Chọn đơn vị"
+              name="unit"
+              required={false}
+              rules={[{ required: true, message: "Vui lòng chọn đơn vị" }]}
+            >
               {/* <Radio.Group>
                 <Radio value="a">Hộp</Radio>
                 <Radio value="b">Vỉ</Radio>
@@ -120,7 +152,12 @@ function Create() {
                 ]}
               />
             </Form.Item>
-            <Form.Item label="Danh mục" name="category">
+            <Form.Item
+              label="Danh mục"
+              name="category"
+              required={false}
+              rules={[{ required: true, message: "Vui lòng chọn danh mục" }]}
+            >
               <Select
                 options={[
                   { label: "Designer", value: "designer" },
@@ -129,8 +166,21 @@ function Create() {
                 ]}
               />
             </Form.Item>
-            <Form.Item label="Mô tả ngắn sản phẩm:" name="description">
+            <Form.Item
+              label="Mô tả ngắn sản phẩm:"
+              name="description"
+              required={false}
+              rules={[{ required: true, message: "Vui lòng nhập mô tả ngắn" }]}
+            >
               <Input.TextArea rows={3} />
+            </Form.Item>
+            <Form.Item
+              label="Ghi chú"
+              name="note"
+              required={false}
+              rules={[{ required: true, message: "Vui lòng nhập ghi chú" }]}
+            >
+              <Input.TextArea rows={2} />
             </Form.Item>
           </div>
         </div>
