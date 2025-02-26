@@ -10,6 +10,7 @@ const useProductService = () => {
     try {
       setIsLoading(true);
       const response = await callApi("get", PRODUCT.DEFAULT);
+      console.log("response" + response);
       return response?.data;
     } catch (e: any) {
       console.error("Lỗi khi lấy danh sách sản phẩm:", e);
@@ -18,11 +19,11 @@ const useProductService = () => {
     }
   }, []);
 
-
   const getProductById = useCallback(async (_id: string) => {
     try {
       setIsLoading(true);
       const response = await callApi("get", `${PRODUCT.DEFAULT}/${_id}`);
+      console.log("response main in service" + response);
       return response?.data;
     } catch (e: any) {
       console.error("Lỗi khi lấy chi tiết sản phẩm:", e);
@@ -30,7 +31,6 @@ const useProductService = () => {
       setIsLoading(false);
     }
   }, []);
-
 
   const createProduct = useCallback(
     async ({
@@ -49,7 +49,7 @@ const useProductService = () => {
       details,
     }: {
       name: string;
-      note:string,
+      note: string;
       description: string;
       categoryId: string;
       categoryName: string;
@@ -65,24 +65,32 @@ const useProductService = () => {
       try {
         setIsLoading(true);
         console.log({
-            name,
-            note,
-            description,
-            category: { _id: categoryId, category_name: categoryName },
-            image_url: imageUrls,
-            brand: { _id: brandId, brand_name: brandName, image_url: brandImageUrl },
-            unit,
-            price,
-            stock,
-            details,
-          })
+          name,
+          note,
+          description,
+          category: { _id: categoryId, category_name: categoryName },
+          image_url: imageUrls,
+          brand: {
+            _id: brandId,
+            brand_name: brandName,
+            image_url: brandImageUrl,
+          },
+          unit,
+          price,
+          stock,
+          details,
+        });
         const response = await callApi("post", PRODUCT.DEFAULT, {
           name,
           note,
           description,
           category: { _id: categoryId, category_name: categoryName },
           image_url: imageUrls,
-          brand: { _id: brandId, brand_name: brandName, image_url: brandImageUrl },
+          brand: {
+            _id: brandId,
+            brand_name: brandName,
+            image_url: brandImageUrl,
+          },
           unit,
           price,
           stock,
@@ -97,7 +105,6 @@ const useProductService = () => {
     },
     []
   );
-
 
   const updateProduct = useCallback(
     async (
@@ -137,7 +144,11 @@ const useProductService = () => {
           description,
           category: { _id: categoryId, category_name: categoryName },
           image_url: imageUrls,
-          brand: { _id: brandId, brand_name: brandName, image_url: brandImageUrl },
+          brand: {
+            _id: brandId,
+            brand_name: brandName,
+            image_url: brandImageUrl,
+          },
           unit,
           price,
           stock,

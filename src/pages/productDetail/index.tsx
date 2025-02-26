@@ -18,11 +18,16 @@ import RecommendationProduct from "../../components/recommendation-product";
 import FeatureBar from "../../components/feature-bar";
 import { ProductType } from "../../types/product.type";
 import useProductService from "../../services/useProductService";
+import { useParams } from 'react-router-dom';
+
 
 const ProductDetail = () => {
   const { getProducts } = useProductService();
+  const { getProductById } = useProductService();
   const [quantity, setQuantity] = useState(1);
   const [products, setProducts] = useState<ProductType[]>([]);
+  const [product, setProduct] = useState<ProductType>();
+  const { id } = useParams();
 
   const fetchProducts = async () => {
     try {
@@ -32,6 +37,18 @@ const ProductDetail = () => {
       console.log(error);
     }
   };
+
+  const fetchProductDetail = async () => {
+    try {
+      if (id) {
+        const response = await getProductById(id);
+        setProduct(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const options = [
     { label: "Hộp ", value: "a" },
     { label: "Vỉ", value: "b" },
@@ -44,43 +61,145 @@ const ProductDetail = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchDataDetail = async () => {
+      await fetchProductDetail();
+    };
+    fetchDataDetail();
+  }, [id, getProductById]);
+
   const DescribeProduct = () => {
     return (
       <div className="pt-4 mr-10">
         <h1 className="text-xl font-bold ">Mô tả sản phẩm</h1>
-        <h1 className="text-sm font-bold my-4 ">
-          Cân bằng nội tiết tố, níu giữ tuổi xuân cho phụ nữ
-        </h1>
         <p className="text-sm my-4 text-justify">
-          Léana Ocavill là loại thực phẩm giúp cân bằng nội tiết tố của thương
-          hiệu Ocavill được nhập khẩu từ Bulgaria. Với sự kết hợp tinh dầu hoa
-          anh thảo cùng các thành phần như rễ maca, nhân sâm, trinh nữ châu Âu
-          và vitamin E, Léana Ocavill giúp cải thiện sức khỏe nữ giới hiệu quà.
-        </p>
-        <div className="flex justify-center">
-          <img
-            className="object-cover h-96"
-            src="https://s3-alpha-sig.figma.com/img/5444/5f36/4d8a152aa8343d7f9ecf66b67784bdc8?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Xx~orRdSMtjbu0Bp7ulbGcxlj4WnIzaznfidKJXNim16lEgDI9Qv~mgw1iC78~dEfC9lflULi959IqyVTnd-lSL3ivZsXJlFKkxmXj0flSnb3Kkvj9gxCZzMx7pP-29YEkUnH9uV83pUBWCO~0GPyWCxVNmYqPUydLVtm9-EU0gwkwlBxNJbNALkoJuXCbFgwmOSXM1EwM0ty6emd0rEstjAMi4CgtSRmxjwDt5f8SCO7FgysgMi9bXDniS9Yz~dnha7v-NMfWGRoFQfHhkeIfaAI2qMPC9jVocKZpRmajEmhxuy6ov5r4h0uhC2u3DLnCCBSP6Bi4O2V9bXXip2Fg__"
-          />
-        </div>
-        <p className="mt-6 text-justify">
-          Nội tiết tố là hormone sinh dục nữ được sản sinh và tiết ra từ buồng
-          trứng, đóng vai trò quan trọng trong việc tạo nên sự nữ tính, vóc dáng
-          và tuổi xuân của phụ nữ. Nội tiết tố nữ estrogen sẽ thay đổi theo từng
-          giai đoạn dậy thì, mang thai và giảm dần khi bước qua tuổi 30, tiền
-          mãn kinh, mãn kinh. Mất cân bằng nội tiết tố nữ, phụ nữ sẽ gặp phải
-          các biểu hiện như mất ngủ, mệt mỏi, căng thẳng, lo âu, mắc các bệnh lý
-          về phụ khoa, năm da, sạm da, rối loạn chu kỳ kinh nguyệt và giảm ham
-          muốn tình dục. Khi những triệu chứng thiếu hụt nội tiết tố này mới bắt
-          đầu, các biện pháp bổ sung estrogen sẽ có công dụng và cân bằng rất
-          nhanh, giúp cơ thể chị em hấp thu tốt nhất. Và việc sử dụng thực phẩm
-          chức năng tăng nội tiết tố là giải pháp được các chị em tin tưởng lựa
-          chọn. Đồng thời, các chuyên gia y tế cũng cho biết, đây là liệu pháp
-          an toàn và mang lại hiệu quả bền vững.
+          {product?.details?.map((detail, index) => (
+            <div key={index} className="detail-section">
+              {detail.title === "Mô tả sản phẩm" && (
+                <>
+                  <div
+                    className="content"
+                    dangerouslySetInnerHTML={{ __html: detail.content }}
+                  />
+                </>
+              )}
+            </div>
+          ))}
         </p>
       </div>
     );
   };
+
+  const IngredientProduct = () => {
+    return (
+      <div className="pt-4 mr-10">
+        <h1 className="text-xl font-bold ">Thành phần</h1>
+        <p className="text-sm my-4 text-justify">
+          {product?.details?.map((detail, index) => (
+            <div key={index} className="detail-section">
+              {detail.title === "Thành phần" && (
+                <>
+                  <div
+                    className="content"
+                    dangerouslySetInnerHTML={{ __html: detail.content }}
+                  />
+                </>
+              )}
+            </div>
+          ))}
+        </p>
+      </div>
+    );
+  };
+
+  const UsageProduct = () => {
+    return (
+      <div className="pt-4 mr-10">
+        <h1 className="text-xl font-bold ">Công dụng</h1>
+        <p className="text-sm my-4 text-justify">
+          {product?.details?.map((detail, index) => (
+            <div key={index} className="detail-section">
+              {detail.title === "Công dụng" && (
+                <>
+                  <div
+                    className="content"
+                    dangerouslySetInnerHTML={{ __html: detail.content }}
+                  />
+                </>
+              )}
+            </div>
+          ))}
+        </p>
+      </div>
+    );
+  };
+
+  const SideEffectProduct = () => {
+    return (
+      <div className="pt-4 mr-10">
+        <h1 className="text-xl font-bold ">Tác dụng phụ</h1>
+        <p className="text-sm my-4 text-justify">
+          {product?.details?.map((detail, index) => (
+            <div key={index} className="detail-section">
+              {detail.title === "Tác dụng phụ" && (
+                <>
+                  <div
+                    className="content"
+                    dangerouslySetInnerHTML={{ __html: detail.content }}
+                  />
+                </>
+              )}
+            </div>
+          ))}
+        </p>
+      </div>
+    );
+  };
+
+  const NoteProduct = () => {
+    return (
+      <div className="pt-4 mr-10">
+        <h1 className="text-xl font-bold ">Lưu ý</h1>
+        <p className="text-sm my-4 text-justify">
+          {product?.details?.map((detail, index) => (
+            <div key={index} className="detail-section">
+              {detail.title === "Lưu ý" && (
+                <>
+                  <div
+                    className="content"
+                    dangerouslySetInnerHTML={{ __html: detail.content }}
+                  />
+                </>
+              )}
+            </div>
+          ))}
+        </p>
+      </div>
+    );
+  };
+
+  const PreserveProduct = () => {
+    return (
+      <div className="pt-4 mr-10">
+        <h1 className="text-xl font-bold ">Bảo quản</h1>
+        <p className="text-sm my-4 text-justify">
+          {product?.details?.map((detail, index) => (
+            <div key={index} className="detail-section">
+              {detail.title === "Bảo quản" && (
+                <>
+                  <div
+                    className="content"
+                    dangerouslySetInnerHTML={{ __html: detail.content }}
+                  />
+                </>
+              )}
+            </div>
+          ))}
+        </p>
+      </div>
+    );
+  };
+
 
   // const handleQuantityChange = (value: number) => {
   //   if (value > 0) setQuantity(value);
@@ -95,17 +214,32 @@ const ProductDetail = () => {
     {
       label: `Thành phần`,
       key: "2",
-      children: `Content of Tab Thành phần`,
+      children: <IngredientProduct />,
     },
     {
       label: `Công dụng`,
       key: "3",
-      children: `Content of Tab Công dụng`,
+      children: <UsageProduct />,
+    },
+    {
+      label: `Tác dụng phụ`,
+      key: "4",
+      children: <SideEffectProduct />,
+    },
+    {
+      label: `Lưu ý`,
+      key: "5",
+      children: <NoteProduct />,
+    },
+    {
+      label: `Bảo quản`,
+      key: "6",
+      children: <PreserveProduct />,
     },
   ];
   const text = (
     <p style={{ paddingInlineStart: 24 }}>
-      Những trường hợp nên dùng Léana Ocavill: Phụ nữ sau 30 tuổi và phụ nữ tiền
+      Những trường hợp nên dùng: Phụ nữ sau 30 tuổi và phụ nữ tiền
       mãn kinh. Phụ nữ da bị sạm nám, suy giảm sinh lý, khô âm đạo, rối loạn
       kinh nguyệt, bốc hỏa, mất ngủ. Phụ nữ dưới 30 tuổi và phụ nữ sau khi sinh
       nở nếu có dấu hiệu thiếu hụt hoặc rối loạn nội tiết tố nữ.
@@ -115,19 +249,19 @@ const ProductDetail = () => {
     {
       key: "1",
       label:
-        "Những ai nên dùng thực phẩm chức năng cân bằng nội tiết tố Léana Ocavill?",
+        "Những ai nên dùng thực phẩm chức năng",
       children: text,
     },
     {
       key: "2",
       label:
-        "Những ai nên dùng thực phẩm chức năng cân bằng nội tiết tố Léana Ocavill?",
+        "Những ai nên dùng thực phẩm chức năng cân bằng nội tiết tố",
       children: text,
     },
     {
       key: "3",
       label:
-        "Những ai nên dùng thực phẩm chức năng cân bằng nội tiết tố Léana Ocavill?",
+        "Những ai nên dùng thực phẩm chức năng cân bằng",
       children: text,
     },
   ];
@@ -156,7 +290,7 @@ const ProductDetail = () => {
                 <div className="w-[70%]">
                   <Carousel arrows infinite={false} dots={true}>
                     <img
-                      src="https://s3-alpha-sig.figma.com/img/5444/5f36/4d8a152aa8343d7f9ecf66b67784bdc8?Expires=1737936000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Xx~orRdSMtjbu0Bp7ulbGcxlj4WnIzaznfidKJXNim16lEgDI9Qv~mgw1iC78~dEfC9lflULi959IqyVTnd-lSL3ivZsXJlFKkxmXj0flSnb3Kkvj9gxCZzMx7pP-29YEkUnH9uV83pUBWCO~0GPyWCxVNmYqPUydLVtm9-EU0gwkwlBxNJbNALkoJuXCbFgwmOSXM1EwM0ty6emd0rEstjAMi4CgtSRmxjwDt5f8SCO7FgysgMi9bXDniS9Yz~dnha7v-NMfWGRoFQfHhkeIfaAI2qMPC9jVocKZpRmajEmhxuy6ov5r4h0uhC2u3DLnCCBSP6Bi4O2V9bXXip2Fg__"
+                      src={product?.image_url?.join("")}
                       alt="Product"
                       className="rounded-lg w-full"
                     />
@@ -205,10 +339,10 @@ const ProductDetail = () => {
               <div>
                 <h1 className=" mb-22">
                   Thương hiệu:&nbsp;
-                  <span className="text-green-600 font-extrabold">OCAVILL</span>
+                  <span className="text-green-600 font-extrabold">{product?.brand.brand_name}</span>
                 </h1>
                 <h1 className="text-2xl font-bold text-gray-800">
-                  Viên uống LeAna Ocavill hỗ trợ cân bằng nội tiết tố (60 viên)
+                  {product?.name}
                 </h1>
                 <div className="flex items-center space-x-2 mt-2">
                   <RatingStars rating={4} />
@@ -218,8 +352,8 @@ const ProductDetail = () => {
                   </div>
                 </div>
                 <h1 className="flex text-black font-bold text-xl mt-4">
-                  295.000₫ &nbsp;
-                  <span className="font-semibold text-green-900">/ Hộp</span>
+                  {product?.price} &nbsp;
+                  <span className="font-semibold text-green-900">/ {product?.unit}</span>
                 </h1>
                 <h1 className="line-through font-semibold text-lg text-gray-400">
                   500.000₫
@@ -249,7 +383,7 @@ const ProductDetail = () => {
                   <div className="flex items-start">
                     <p className="w-1/4 text-sm font-bold">Danh mục</p>
                     <p className="w-3/4 text-sm text-green-600 hover:text-green-300 cursor-pointer">
-                      Cân bằng nội tiết tố
+                      {product?.category?.category_name}
                     </p>
                   </div>
 
@@ -260,24 +394,20 @@ const ProductDetail = () => {
 
                   <div className="flex items-start">
                     <p className="w-1/4 text-sm font-bold">Nhà sản xuất</p>
-                    <p className="w-3/4 text-sm">PHYTOPHARMA LTD</p>
+                    <p className="w-3/4 text-sm">{product?.brand.brand_name}</p>
                   </div>
 
                   <div className="flex items-start">
                     <p className="w-1/4 text-sm font-bold">Thành phần</p>
                     <p className="w-3/4 text-sm text-justify">
-                      Tinh dầu hoa anh thảo, Vitamin E, Nhân Sâm, Lepidium
-                      meyenii, Trinh nữ
+                      Phụ liệu: Dầu đậu nành, Gelatin, Glycerin
                     </p>
                   </div>
 
                   <div className="flex items-start">
                     <p className="w-1/4 text-sm font-bold">Mô tả ngắn</p>
                     <p className="w-3/4 text-sm text-justify">
-                      LeAna Ocavill hỗ trợ cân bằng nội tiết tố. Hỗ trợ cải
-                      thiện các triệu chứng thời kỳ tiền mãn kinh, mãn kinh do
-                      suy giảm nội tiết tố. Hỗ trợ hạn chế quá trình lão hóa,
-                      giúp đẹp da.
+                      {product?.description}
                     </p>
                   </div>
 
