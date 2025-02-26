@@ -67,49 +67,7 @@ function SOP() {
         </a>
       </p>
       <h1 className="text-[#2cbb57] font-extrabold text-4xl">QUY TRÌNH SOP</h1>
-      <img src={IMAGE_URLS.SOP.PROCESS} className="object-cover" />
-      <h1 className="text-[#2cbb57] font-extrabold text-4xl text-center">
-        ĐĂNG KÍ THAM GIA SOP
-      </h1>
-      <div className="flex justify-center items-center">
-        <img
-          src="/assets/onlineSOP.png"
-          className="w-2/6 h-full object-cover cursor-pointer"
-        />
-        <img
-          src="/assets/offlineSOP.png"
-          className="w-2/6 h-full object-cover cursor-pointer"
-        />
-        <img
-          src="/assets/offlineSOP.png"
-          className="w-2/6 h-full object-cover cursor-pointer"
-        />
-      </div>
-      <h1 className="text-[#2cbb57] font-extrabold text-4xl  ">
-        BẠN CẦN TÌM HIỂU VỀ SOP?
-      </h1>
-      <div className="flex justify-center items-center pb-10">
-        <img
-          src="/assets/videoSOP.png"
-          className="w-1/5 h-full object-cover cursor-pointer"
-        />
-        <img
-          src="/assets/packageSOP.png"
-          className="w-1/5 h-full object-cover cursor-pointer"
-        />
-        <img
-          src="/assets/documentSOP.png"
-          className="w-1/5 h-full object-cover cursor-pointer"
-        />
-        <img
-          src="/assets/guideSOP.png"
-          className="w-1/5 h-full object-cover cursor-pointer"
-        />
-        <img
-          src="/assets/EXSOP.png"
-          className="w-1/5 h-full object-cover cursor-pointer"
-        />
-      </div>
+      <img src={IMAGE_URLS.SOP.PROCESS} className="object-cover pb-10" />
     </div>
   );
 }
