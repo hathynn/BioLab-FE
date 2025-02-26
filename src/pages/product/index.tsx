@@ -47,15 +47,15 @@ const ProductPage: React.FC = () => {
           {products.map((product, index) => (
             <RecommendationProduct
               key={index}
-              _id={product._id}
-              note={product.note}
-              category={product.category}
-              name={product.name}
-              image_url={product.image_url}
-              price={product.price}
-              stock={product.stock}
-              brand={product.brand}
-              unit={product.unit}
+              _id={product?._id}
+              note={product?.note}
+              category={product?.category}
+              name={product?.name}
+              image_url={product?.image_url}
+              price={product?.price}
+              stock={product?.stock}
+              brand={product?.brand}
+              unit={product?.unit}
             />
           ))}
         </div>
