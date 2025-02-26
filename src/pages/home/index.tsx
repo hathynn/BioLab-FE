@@ -16,6 +16,7 @@ import useBrandService from "../../services/useBrandService";
 import { BrandType } from "../../types/brand.type";
 import { ProductType } from "../../types/product.type";
 import useProductService from "../../services/useProductService";
+import IMAGE_URLS from "../../constants/imageUrls";
 
 function HomePage() {
   const { getBrands, getBrandFeatured } = useBrandService();
@@ -107,35 +108,24 @@ function HomePage() {
               dots={false}
               className="h-[30vh] md:h-[calc(50vh+16px)] w-full"
             >
-              <img
-                src="https://s3-alpha-sig.figma.com/img/b128/3697/e5f3d2460105e95b6c1ca97681048d62?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Fnv~jumJcq103T4J6WTiBIbb8dORQBPP00MKt6m20DFEa3mHCT95p28i0b-NgFn38H~wbRgeXevgJEsw5sxjYLxLqiCPFrOJT99MSK20GbrLsaO-JyeU2p-RXh~0auSCfKXnIniK785iNt8PXQDTEDevniVbzmU9Pbst5DBJCxz4co8k8aLCvCvoEhBZB9LlVwStjCYj1fiIFEuMCnLqAKFdT5HDEB0jcQReDKMdUqkck7~IwNeldqQ4dkiUaL2JTOR66knxsAVFUQviGLplzD28yihU3DiQbGmow0EW-T6ZIzBweHQ-aIuzUr4X-w3SLV~LUSuYBZDTt84Eq3~8zA__"
-                className="object-cover w-full h-[30vh] md:h-[calc(50vh+16px)] rounded-2xl"
-              />
-              <img
-                src="https://cdn.nhathuoclongchau.com.vn/unsafe/1920x0/filters:quality(90)/https://cms-prod.s3-sgn09.fptcloud.com/Banner_Web_PC_1610x492_ba2ba6f811.png"
-                className="object-cover w-full h-[30vh] md:h-[calc(50vh+16px)] rounded-2xl"
-              />
-              <img
-                src="https://s3-alpha-sig.figma.com/img/b128/3697/e5f3d2460105e95b6c1ca97681048d62?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Fnv~jumJcq103T4J6WTiBIbb8dORQBPP00MKt6m20DFEa3mHCT95p28i0b-NgFn38H~wbRgeXevgJEsw5sxjYLxLqiCPFrOJT99MSK20GbrLsaO-JyeU2p-RXh~0auSCfKXnIniK785iNt8PXQDTEDevniVbzmU9Pbst5DBJCxz4co8k8aLCvCvoEhBZB9LlVwStjCYj1fiIFEuMCnLqAKFdT5HDEB0jcQReDKMdUqkck7~IwNeldqQ4dkiUaL2JTOR66knxsAVFUQviGLplzD28yihU3DiQbGmow0EW-T6ZIzBweHQ-aIuzUr4X-w3SLV~LUSuYBZDTt84Eq3~8zA__"
-                className="object-cover w-full h-[30vh] md:h-[calc(50vh+16px)] rounded-2xl"
-              />
+              {IMAGE_URLS.HOME.BANNERS?.map((img, _) => (
+                <img
+                  src={img}
+                  className="object-cover w-full h-[30vh] md:h-[calc(50vh+16px)] rounded-2xl"
+                />
+              ))}
             </Carousel>
           </div>
           <div className="md:flex hidden flex-col gap-4">
-            <div className="h-[30vh] md:h-[25vh]">
-              <img
-                src="https://s3-alpha-sig.figma.com/img/069f/178d/e59afbefcacd17912267d6a6991cc15c?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uPsXDPvpCxIpux1jMAqXpY7ue6-3Tlp6u0ZUJXuzpUzxsoIZzUUPXhoAK4G~bk~vYMuZJFccVeIIGcH4zYaLhXFV6vyXEv2xF7hawBf1rNsI3JiN0486jlTzis~vlOE3whTd6u2OnG72eBj8mAOILXCwc9sbefGrIKzYnDXrTERa5bTaSmHtmXz0wqMcNnfvKvfvsOv3UlKn~HDtPXimodPdc-H2OBBIRER2ne0CbQ6c2B9xDO6pKJdic-Qa3VQrCStM4BMks4aBM7Ibd0cmmcoL1RSsGV4f5SrD8doNUzwn0dZjfNO~aY5HigcJKumueLuf8nzd4T-DOd9kF43YXA__"
-                className="rounded-2xl w-full h-full object-cover "
-                alt="Image 1"
-              />
-            </div>
-            <div className="h-[30vh] md:h-[25vh]">
-              <img
-                src="https://s3-alpha-sig.figma.com/img/4c81/3a4c/51d8108e0a9edaa3d6a1fde795b3f1ac?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=YOcvyHI26b48IiMS6b8wNRwrflhymo5ZpLVhtC8nIgACqweBqGXES~MH8W~954HXKd4E7Yy2QkI4HsHRKPT3mA2-3K~gf8MxUkbMtysRB~uvbFdm0yfWm2E6VOMUWsrgtvUQOK1PaXNoHazeDKZWuIIdOTyLc-I9UVgb1FJxq~~mZU1MsTcX60bud~UVOS0pl6oHNOnphvqVRMR7anc41fyaqr6kC3C96QsjCUgV338iBmFJc-ChBCIm2rR~I6kATG2c69b6a-g5DSrls7cpG2zYO9tVCHQe45gNZh7Tn2A4wX1WQyCeH4ahmsS195MUse-8S3lsi7cZRFxyoaB6vQ__"
-                className="rounded-2xl w-full h-full object-cover "
-                alt="Image 2"
-              />
-            </div>
+            {IMAGE_URLS.HOME.INTRO.map((img, _) => (
+              <div className="h-[30vh] md:h-[25vh]">
+                <img
+                  src={img}
+                  className="rounded-2xl w-full h-full object-cover "
+                  alt="Image 1"
+                />
+              </div>
+            ))}
           </div>
         </div>
 
