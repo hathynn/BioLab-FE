@@ -3,24 +3,38 @@
 @tailwind utilities;
 
 *::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 100px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.ant-table-content {
+  margin-top: 20px;
+  .ant-table-thead {
+    .ant-table-cell {
+      background-color: rgb(46, 46, 46);
+      color: rgb(255, 255, 255);
+    }
   }
-  
-  *::-webkit-scrollbar-track {
-    border-radius: 100px;
-    background: rgba(0, 0, 0, 0.05);
+  .ant-table-tbody {
+    .ant-table-cell {
+    }
   }
-  
-  *::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background: rgba(0, 0, 0, 0.05);
-  }
-  
-  *::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.05);
-  }
-  
-  *::-webkit-scrollbar-thumb:active {
-    background: rgba(0, 0, 0, 0.05);
-  }
+}
