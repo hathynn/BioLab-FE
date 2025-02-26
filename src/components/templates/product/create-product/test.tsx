@@ -10,8 +10,31 @@ import {
 } from "antd";
 import { PictureOutlined } from "@ant-design/icons";
 import "./index.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useCategoryService from "../../../../services/useCategoryService";
+import useBrandService from "../../../../services/useBrandService";
+import { CategoryType } from "../../../../types/category.type";
+import { BrandType } from "../../../../types/brand.type";
+import ReactQuill from "react-quill";
 function Create() {
+  const [categories, setCategories] = useState<CategoryType[]>([]);
+  const [brands, setBrands] = useState<BrandType[]>([]);
+  const { getCategories } = useCategoryService();
+  const { getBrands } = useBrandService();
+
+  const fetch = async () => {
+    try {
+      const categories = await getCategories();
+      const brands = await getBrands();
+      setCategories(categories);
+      setBrands(brands);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetch();
+  }, []);
   const normFile = (e: any) => {
     if (Array.isArray(e)) {
       return e;
@@ -20,16 +43,14 @@ function Create() {
   };
   const [fileList, setFileList] = useState([]);
 
-  // Chỉ nhận file PNG hoặc JPG
   const beforeUpload = (file: File) => {
     const isValid = file.type === "image/png" || file.type === "image/jpeg";
     if (!isValid) {
       alert("Chỉ được upload file PNG hoặc JPG!");
     }
-    return isValid || Upload.LIST_IGNORE; // Bỏ qua file nếu không hợp lệ
+    return isValid || Upload.LIST_IGNORE;
   };
 
-  // Cập nhật danh sách file khi upload
   const handleChange = ({ fileList }: any) => {
     setFileList(fileList);
   };
@@ -100,11 +121,10 @@ function Create() {
               rules={[{ required: true, message: "Vui lòng chọn thương hiệu" }]}
             >
               <Select
-                options={[
-                  { label: "Designer", value: "designer" },
-                  { label: "Developer", value: "developer" },
-                  { label: "Product Manager", value: "product-manager" },
-                ]}
+                options={brands.map((brand) => ({
+                  label: brand?.brand_name,
+                  value: brand?._id,
+                }))}
               />
             </Form.Item>
             <Form.Item
@@ -137,12 +157,6 @@ function Create() {
               required={false}
               rules={[{ required: true, message: "Vui lòng chọn đơn vị" }]}
             >
-              {/* <Radio.Group>
-                <Radio value="a">Hộp</Radio>
-                <Radio value="b">Vỉ</Radio>
-                <Radio value="c">Tuýt</Radio>
-                <Radio value="c">Chai</Radio>
-              </Radio.Group> */}
               <Checkbox.Group
                 options={[
                   { label: "Hộp", value: "hop" },
@@ -159,11 +173,10 @@ function Create() {
               rules={[{ required: true, message: "Vui lòng chọn danh mục" }]}
             >
               <Select
-                options={[
-                  { label: "Designer", value: "designer" },
-                  { label: "Developer", value: "developer" },
-                  { label: "Product Manager", value: "product-manager" },
-                ]}
+                options={categories.map((c) => ({
+                  label: c?.category_name,
+                  value: c?._id,
+                }))}
               />
             </Form.Item>
             <Form.Item
@@ -184,9 +197,50 @@ function Create() {
             </Form.Item>
           </div>
         </div>
+
+        <Form.Item
+          label="Mô tả chi tiết sản phẩm "
+          name="detail_description"
+          required={false}
+          rules={[
+            {
+              required: true,
+              message: "Vui lòng nhập mô tả chi tiết sản phẩm",
+            },
+          ]}
+        >
+          <ReactQuill />
+        </Form.Item>
+
+        <Form.Item
+          label="Mô tả thành phần sản phẩm "
+          name="detail_component"
+          required={false}
+          rules={[
+            {
+              required: true,
+              message: "Vui lòng nhập mô tả chi tiết sản phẩm",
+            },
+          ]}
+        >
+          <ReactQuill />
+        </Form.Item>
+        <Form.Item
+          label="Mô tả công dụng "
+          name="detail_benifit"
+          required={false}
+          rules={[
+            {
+              required: true,
+              message: "Vui lòng nhập mô tả chi tiết sản phẩm",
+            },
+          ]}
+        >
+          <ReactQuill />
+        </Form.Item>
+
         <Form.Item wrapperCol={{ offset: 16, span: 16 }}>
           <Button type="primary" htmlType="submit">
-            {" "}
             {/* Thêm htmlType="submit" */}
             Tạo sản phẩm
           </Button>
