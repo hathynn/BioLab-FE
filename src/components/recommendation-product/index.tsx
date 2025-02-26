@@ -48,13 +48,13 @@ function RecommendationProduct({ ...product }: ProductType) {
 
         {/* To truncate text after two lines and add an ellipsis ==> line-champ-2 */}
         <h3 className="text-[16px] font-bold  line-clamp-2">{product.name}</h3>
-        <div className="bg-[#EFEFEF] max-w-max p-1 rounded-lg text-[12px] text-[#6F6F6F] font-semibold mt-3">
+        <div className="bg-[#EFEFEF] max-w-max px-2 p-1 rounded-lg text-[12px] text-[#6F6F6F] font-semibold mt-3">
           {product?.note || "Hộp 10 viên"}
         </div>
 
         <div className="py-5 text-[16px] leading-5">
           <p className="font-bold">
-            {product.price}
+          {product.price?.toLocaleString().replace(/,/g, ".")}
             <span className="font-semibold">/ {product.unit}</span>
           </p>
         </div>
