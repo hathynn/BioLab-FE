@@ -30,6 +30,7 @@ import PostCategory from "../components/templates/post-category";
 import BlogDetail from "../pages/blog/blog-detail";
 import Test from "../pages/test";
 import Page404 from "../pages/error";
+import Create from "../components/templates/product/create-product/test";
 
 export const router = createBrowserRouter([
   {
@@ -139,6 +140,10 @@ export const router = createBrowserRouter([
       {
         path: ADMIN_ROUTES.OVERVIEW,
         element: <OverviewTeamplate />,
+      },
+      {
+        path: ADMIN_ROUTES.SALES,
+        element: <Create />,
       },
       {
         path: ADMIN_ROUTES.SETTING,
