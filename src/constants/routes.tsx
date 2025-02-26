@@ -26,6 +26,7 @@ export enum PAYMENT_ROUTES {
 export enum ADMIN_ROUTES {
   ADMIN = "admin",
   OVERVIEW = "overview",
+  SALES = "sales",
   SETTING = "setting",
   BLOG = "create-blog",
   PRODUCT = "product",
