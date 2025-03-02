@@ -2,8 +2,77 @@ import CustomLineChart from "../../line-chart";
 import CustomizedCard from "../../card";
 import { PieChart } from "../../pie-chart/PieChart";
 import LineChart from "../../line-chart/LineChart";
+import { Table, Modal, Button } from 'antd';
+import { ColumnsType } from 'antd/es/table';
+import { useState, useEffect } from 'react';
+import useOrderService from "../../../services/useOrderService";
+import { OrderType } from "../../../types/order.type";
 
 function OverviewTeamplate() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const { getOrders } = useOrderService();
+  const [orders, setOrders] = useState<OrderType[]>([]);
+  const fetchOrders = async () => {
+    try {
+      const response = await getOrders();
+      setOrders(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetchOrders();
+    };
+    fetchData();
+  }, []);
+
+  const columns: ColumnsType<OrderType> = [
+    {
+      title: 'Tên Khách hàng',
+      dataIndex: 'customer_name',
+      key: 'customer_name',
+    },
+    {
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+    },
+    {
+      title: 'SĐT',
+      dataIndex: 'phone',
+      key: 'phone',
+    },
+    {
+      title: 'Tổng',
+      dataIndex: 'total_amount',
+      key: 'total_amount',
+    },
+    {
+      title: 'Tình trạng đơn',
+      dataIndex: 'status',
+      key: 'status',
+    },
+    {
+      title: 'Tình trạng giao dịch',
+      dataIndex: 'payment_status',
+      key: 'payment_status',
+    },
+    {
+      title: 'Phương thức',
+      dataIndex: 'payment_method',
+      key: 'payment_method',
+    },
+  ];
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <div className="pt-6 pb-10 h-full w-full flex gap-6">
       <div className="w-1/3 h-full gap-6 flex flex-col">
@@ -19,9 +88,29 @@ function OverviewTeamplate() {
               </div>
             </div>
             <div className="flex justify-end items-end">
-              <button className="bg-black text-sm px-5 py-2 text-white rounded-full">
+              <Button
+                type="primary"
+                onClick={showModal}
+                className="bg-black text-sm px-5 py-2 text-white rounded-full"
+              >
                 Xem ngay
-              </button>
+              </Button>
+              <Modal
+                title="Chi tiết các đơn hàng"
+                visible={isModalVisible}
+                onCancel={handleCancel}
+                footer={null}
+                width={1000}
+                className="order-modal"
+              >
+                <Table
+                  columns={columns}
+                  dataSource={orders}
+                  rowKey="_id"
+                  pagination={{ pageSize: 5 }}
+                  className="order-table"
+                />
+              </Modal>
             </div>
           </CustomizedCard>
         </div>
