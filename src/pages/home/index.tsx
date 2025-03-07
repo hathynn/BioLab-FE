@@ -110,6 +110,7 @@ function HomePage() {
             >
               {IMAGE_URLS.HOME.BANNERS?.map((img, _) => (
                 <img
+                  loading="lazy"
                   src={img}
                   className="object-cover w-full h-[30vh] md:h-[calc(50vh+16px)] rounded-2xl"
                 />
