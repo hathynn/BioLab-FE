@@ -5,6 +5,7 @@ import { PostType } from "../../types/post.type";
 import { useNavigate } from "react-router-dom";
 import empty from "../../assets/box.png";
 import { Skeleton } from "antd";
+import { useQuery } from "@tanstack/react-query";
 function ListMedia({ posts }: { posts: PostType[] }) {
   const nav = useNavigate();
   return (
@@ -47,6 +48,13 @@ function MediaInfoCard() {
   const [posts, setPosts] = useState<PostType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const nav = useNavigate();
+
+  const testPosts = useQuery({
+    queryKey: ["posts"],
+    queryFn: async () => await getPosts(),
+  });
+
+  console.log("tran test", testPosts);
   useEffect(() => {
     const fetchPosts = async () => {
       try {
