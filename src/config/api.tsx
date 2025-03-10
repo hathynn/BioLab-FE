@@ -5,7 +5,7 @@ const SERVER = import.meta.env.VITE_API_URL_SERVER;
 const LOCAL = import.meta.env.VITE_API_URL_LOCAL;
 
 const api = axios.create({
-  baseURL: LOCAL,
+  baseURL: SERVER,
 });
 
 api.interceptors.request.use(
