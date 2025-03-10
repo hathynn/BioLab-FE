@@ -297,8 +297,8 @@ function ShippingInfo() {
             orderCode: Date.now(),
             amount: 2000,
             description: "Thanh toán đơn hàng",
-            returnUrl: "http://localhost:5173/payment-success/",
-            cancelUrl: "http://localhost:5173/payment-fail/",
+            returnUrl: import.meta.env.DOMAIN + "payment-success/",
+            cancelUrl: import.meta.env.DOMAIN + "payment-fail/",
           };
 
           const response = await createPayment(paymentData);
