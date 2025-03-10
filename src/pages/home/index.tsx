@@ -136,24 +136,25 @@ function HomePage() {
             ))}
           </div>
         </div>
-
-        <div className="md:flex hidden justify-center items-center gap-4 h-[335px] pt-7">
-          <img
-            src={posts[0]?.banner}
-            className="rounded-2xl w-[30%] h-full object-cover "
-            alt="Image 2"
-          />
-          <img
-            src={posts[1]?.banner}
-            className="rounded-2xl w-[30%] h-full object-cover "
-            alt="Image 2"
-          />
-          <img
-            src={posts[2]?.banner}
-            className="rounded-2xl w-[40%] h-full object-cover "
-            alt="Image 2"
-          />
-        </div>
+        {posts?.length > 0 && (
+          <div className="md:flex hidden justify-center items-center gap-4 h-[335px] pt-7">
+            <img
+              src={posts[0]?.banner}
+              className="rounded-2xl w-[30%] h-full object-cover "
+              alt="Image 2"
+            />
+            <img
+              src={posts[1]?.banner}
+              className="rounded-2xl w-[30%] h-full object-cover "
+              alt="Image 2"
+            />
+            <img
+              src={posts[2]?.banner}
+              className="rounded-2xl w-[40%] h-full object-cover "
+              alt="Image 2"
+            />
+          </div>
+        )}
       </div>
       <div className="bg-gradient-to-b from-[#B1F0B0] to-[#5BD07E] h-full w-full rounded-3xl">
         <div className="p-10">
