@@ -290,7 +290,7 @@ function ShippingInfo() {
       toast.success("Đơn hàng đã được tạo thành công!");
 
       if (paymentMethod == PaymentMethod.COD) {
-        nav("/payment-success/" + response?.order_id);
+        nav("/payment-success/");
       } else {
         const initiatePayment = async () => {
           const paymentData = {
@@ -577,8 +577,10 @@ function ShippingInfo() {
           </Form>
         )}
       </Formik>
-      <p className="text-lg font-semibold mb-4 ">Chọn hình thức nhận hàng</p>
-      <div className="flex-col space-y-2">
+      <p className="text-lg font-semibold mb-4 pl-4">
+        Chọn hình thức nhận hàng
+      </p>
+      <div className="flex-col space-y-2 pl-4">
         <div className="space-x-2">
           <button
             type="button"

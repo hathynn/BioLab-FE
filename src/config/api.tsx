@@ -4,11 +4,8 @@ import { refreshAuthToken } from "../utils/authUtils";
 const SERVER = import.meta.env.VITE_API_URL_SERVER;
 const LOCAL = import.meta.env.VITE_API_URL_LOCAL;
 
-//Only change here
-export const current_address = LOCAL;
-
 const api = axios.create({
-  baseURL: current_address,
+  baseURL: LOCAL,
 });
 
 api.interceptors.request.use(
