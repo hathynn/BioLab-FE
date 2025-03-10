@@ -54,7 +54,7 @@ function MediaInfoCard() {
     queryFn: async () => await getPosts(),
   });
 
-  console.log("tran test", testPosts);
+ 
   useEffect(() => {
     const fetchPosts = async () => {
       try {

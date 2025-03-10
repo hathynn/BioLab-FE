@@ -32,11 +32,7 @@ function HomePage() {
     "Xin chào bạn cần giúp đỡ gì không?"
   );
   const { data: posts } = useQuery({ queryKey: ["posts"] });
-  // const { data: posts } = useQuery({
-  //   queryKey: ["posts"],
-  // });
 
-  console.log("tran test home page", posts);
 
   const fetchBrands = async () => {
     try {
