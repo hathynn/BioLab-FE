@@ -21,7 +21,7 @@ import { useQuery } from "@tanstack/react-query";
 
 function HomePage() {
   const { getBrands, getBrandFeatured } = useBrandService();
-  const { getProducts } = useProductService();
+  const { loading, getProducts } = useProductService();
   const [brands, setBrands] = useState<BrandType[]>([]);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [features, setFeatures] = useState<{ [key: string]: string }>({});
@@ -32,7 +32,6 @@ function HomePage() {
     "Xin chào bạn cần giúp đỡ gì không?"
   );
   const { data: posts } = useQuery({ queryKey: ["posts"] });
-
 
   const fetchBrands = async () => {
     try {
@@ -165,6 +164,17 @@ function HomePage() {
               Xem tất cả <FaArrowRight />
             </button>
           </div>
+          {loading && (
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="animate-pulse bg-gray-300 rounded-2xl h-[400px] w-full"
+                ></div>
+              ))}
+            </div>
+          )}
+
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
             {products?.map((product, index) => (
               <RecommendationProduct
