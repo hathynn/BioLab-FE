@@ -297,8 +297,8 @@ function ShippingInfo() {
             orderCode: Date.now(),
             amount: 2000,
             description: "Thanh toán đơn hàng",
-            returnUrl: "https://biolab.life/" + "payment-success",
-            cancelUrl: "https://biolab.life/" + "payment-fail",
+            returnUrl: import.meta.env.VITE_DOMAIN + "payment-success/",
+            cancelUrl: import.meta.env.VITE_DOMAIN + "payment-fail/",
           };
 
           const response = await createPayment(paymentData);
