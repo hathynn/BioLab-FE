@@ -1,5 +1,4 @@
 import OpenAI from "openai";
-import useProductService from "../services/useProductService";
 import { ProductType } from "../types/product.type";
 
 const openai = new OpenAI({
