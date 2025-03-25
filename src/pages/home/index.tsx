@@ -80,7 +80,8 @@ function HomePage() {
     setMessage("");
     setQuestion(message);
     setResponse("");
-    await sendMsgToOpenAI(message, (chunk) => {
+    fetchProducts();
+    await sendMsgToOpenAI(message, products, (chunk) => {
       setResponse((prevResponse) => prevResponse + chunk);
     });
   }
