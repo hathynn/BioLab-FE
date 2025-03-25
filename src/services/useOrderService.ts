@@ -82,6 +82,21 @@ const useOrderService = () => {
     }
   }, []);
 
+  const searchOrdersByPhone = useCallback(async (phone: string) => {
+    try {
+      setIsLoading(true);
+      const response = await callApi("get", `${ORDER.DEFAULT}/by-phone`, {
+        params: { phone : "0939612916" },
+      });
+  
+      return response?.data;
+    } catch (e: any) {
+      console.error("Lỗi khi tìm đơn hàng theo số điện thoại:", e);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
   return {
     loading,
     setIsLoading,
@@ -90,6 +105,7 @@ const useOrderService = () => {
     createOrder,
     updateOrder,
     deleteOrder,
+    searchOrdersByPhone,
   };
 };
 

@@ -1,0 +1,10 @@
+.order {
+  .ant-table-content {
+    & .ant-table-thead {
+      .ant-table-cell {
+        background-color: #62d985 !important;
+        color: white;
+      }
+    }
+  }
+}

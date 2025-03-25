@@ -35,6 +35,8 @@ import Create from "../components/templates/product/create-product/test";
 
 import PaymentSuccess from "../pages/payment/payment-sucess";
 import PaymentFailed from "../pages/payment/payment-fail";
+import Order from "../pages/order";
+
 
 export const router = createBrowserRouter([
   {
@@ -143,6 +145,10 @@ export const router = createBrowserRouter([
             element: <Payment />,
           },
         ],
+      },
+      {
+        path: USER_ROUTES.ORDER,
+        element: <Order />,
       },
     ],
   },
