@@ -295,7 +295,7 @@ function ShippingInfo() {
         const initiatePayment = async () => {
           const paymentData = {
             orderCode: Date.now(),
-            amount: 2000,
+            amount: calculateTotalPrice(),
             description: "Thanh toán đơn hàng",
             returnUrl: import.meta.env.VITE_DOMAIN + "payment-success/",
             cancelUrl: import.meta.env.VITE_DOMAIN + "payment-fail/",
