@@ -6,7 +6,7 @@ import RecommendationProduct from "../../components/recommendation-product";
 import { IoIosAddCircle } from "react-icons/io";
 import { AiFillLike } from "react-icons/ai";
 import MediaInfoCard from "../../components/mediaInfoCard";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 import { PRODUCT_ROUTES, USER_ROUTES } from "../../constants/routes";
 import { useEffect, useState } from "react";
 import { sendMsgToOpenAI } from "../../config/openAI";
@@ -17,10 +17,11 @@ import { BrandType } from "../../types/brand.type";
 import { ProductType } from "../../types/product.type";
 import useProductService from "../../services/useProductService";
 import IMAGE_URLS from "../../constants/imageUrls";
+import { useQuery } from "@tanstack/react-query";
 
 function HomePage() {
   const { getBrands, getBrandFeatured } = useBrandService();
-  const { getProducts } = useProductService();
+  const { loading, getProducts } = useProductService();
   const [brands, setBrands] = useState<BrandType[]>([]);
   const [products, setProducts] = useState<ProductType[]>([]);
   const [features, setFeatures] = useState<{ [key: string]: string }>({});
@@ -30,6 +31,7 @@ function HomePage() {
   const [response, setResponse] = useState(
     "Xin chào bạn cần giúp đỡ gì không?"
   );
+  const { data: posts } = useQuery({ queryKey: ["posts"] });
 
   const fetchBrands = async () => {
     try {
@@ -110,6 +112,7 @@ function HomePage() {
             >
               {IMAGE_URLS.HOME.BANNERS?.map((img, _) => (
                 <img
+                  loading="lazy"
                   src={img}
                   className="object-cover w-full h-[30vh] md:h-[calc(50vh+16px)] rounded-2xl"
                 />
@@ -128,24 +131,25 @@ function HomePage() {
             ))}
           </div>
         </div>
-
-        <div className="md:flex hidden justify-center items-center gap-4 h-[335px] pt-7">
-          <img
-            src="https://s3-alpha-sig.figma.com/img/b24e/d6b4/3baa0caeaa29aaab596c684ab438ac20?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=t72kRf6FaZadqWuzYbZeo4bBk27FixJ6EWeHYoXekwSh50vDLWOHDoroFODnt7LcAY5QoVxTlcszYVJmKdSr9LXKx1ard0AwzDJfPRblhGNxgI8SYGH85sZE6RIVQvPidiRKXPSDpNfRDEYbjattk4xARaNT-o9vKcPFgx3PdPz9yUebRtq-Ehty2MeEHiMfisplaeydWKvABrP~wyvaouoxGkT57VryxF0-bBDYf1tkz2XQ5IALkR15-poo5dfGQR2DLQKcV-MdqMlhMlMLDaYCnBbiBHbhr0ZtiV1~VkD8xkb2tV6w0p68sYzHN8OWHAOP-bRQ0sGDt9OvY8GGPQ__"
-            className="rounded-2xl w-[30%] h-full object-cover "
-            alt="Image 2"
-          />
-          <img
-            src="https://s3-alpha-sig.figma.com/img/b49f/1b80/e9ad7f0f94224a4118fddda8131b9432?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=CD8fR23ViH98sC00DihpaJuzzeyR~F22wZUgZLUfI-YTctQ~KF8k54GUNHXPz5odF~SasvuZcsriF8lm7McwgZ~aq067IzVrzwQ-522yFqLNtR~k8R97ts4r9FI1JDTzGlIFcpcja2kCST-C2DlFUt8ZA8eziO1MwDSV0nIKJvXxyJcQI9l8o0NVcgdFYEc3D74qc6V6474lJQfgycVIma4YL8qXht3kAk-~UBrGHA0SuxQAXl9acW3Bd6Ys7nE5uN47YgBXPWT7050nfLkHLIuxJnFO24~Hpn2XSk0PInx8dtpMEWYAyaeZ4STrC61~940~R5clOPIzOCS7qOCuOg__"
-            className="rounded-2xl w-[30%] h-full object-cover "
-            alt="Image 2"
-          />
-          <img
-            src="https://s3-alpha-sig.figma.com/img/2810/afb8/d6cce381df614aa5c564c287bdc35c88?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=oEiG-ctE9d~yLtf5lfsw6YHbUCMEVOzarmROw4igHGPpNRh4~EbfjwUd~fI6ghPIjUsPsihKBDxZUTmoijYmBX3SOIQfhFL9KrYzPlzjtPNZX~B3yepTS3aC1YLAhzLDih1ofi6ezwp50NSFxprdmzqiTag488NvS~VPF8zcRMOsxh0C3QaH3Mj2XKHNG4HCcna-T2BFT-7W3YWys4KKLTaPe-PQtMHnSoLe3urIVFZVn7y4eSabzQaXtc1lx~fTqPjsJ4Bbt2~U-jhYLdKkvkepM-aKNfdX8uJTa~IdVcmWtHRpd7OJBZN5rzqklcOMfRUR8pjaH6-JElmT5DgOEw__"
-            className="rounded-2xl w-[40%] h-full object-cover "
-            alt="Image 2"
-          />
-        </div>
+        {posts?.length > 0 && (
+          <div className="md:flex hidden justify-center items-center gap-4 h-[335px] pt-7">
+            <img
+              src={posts[0]?.banner}
+              className="rounded-2xl w-[30%] h-full object-cover "
+              alt="Image 2"
+            />
+            <img
+              src={posts[1]?.banner}
+              className="rounded-2xl w-[30%] h-full object-cover "
+              alt="Image 2"
+            />
+            <img
+              src={posts[2]?.banner}
+              className="rounded-2xl w-[40%] h-full object-cover "
+              alt="Image 2"
+            />
+          </div>
+        )}
       </div>
       <div className="bg-gradient-to-b from-[#B1F0B0] to-[#5BD07E] h-full w-full rounded-3xl">
         <div className="p-10">
@@ -160,6 +164,17 @@ function HomePage() {
               Xem tất cả <FaArrowRight />
             </button>
           </div>
+          {loading && (
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="animate-pulse bg-gray-300 rounded-2xl h-[400px] w-full"
+                ></div>
+              ))}
+            </div>
+          )}
+
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
             {products?.map((product, index) => (
               <RecommendationProduct

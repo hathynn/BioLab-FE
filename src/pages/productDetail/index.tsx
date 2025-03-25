@@ -284,11 +284,13 @@ const ProductDetail = () => {
               <div className="flex flex-col justify-start items-center space-y-3">
                 <div className="w-[70%]">
                   <Carousel arrows infinite={false} dots={true}>
-                    <img
-                      src={product?.image_url?.join("")}
-                      alt="Product"
-                      className="rounded-lg w-full"
-                    />
+                    {product?.image_url?.map((img) => (
+                      <img
+                        src={img}
+                        alt="Product"
+                        className="rounded-lg w-full"
+                      />
+                    ))}
                   </Carousel>
                 </div>
                 <div className="flex space-x-2">

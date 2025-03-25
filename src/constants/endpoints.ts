@@ -33,3 +33,9 @@ export enum ORDER {
 export enum ORDER_DETAIL {
   DEFAULT = "order-details",
 }
+
+export enum PAYMENT {
+  DEFAULT = "payments",
+  CREATE = "create-payment",
+  WEBHOOK = "payos-webhook",
+}

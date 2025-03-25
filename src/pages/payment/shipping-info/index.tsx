@@ -23,9 +23,12 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { debounce } from "lodash";
 import useAddressService from "../../../services/useAddressService";
 import { payOS } from "../../../utils/payment";
+import { PayOSConfig, usePayOS } from "payos-checkout";
+import usePaymentService from "../../../services/usePaymentService";
 function ShippingInfo() {
   const { cart } = useCartStore();
   const { createOrder } = useOrderService();
+  const { createPayment } = usePaymentService();
   const { createOrderDetail } = useOrderDetailService();
   const { getProvinces, getDistricts, getWards } = useLocationService();
   const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(
@@ -54,6 +57,16 @@ function ShippingInfo() {
   >([]);
   const { fetchSuggestions, loading } = useAddressService();
 
+  const [checkoutUrl, setCheckoutUrl] = useState<any | null>(null);
+
+  useEffect(() => {
+    if (checkoutUrl) {
+      console.log(checkoutUrl);
+
+      window.location.href = checkoutUrl;
+    }
+  }, [checkoutUrl]);
+
   useEffect(() => {
     const debouncedFetch = debounce(async () => {
       const results = await fetchSuggestions(input);
@@ -66,8 +79,6 @@ function ShippingInfo() {
 
   const handleSelectAddress = (description: string) => {
     setInput(description);
-
-    console.log(input);
     setSuggestions([]);
   };
 
@@ -233,9 +244,7 @@ function ShippingInfo() {
   const handleSubmit = async (values: typeof initialValues) => {
     if (!input.trim()) {
       toast.error("Vui lòng nhập địa chỉ.");
-    } 
-    console.log("Form Submitted:", values);
-    console.log(input);
+    }
 
     const orderData = {
       customerName: values.name,
@@ -267,7 +276,6 @@ function ShippingInfo() {
       if (response) {
         const order_id = response?.order_id;
         cart.map(async (item) => {
-          console.log(order_id, item.id);
           const order_detail: OrderDetailType = {
             order_id: order_id,
             product_id: item.id || "",
@@ -277,13 +285,33 @@ function ShippingInfo() {
           await createOrderDetail(order_detail);
         });
       }
+
       if (!response) throw new Error("Lỗi khi tạo đơn hàng");
       toast.success("Đơn hàng đã được tạo thành công!");
 
-      if (paymentMethod !== PaymentMethod.COD) {
-        nav("/payment-success/" + response?.order_id);
+      if (paymentMethod == PaymentMethod.COD) {
+        nav("/payment-success/");
       } else {
-        nav("/payment-success/" + response?.order_id);
+        const initiatePayment = async () => {
+          const paymentData = {
+            orderCode: Date.now(),
+            amount: 2000,
+            description: "Thanh toán đơn hàng",
+            returnUrl: import.meta.env.VITE_DOMAIN + "payment-success/",
+            cancelUrl: import.meta.env.VITE_DOMAIN + "payment-fail/",
+          };
+
+          const response = await createPayment(paymentData);
+          if (response) {
+            setCheckoutUrl(response?.checkoutUrl);
+          }
+        };
+
+        initiatePayment();
+
+        if (checkoutUrl) {
+          window.location.href = checkoutUrl;
+        }
       }
     } catch (error) {
       console.error("Error creating order:", error);
@@ -495,42 +523,6 @@ function ShippingInfo() {
                       />
                     </div>
                   </div>
-                  <p className="text-lg font-semibold mb-4 ">
-                    Chọn hình thức nhận hàng
-                  </p>
-                  <div className="flex-col space-y-2">
-                    <div className="space-x-2">
-                      <button
-                        className={`flex gap-2 px-3 py-3 text-base border-2 rounded-lg  hover:border-black ${
-                          paymentMethod === PaymentMethod.COD
-                            ? "bg-emerald-100"
-                            : "bg-white"
-                        }`}
-                        onClick={() => {
-                          setPaymentMethod(PaymentMethod.COD);
-                        }}
-                      >
-                        <img src="/assets/cod.png" className="w-6" />
-                        Thanh toán khi nhận hàng (COD)
-                      </button>
-                    </div>
-                    <div className="space-x-2">
-                      <button
-                        className={`flex gap-2 px-3 py-3 text-base border-2 rounded-lg  hover:border-black ${
-                          paymentMethod == PaymentMethod.VNPAY
-                            ? "bg-emerald-100"
-                            : "bg-white"
-                        }`}
-                        onClick={() => setPaymentMethod(PaymentMethod.VNPAY)}
-                      >
-                        <img
-                          src="/assets/vnpay.png"
-                          className="w-6 h-6 object-cover"
-                        />
-                        Thanh toán qua VnPay
-                      </button>
-                    </div>
-                  </div>
                 </div>
               </div>
 
@@ -574,7 +566,6 @@ function ShippingInfo() {
                     {calculateTotalQuantity()} sản phẩm
                   </h1>
                   <button
-                    onClick={() => handleCreateOrder()}
                     type="submit"
                     className=" text-sm  px-4 py-2 bg-customGreen text-white rounded-3xl shadow-md hover:bg-green-500"
                   >
@@ -586,6 +577,41 @@ function ShippingInfo() {
           </Form>
         )}
       </Formik>
+      <p className="text-lg font-semibold mb-4 pl-4">
+        Chọn hình thức nhận hàng
+      </p>
+      <div className="flex-col space-y-2 pl-4">
+        <div className="space-x-2">
+          <button
+            type="button"
+            className={`flex gap-2 px-3 py-3 text-base border-2 rounded-lg  hover:border-black ${
+              paymentMethod === PaymentMethod.COD
+                ? "bg-emerald-100"
+                : "bg-white"
+            }`}
+            onClick={() => {
+              setPaymentMethod(PaymentMethod.COD);
+            }}
+          >
+            <img src="/assets/cod.png" className="w-6" />
+            Thanh toán khi nhận hàng (COD)
+          </button>
+        </div>
+        <div className="space-x-2">
+          <button
+            type="button"
+            className={`flex gap-2 px-3 py-3 text-base border-2 rounded-lg  hover:border-black ${
+              paymentMethod == PaymentMethod.VNPAY
+                ? "bg-emerald-100"
+                : "bg-white"
+            }`}
+            onClick={() => setPaymentMethod(PaymentMethod.VNPAY)}
+          >
+            <img src="/assets/vnpay.png" className="w-6 h-6 object-cover" />
+            Thanh toán qua VnPay
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
