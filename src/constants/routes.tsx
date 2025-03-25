@@ -8,6 +8,7 @@ export enum USER_ROUTES {
   SOP = "sop",
   CART = "cart",
   SOP_DETAIL = "sop-detail",
+  ORDER = 'order'
 }
 
 export enum PRODUCT_ROUTES {
