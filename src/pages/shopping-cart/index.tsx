@@ -3,7 +3,7 @@ import { FaTrash } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
 import { Checkbox, ConfigProvider, Empty } from "antd";
-import useCartStore from "../../store/cartStore";
+import useCartStore, { useCheckoutStore } from "../../store/cartStore";
 import { PAYMENT_ROUTES, USER_ROUTES } from "../../constants/routes";
 import { toast } from "react-toastify";
 import cartempty from "../../assets/cartempty.png";
@@ -16,6 +16,7 @@ function ShoppingCart() {
     cart.reduce((acc, item) => ({ ...acc, [item.id || ""]: false }), {})
   );
   // const [discountPercentage] = useState(0);
+  const { toggleCheckoutItem,clearCheckout } = useCheckoutStore();
   const nav = useNavigate();
 
   const handleSelectAllChange = (checked: boolean) => {
@@ -58,10 +59,12 @@ function ShoppingCart() {
   //   if (value > 0) setQuantity(value);
   // };
   const handleCheckout = () => {
+    clearCheckout();
     const selectedProducts = cart.filter((item) => checkedItems[item.id || ""]);
     if (selectedProducts?.length == 0) {
       toast.error("Vui lòng chọn sản phẩm");
     } else {
+      selectedProducts.forEach((product) => toggleCheckoutItem(product));
       nav(`/${PAYMENT_ROUTES.SHIPPING_INFO}`);
     }
     console.log("Sản phẩm đã chọn:", selectedProducts);

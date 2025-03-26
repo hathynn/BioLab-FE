@@ -5,7 +5,7 @@ import { GrDocumentVerified } from "react-icons/gr";
 // import vnpay from "../../../assets/vnpay.png";
 import { Switch } from "antd";
 import "./index.scss";
-import useCartStore, { Product } from "../../../store/cartStore";
+import useCartStore, { Product, useCheckoutStore } from "../../../store/cartStore";
 import useLocationService from "../../../services/useLocationService";
 import { useEffect, useState } from "react";
 import {
@@ -22,11 +22,11 @@ import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { debounce } from "lodash";
 import useAddressService from "../../../services/useAddressService";
-import { payOS } from "../../../utils/payment";
-import { PayOSConfig, usePayOS } from "payos-checkout";
+
 import usePaymentService from "../../../services/usePaymentService";
 function ShippingInfo() {
   const { cart } = useCartStore();
+  const { checkoutItems,clearCheckout } = useCheckoutStore();
   const { createOrder } = useOrderService();
   const { createPayment } = usePaymentService();
   const { createOrderDetail } = useOrderDetailService();
@@ -50,6 +50,8 @@ function ShippingInfo() {
   const [name, setName] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+
+  console.log(checkoutItems)
 
   const [input, setInput] = useState<string>("");
   const [suggestions, setSuggestions] = useState<
@@ -83,14 +85,14 @@ function ShippingInfo() {
   };
 
   const calculateTotalPrice = () => {
-    return cart.reduce(
+    return checkoutItems.reduce(
       (total, item: Product) => total + (item.price || 0) * item.quantity,
       0
     );
   };
 
   const calculateTotalQuantity = () => {
-    return cart.reduce((total, item: Product) => total + item.quantity, 0);
+    return checkoutItems.reduce((total, item: Product) => total + item.quantity, 0);
   };
 
   const nav = useNavigate();
@@ -230,10 +232,7 @@ function ShippingInfo() {
     email: Yup.string()
       .email("Email không hợp lệ")
       .required("Vui lòng nhập email"),
-    // selectedProvince: Yup.number().required("Vui lòng chọn tỉnh/thành phố"),
-    // selectedDistrict: Yup.number().required("Vui lòng chọn quận/huyện"),
-    // selectedWard: Yup.number().required("Vui lòng chọn phường/xã"),
-    // address: Yup.string().required("Vui lòng nhập địa chỉ cụ thể"),
+
     note: Yup.string(),
     paymentMethod: Yup.string().oneOf(
       ["COD", "VNPAY"],
@@ -288,6 +287,7 @@ function ShippingInfo() {
 
       if (!response) throw new Error("Lỗi khi tạo đơn hàng");
       toast.success("Đơn hàng đã được tạo thành công!");
+      clearCheckout();
 
       if (paymentMethod == PaymentMethod.COD) {
         nav("/payment-success/");
@@ -353,12 +353,7 @@ function ShippingInfo() {
                         <label className="block text-sm text-gray-700">
                           Họ và tên
                         </label>
-                        {/* <input
-                          type="text"
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          className="w-full p-2 border border-gray-300 rounded-md bg-gray-100"
-                        /> */}
+                      
                         <Field
                           name="name"
                           placeholder="Họ và tên"
@@ -374,12 +369,7 @@ function ShippingInfo() {
                         <label className="block text-sm text-gray-700">
                           Số điện thoại
                         </label>
-                        {/* <input
-                          type="text"
-                          value={phone}
-                          onChange={(e) => setPhone(e.target.value)}
-                          className="w-full p-2 border border-gray-300 rounded-md bg-gray-100"
-                        /> */}
+                   
 
                         <Field
                           name="phone"
@@ -397,12 +387,7 @@ function ShippingInfo() {
                       <label className="block text-sm text-gray-700">
                         Email
                       </label>
-                      {/* <input
-                        type="text"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full p-2 border border-gray-300 rounded-md bg-gray-100"
-                      /> */}
+             
                       <Field
                         name="email"
                         placeholder="Email"
@@ -425,7 +410,7 @@ function ShippingInfo() {
                           setSelectedProvince(Number(e.target.value))
                         }
                       >
-                        <option value="">Chọn tỉnh/thành phố</option>
+                        <option value="">Tỉnh/thành phố</option>
                         {provinces.map((province) => (
                           <option key={province.id} value={province.id}>
                             {province.name}
@@ -439,7 +424,7 @@ function ShippingInfo() {
                         }
                         disabled={!selectedProvince}
                       >
-                        <option value="">Chọn quận/huyện</option>
+                        <option value="">Quận/huyện</option>
                         {districts.map((district) => (
                           <option key={district.id} value={district.id}>
                             {district.name}
@@ -453,7 +438,7 @@ function ShippingInfo() {
                         }
                         disabled={!selectedDistrict}
                       >
-                        <option value="">Chọn phường/xã</option>
+                        <option value="">Phường/xã</option>
                         {wards.map((ward) => (
                           <option key={ward.id} value={ward.id}>
                             {ward.name}
@@ -528,7 +513,7 @@ function ShippingInfo() {
 
               <div className="w-full h-fit rounded-lg  p-4 border">
                 <h1 className="font-bold mb-2">Thông tin đơn hàng</h1>
-                {cart.map((item) => (
+                {checkoutItems.map((item) => (
                   <div className="flex justify-between mb-4">
                     <div className="flex w-2/5 space-x-2">
                       <img

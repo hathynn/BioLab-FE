@@ -45,3 +45,33 @@ const useCartStore = create<CartState>()(
 );
 
 export default useCartStore;
+
+
+interface CheckoutState {
+  checkoutItems: Product[];
+  toggleCheckoutItem: (product: Product) => void;
+  clearCheckout: () => void;
+}
+
+export const useCheckoutStore = create<CheckoutState>()(
+  persist(
+    (set) => ({
+      checkoutItems: [],
+      toggleCheckoutItem: (product) =>
+        set((state) => {
+          const isSelected = state.checkoutItems.find((p) => p.id === product.id);
+          if (isSelected) {
+            return {
+              checkoutItems: state.checkoutItems.filter((p) => p.id !== product.id),
+            };
+          } else {
+            return { checkoutItems: [...state.checkoutItems, product] };
+          }
+        }),
+      clearCheckout: () => set({ checkoutItems: [] }),
+    }),
+    {
+      name: "checkout-storage",
+    }
+  )
+);
