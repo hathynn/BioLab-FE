@@ -86,9 +86,9 @@ const useOrderService = () => {
     try {
       setIsLoading(true);
       const response = await callApi("get", `${ORDER.DEFAULT}/by-phone`, {
-        params: { phone : "0939612916" },
+        params: { phone },
       });
-  
+
       return response?.data;
     } catch (e: any) {
       console.error("Lỗi khi tìm đơn hàng theo số điện thoại:", e);
