@@ -18,7 +18,9 @@ import RecommendationProduct from "../../components/recommendation-product";
 import FeatureBar from "../../components/feature-bar";
 import { ProductType } from "../../types/product.type";
 import useProductService from "../../services/useProductService";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import useCartStore, { useCheckoutStore } from "../../store/cartStore";
+import { PAYMENT_ROUTES, USER_ROUTES } from "../../constants/routes";
 
 const ProductDetail = () => {
   const { getProducts } = useProductService();
@@ -27,13 +29,31 @@ const ProductDetail = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [product, setProduct] = useState<ProductType>();
   const { id } = useParams();
-
+  const navigate = useNavigate();
+  const { toggleCheckoutItem } = useCheckoutStore();
+  const {addToCart} = useCartStore();
   const fetchProducts = async () => {
     try {
       const response = await getProducts();
       setProducts(response);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleCheckout = () => {
+    const productCheckout = {
+      id: product?._id,
+      name: product?.name,
+      price: product?.price,
+      quantity: 1,
+      unit: product?.unit,
+      img: product?.image_url[0],
+    };
+    if (product) {
+      addToCart(productCheckout);
+      toggleCheckoutItem(productCheckout);
+      navigate(`/${PAYMENT_ROUTES.SHIPPING_INFO}`);
     }
   };
 
@@ -401,7 +421,10 @@ const ProductDetail = () => {
                 </div>
 
                 <div className="mt-6 flex space-x-4">
-                  <button className=" w-2/5  px-6 py-3 bg-customGreen text-white rounded-lg shadow-md hover:bg-green-500">
+                  <button
+                    onClick={handleCheckout}
+                    className=" w-2/5  px-6 py-3 bg-customGreen text-white rounded-lg shadow-md hover:bg-green-500"
+                  >
                     Mua ngay
                   </button>
                   <button className=" w-2/5  px-6 py-3 bg-customLightGreen text-green-600 border-customGreen border-2 rounded-lg shadow-md hover:bg-customGreen hover:text-white">
@@ -437,7 +460,7 @@ const ProductDetail = () => {
             </button>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 pt-10">
-            {products?.map((product, index) => (
+            {products?.slice(0, 4)?.map((product, index) => (
               <RecommendationProduct
                 key={index}
                 _id={product._id}
