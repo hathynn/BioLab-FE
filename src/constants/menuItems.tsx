@@ -38,10 +38,9 @@ export const getLabel = (
 
 const adminItems = [
   { label: "Tổng quan", key: "overview", icon: <HomeOutlined /> },
-  { label: "Doanh thu", key: "sales", icon: <LineChartOutlined /> },
   { label: "Sản phẩm", key: "product", icon: <ProductOutlined /> },
   { label: "Nhãn hàng", key: "brand", icon: <ShopOutlined /> },
-  { label: "Category", key: "category", icon: <BarsOutlined /> },
+  { label: "Danh mục sản phẩm", key: "category", icon: <BarsOutlined /> },
   { label: "Bài đăng", key: "create-blog", icon: <PaperClipOutlined /> },
   {
     label: "Danh mục bài đăng",
