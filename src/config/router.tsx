@@ -161,14 +161,8 @@ export const router = createBrowserRouter([
         path: ADMIN_ROUTES.OVERVIEW,
         element: <OverviewTeamplate />,
       },
-      {
-        path: ADMIN_ROUTES.SALES,
-        element: <Create />,
-      },
-      {
-        path: ADMIN_ROUTES.SETTING,
-        element: <></>,
-      },
+  
+   
       {
         path: ADMIN_ROUTES.BLOG_CATEGORY,
         element: <PostCategory />,
