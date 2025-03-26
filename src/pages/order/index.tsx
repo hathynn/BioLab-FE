@@ -6,25 +6,20 @@ import useOrderService from "../../services/useOrderService";
 
 function Order() {
   const [orders, setOrders] = useState<OrderType[]>([]);
-  const {  searchOrdersByPhone } = useOrderService();
-const [searchPhone, setSearchPhone] = useState<string>("");
-
+  const { searchOrdersByPhone } = useOrderService();
+  const [searchPhone, setSearchPhone] = useState<string>("");
 
   const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
-    console.log("hello")
     event.preventDefault();
     if (!searchPhone) return;
-  
+
     try {
       const results = await searchOrdersByPhone(searchPhone);
-      setOrders(Array.isArray(results.data) ? results.data : []);
+      setOrders(Array.isArray(results.data) ? results?.data?.reverse() : []);
     } catch (error) {
       console.error("Lỗi khi tìm kiếm đơn hàng:", error);
     }
   };
-  
-
-  
 
   const getStatusBadge = (status: OrderStatus) => {
     const statusMap: Record<OrderStatus, { text: string; color: string }> = {
@@ -44,10 +39,10 @@ const [searchPhone, setSearchPhone] = useState<string>("");
       [PaymentStatus.PAID]: "green",
       [PaymentStatus.UNPAID]: "volcano",
     };
-  
+
     return <Tag color={statusColors[status]}>{status}</Tag>;
   };
-  
+
   const columns: TableProps<OrderType>["columns"] = [
     {
       title: "Tên khách hàng",
@@ -58,8 +53,10 @@ const [searchPhone, setSearchPhone] = useState<string>("");
       title: "Tổng tiền",
       dataIndex: "total_amount",
       key: "total_amount",
-      render: (total_amount: number) => <span>{total_amount.toLocaleString()} VND</span>,
-    },    
+      render: (total_amount: number) => (
+        <span>{total_amount.toLocaleString()} VND</span>
+      ),
+    },
     {
       title: "Trạng thái đơn hàng",
       dataIndex: "status",
@@ -68,7 +65,7 @@ const [searchPhone, setSearchPhone] = useState<string>("");
     },
     {
       title: "Trạng thái thanh toán",
-      dataIndex: "payment_status", 
+      dataIndex: "payment_status",
       key: "payment_status",
       render: (status: PaymentStatus) => getPaymentStatus(status),
     },
@@ -88,7 +85,6 @@ const [searchPhone, setSearchPhone] = useState<string>("");
           />
           <button
             type="submit"
-
             className="border text-black py-2 px-4 rounded-md hover:bg-customLightGreen hover:border-customLightGreen"
           >
             Nhập
@@ -96,7 +92,6 @@ const [searchPhone, setSearchPhone] = useState<string>("");
         </form>
       </div>
       <Table<OrderType> dataSource={orders} columns={columns} />
-   
     </div>
   );
 }
