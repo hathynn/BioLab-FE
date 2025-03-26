@@ -69,5 +69,5 @@ export const headerItems = [
   { label: "Hoạt động xã hội", key: "blog" },
   { label: "Gói dịch vụ", key: "package" },
   { label: "SOP", key: "sop" },
-  { label: "Cẩm nang sức khỏe", key: "blog" },
+  { label: "Lịch sử mua hàng", key: "order" },
 ];
