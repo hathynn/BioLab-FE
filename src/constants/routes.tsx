@@ -8,7 +8,7 @@ export enum USER_ROUTES {
   SOP = "sop",
   CART = "cart",
   SOP_DETAIL = "sop-detail",
-  ORDER = 'order'
+  ORDER = "order",
 }
 
 export enum PRODUCT_ROUTES {
@@ -20,7 +20,7 @@ export enum PAYMENT_ROUTES {
   PAYMENT = "payment",
   SHIPPING_INFO = "shipping-info",
   SUCESS = "payment-success",
-  FAIL = 'payment-fail',
+  FAIL = "payment-fail",
 }
 
 // Admin Routes
@@ -34,4 +34,6 @@ export enum ADMIN_ROUTES {
   BRAND = "brand",
   CATEGORY = "category",
   BLOG_CATEGORY = "blog-category",
+  SOP = "sop",
+  ORDER = "order"
 }
