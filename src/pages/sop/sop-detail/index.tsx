@@ -47,11 +47,22 @@ const SOPDetail = (): JSX.Element => {
   const [orderLoading, setOrderLoading] = useState<boolean>(false);
   const [deliveryDay, setDeliveryDay] = useState<number>(15);
 
+  const [selectedMonth, setSelectedMonth] = useState<number>(
+    new Date().getMonth() + 1
+  );
+  const [selectedYear, setSelectedYear] = useState<number>(
+    new Date().getFullYear()
+  );
+
   const getNextMonth = (n: number = 0) => {
     const today = new Date();
     const nextMonth = new Date(today);
     nextMonth.setMonth(today.getMonth() + n);
     return `Tháng ${nextMonth.getMonth() + 1}, ${nextMonth.getFullYear()}`;
+  };
+
+  const getDaysInMonth = (month: number, year: number): number => {
+    return new Date(year, month, 0).getDate();
   };
 
   const getCycleDuration = (plan: string): number => {
@@ -71,7 +82,7 @@ const SOPDetail = (): JSX.Element => {
   }, [location.pathname]);
 
   useEffect(() => {
-    setSelectedStartDate(getNextMonth(1));
+    setSelectedStartDate(getNextMonth(0));
   }, [selectedPlan]);
 
   useEffect(() => {
@@ -96,6 +107,23 @@ const SOPDetail = (): JSX.Element => {
       fetchSOPDetail();
     }
   }, [id]);
+
+  useEffect(() => {
+    if (selectedStartDate) {
+      const match = selectedStartDate.match(/Tháng (\d+), (\d+)/);
+      if (match) {
+        const month = parseInt(match[1]);
+        const year = parseInt(match[2]);
+        setSelectedMonth(month);
+        setSelectedYear(year);
+
+        const daysInMonth = getDaysInMonth(month, year);
+        if (deliveryDay > daysInMonth) {
+          setDeliveryDay(daysInMonth);
+        }
+      }
+    }
+  }, [selectedStartDate, deliveryDay]);
 
   const handleBuyNow = () => {
     if (!id || !sopData) {
@@ -153,7 +181,7 @@ const SOPDetail = (): JSX.Element => {
           is_continue: autoRenew,
           start_date: startDate.toISOString(),
           duration_months: duration,
-          delivery_day: deliveryDay, 
+          delivery_day: deliveryDay,
         },
       };
 
@@ -356,14 +384,31 @@ const SOPDetail = (): JSX.Element => {
                         onChange={(e) => setSelectedStartDate(e.target.value)}
                         className="border p-2 rounded-md w-full"
                       >
-                        {Array.from(
-                          { length: getCycleDuration(selectedPlan) },
-                          (_, i) => (
-                            <option key={i + 1} value={getNextMonth(i + 1)}>
-                              {getNextMonth(i + 1)}
-                            </option>
-                          )
-                        )}
+                        {(() => {
+                          const options = [];
+                          const today = new Date();
+                          const currentMonth = today.getMonth();
+                          const currentYear = today.getFullYear();
+
+                          for (
+                            let i = 0;
+                            i < getCycleDuration(selectedPlan);
+                            i++
+                          ) {
+                            const month = ((currentMonth + i) % 12) + 1; // 1-12
+                            const year =
+                              currentYear + Math.floor((currentMonth + i) / 12);
+                            const value = `Tháng ${month}, ${year}`;
+
+                            options.push(
+                              <option key={i} value={value}>
+                                {value}
+                              </option>
+                            );
+                          }
+
+                          return options;
+                        })()}
                       </select>
 
                       <ConfigProvider
@@ -398,11 +443,17 @@ const SOPDetail = (): JSX.Element => {
                         }
                         className="border p-2 rounded-md w-full"
                       >
-                        {Array.from({ length: 28 }, (_, i) => (
-                          <option key={i + 1} value={i + 1}>
-                            Ngày {i + 1} trong tháng
-                          </option>
-                        ))}
+                        {(() => {
+                          const daysInMonth = getDaysInMonth(
+                            selectedMonth,
+                            selectedYear
+                          );
+                          return Array.from({ length: daysInMonth }, (_, i) => (
+                            <option key={i + 1} value={i + 1}>
+                              Ngày {i + 1} trong tháng
+                            </option>
+                          ));
+                        })()}
                       </select>
                     </div>
                   </div>
