@@ -9,6 +9,19 @@ export interface OrderType {
   payment_status: PaymentStatus;
   payment_method: string;
   address: string;
+  item_type?: string;
+  subscription_info?: {
+    is_continue?: boolean;
+    start_date?: Date;
+    duration_months?: number;
+    delivery_day?: number;
+    recurring_total?: number;
+    next_delivery_date?: Date;
+    subscription_status?: "active" | "paused" | "cancelled" | "completed";
+    deliveries_completed?: number;
+    deliveries_remaining?: number;
+    last_delivery_date?: Date;
+  };
 }
 
 export enum OrderStatus {

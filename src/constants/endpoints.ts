@@ -28,6 +28,8 @@ export enum POST_CATEGORY {
 
 export enum ORDER {
   DEFAULT = "orders",
+  GET_ALL = "orders/all",
+  STATUS = "status",
 }
 
 export enum ORDER_DETAIL {
@@ -42,4 +44,11 @@ export enum PAYMENT {
 
 export enum SOP {
   DEFAULT = "sops",
+}
+
+export enum SOP_ORDER {
+  DEFAULT = "/sop-orders",
+  PAYMENT = "/sop-orders/payment",
+  SUBSCRIPTIONS = "/sop-orders/subscriptions",
+  PENDING_DELIVERIES = "/sop-orders/pending-deliveries",
 }

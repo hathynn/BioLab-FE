@@ -48,7 +48,7 @@ const ProductDetail = () => {
       price: product?.price,
       quantity: 1,
       unit: product?.unit,
-      img: product?.image_url[0],
+      img: product?.image_url![0],
     };
     if (product) {
       addToCart(productCheckout);
