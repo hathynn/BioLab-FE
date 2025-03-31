@@ -326,7 +326,7 @@ function ShippingInfo() {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ values, setFieldValue }) => (
+        {({  }) => (
           <Form>
             <div className="grid grid-cols-3 gap-6">
               <div className="col-span-2">

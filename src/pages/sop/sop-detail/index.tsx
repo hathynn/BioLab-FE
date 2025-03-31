@@ -10,19 +10,26 @@ import {
 } from "antd";
 import { BsHeart } from "react-icons/bs";
 import RatingStars from "../../../components/rating-star";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import useSOPService from "../../../services/useSOPService";
+import useSOPOrderService from "../../../services/useSOPOrderService";
 import { SOPType } from "../../../types/sop.type";
+import { toast } from "react-toastify";
+import ProfileFormModal, {
+  ProfileFormValues,
+} from "../../../components/order-sop/ProfileFormModal";
+import OrderConfirmationModal from "../../../components/order-sop/OrderConfirmationModal";
 
 const SOPDetail = (): JSX.Element => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const sopService = useSOPService();
+  const sopOrderService = useSOPOrderService();
 
   const [selectedPlan, setSelectedPlan] = useState<string>(
     "Hàng tháng, 3 tháng"
   );
-  const [selectedStartDate, setSelectedStartDate] =
-    useState<string>("Tháng 2, 2025");
+  const [selectedStartDate, setSelectedStartDate] = useState<string>("");
   const [selectedProfile, setSelectedProfile] =
     useState<string>("Tạo hồ sơ mới");
   const [autoRenew, setAutoRenew] = useState<boolean>(false);
@@ -30,6 +37,31 @@ const SOPDetail = (): JSX.Element => {
   const [sopData, setSopData] = useState<SOPType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const [profileModalVisible, setProfileModalVisible] =
+    useState<boolean>(false);
+  const [confirmModalVisible, setConfirmModalVisible] =
+    useState<boolean>(false);
+  const [profileData, setProfileData] = useState<ProfileFormValues | null>(
+    null
+  );
+  const [orderLoading, setOrderLoading] = useState<boolean>(false);
+  const [deliveryDay, setDeliveryDay] = useState<number>(15);
+
+  const getNextMonth = (n: number = 0) => {
+    const today = new Date();
+    const nextMonth = new Date(today);
+    nextMonth.setMonth(today.getMonth() + n);
+    return `Tháng ${nextMonth.getMonth() + 1}, ${nextMonth.getFullYear()}`;
+  };
+
+  const getCycleDuration = (plan: string): number => {
+    const durationMap: Record<string, number> = {
+      "Hàng tháng, 3 tháng": 3,
+      "Hàng tháng, 6 tháng": 6,
+      "Hàng tháng, 12 tháng": 12,
+    };
+    return durationMap[plan] || 3;
+  };
 
   useEffect(() => {
     window.scrollTo({
@@ -37,6 +69,10 @@ const SOPDetail = (): JSX.Element => {
       behavior: "smooth",
     });
   }, [location.pathname]);
+
+  useEffect(() => {
+    setSelectedStartDate(getNextMonth(1));
+  }, [selectedPlan]);
 
   useEffect(() => {
     const fetchSOPDetail = async (): Promise<void> => {
@@ -60,6 +96,88 @@ const SOPDetail = (): JSX.Element => {
       fetchSOPDetail();
     }
   }, [id]);
+
+  const handleBuyNow = () => {
+    if (!id || !sopData) {
+      message.error("Không tìm thấy thông tin SOP");
+      return;
+    }
+
+    if (selectedProfile === "Tạo hồ sơ mới") {
+      setProfileModalVisible(true);
+    } else {
+      const savedProfile: ProfileFormValues = {
+        customer_name: "Nguyễn Văn A",
+        email: "nguyenvana@example.com",
+        phone: "0987654321",
+        address: "123 Đường ABC, Quận XYZ, TP. Hồ Chí Minh",
+      };
+      setProfileData(savedProfile);
+      setConfirmModalVisible(true);
+    }
+  };
+
+  const handleProfileSubmit = (values: ProfileFormValues) => {
+    setProfileData(values);
+    setProfileModalVisible(false);
+    setConfirmModalVisible(true);
+  };
+
+  const handleConfirmOrder = async (paymentMethod: string) => {
+    if (!id || !sopData || !profileData) {
+      message.error("Thiếu thông tin để đặt hàng");
+      return;
+    }
+
+    setOrderLoading(true);
+
+    try {
+      const duration = getCycleDuration(selectedPlan);
+
+      const [, month, year] = selectedStartDate.match(/Tháng (\d+), (\d+)/) || [
+        null,
+        "1",
+        "2025",
+      ];
+      const startDate = new Date(parseInt(year), parseInt(month) - 1, 1);
+
+      const orderPaymentData = {
+        customer_name: profileData.customer_name,
+        email: profileData.email,
+        phone: profileData.phone,
+        payment_method: paymentMethod,
+        address: profileData.address,
+        sop_id: id,
+        quantity: 1,
+        subscription_info: {
+          is_continue: autoRenew,
+          start_date: startDate.toISOString(),
+          duration_months: duration,
+          delivery_day: deliveryDay, 
+        },
+      };
+
+      const response = await sopOrderService.createSOPOrderPayment(
+        orderPaymentData
+      );
+      if (paymentMethod === "COD") {
+        toast.success("Đặt hàng thành công! Bạn sẽ thanh toán khi nhận hàng.");
+        navigate("/my-orders");
+      } else {
+        if (response?.checkoutUrl) {
+          window.location.href = response.checkoutUrl;
+        } else {
+          message.error("Không thể tạo liên kết thanh toán");
+        }
+      }
+    } catch (error) {
+      console.error("Lỗi khi đặt hàng:", error);
+      toast.error("Đặt hàng không thành công. Vui lòng thử lại sau.");
+    } finally {
+      setOrderLoading(false);
+      setConfirmModalVisible(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -238,9 +356,14 @@ const SOPDetail = (): JSX.Element => {
                         onChange={(e) => setSelectedStartDate(e.target.value)}
                         className="border p-2 rounded-md w-full"
                       >
-                        <option value="Tháng 2, 2025">Tháng 2, 2025</option>
-                        <option value="Tháng 3, 2025">Tháng 3, 2025</option>
-                        <option value="Tháng 4, 2025">Tháng 4, 2025</option>
+                        {Array.from(
+                          { length: getCycleDuration(selectedPlan) },
+                          (_, i) => (
+                            <option key={i + 1} value={getNextMonth(i + 1)}>
+                              {getNextMonth(i + 1)}
+                            </option>
+                          )
+                        )}
                       </select>
 
                       <ConfigProvider
@@ -262,6 +385,25 @@ const SOPDetail = (): JSX.Element => {
                           Tự động tiếp tục
                         </Checkbox>
                       </ConfigProvider>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start">
+                    <p className="w-1/4 text-sm font-bold">Ngày giao hàng</p>
+                    <div className="w-3/4 text-sm">
+                      <select
+                        value={deliveryDay}
+                        onChange={(e) =>
+                          setDeliveryDay(parseInt(e.target.value))
+                        }
+                        className="border p-2 rounded-md w-full"
+                      >
+                        {Array.from({ length: 28 }, (_, i) => (
+                          <option key={i + 1} value={i + 1}>
+                            Ngày {i + 1} trong tháng
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   </div>
 
@@ -331,10 +473,20 @@ const SOPDetail = (): JSX.Element => {
                 </div>
 
                 <div className="mt-6 flex space-x-4">
-                  <button className="w-2/5 px-6 py-3 bg-customGreen text-white rounded-lg shadow-md hover:bg-green-500">
+                  <button
+                    className="w-2/5 px-6 py-3 bg-customGreen text-white rounded-lg shadow-md hover:bg-green-500"
+                    onClick={handleBuyNow}
+                  >
                     Mua ngay
                   </button>
-                  <button className="w-2/5 px-6 py-3 bg-customLightGreen text-green-600 border-customGreen border-2 rounded-lg shadow-md hover:bg-customGreen hover:text-white">
+                  <button
+                    onClick={() => {
+                      toast.warning(
+                        "Tính năng thêm giỏ hàng cho SOP hiện chưa hỗ trợ!"
+                      );
+                    }}
+                    className="w-2/5 px-6 py-3 bg-customLightGreen text-green-600 border-customGreen border-2 rounded-lg shadow-md hover:bg-customGreen hover:text-white"
+                  >
                     Thêm vào giỏ hàng
                   </button>
                   <span className="text-2xl pt-4">
@@ -346,6 +498,33 @@ const SOPDetail = (): JSX.Element => {
           </div>
         </div>
       </div>
+
+      {/* Modal Tạo hồ sơ mới */}
+      <ProfileFormModal
+        visible={profileModalVisible}
+        onClose={() => setProfileModalVisible(false)}
+        onSubmit={handleProfileSubmit}
+        loading={orderLoading}
+      />
+
+      {/* Modal Xác nhận đơn hàng */}
+      {profileData && (
+        <OrderConfirmationModal
+          visible={confirmModalVisible}
+          onClose={() => setConfirmModalVisible(false)}
+          onConfirm={handleConfirmOrder}
+          loading={orderLoading}
+          profileData={profileData}
+          sopName={sopData.name}
+          totalPrice={total}
+          subscription={{
+            plan: selectedPlan,
+            startDate: selectedStartDate,
+            autoRenew: autoRenew,
+            deliveryDay: deliveryDay,
+          }}
+        />
+      )}
     </>
   );
 };

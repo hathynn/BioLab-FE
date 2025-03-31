@@ -7,7 +7,6 @@ import { OrderType } from "../types/order.type";
 const useOrderService = () => {
   const { callApi, loading, setIsLoading } = useApiService();
 
-  // Lấy danh sách tất cả đơn hàng
   const getOrders = useCallback(async () => {
     try {
       setIsLoading(true);
@@ -19,6 +18,56 @@ const useOrderService = () => {
       setIsLoading(false);
     }
   }, []);
+
+  const getAllOrders = useCallback(async () => {
+    try {
+      setIsLoading(true);
+      const response = await callApi("get", ORDER.GET_ALL);
+      return response?.data;
+    } catch (e: any) {
+      console.error("Lỗi khi lấy danh sách đơn hàng:", e);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const updateOrderStatusByOrderId = useCallback(
+    async (_id: string, status: string) => {
+      try {
+        setIsLoading(true);
+        const response = await callApi(
+          "patch",
+          `${ORDER.DEFAULT}/${_id}/${ORDER.STATUS}`,
+          { status }
+        );
+        return response?.data;
+      } catch (e: any) {
+        console.error("Lỗi khi cập nhật trạng thái đơn hàng:", e);
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    []
+  );
+
+  const getOrdersByPage = useCallback(
+    async (page: number = 1, limit: number = 10) => {
+      try {
+        setIsLoading(true);
+        const response = await callApi(
+          "get",
+          `${ORDER.DEFAULT}?page=${page}&limit=${limit}`
+        );
+        return response?.data;
+      } catch (error: any) {
+        console.error("Lỗi khi lấy danh sách đơn hàng theo trang:", error);
+        throw error;
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [callApi]
+  );
 
   // Lấy chi tiết đơn hàng theo ID
   const getOrderById = useCallback(async (_id: string) => {
@@ -99,6 +148,9 @@ const useOrderService = () => {
 
   return {
     loading,
+    getAllOrders,
+    getOrdersByPage,
+    updateOrderStatusByOrderId,
     setIsLoading,
     getOrders,
     getOrderById,
