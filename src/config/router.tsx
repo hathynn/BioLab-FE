@@ -36,7 +36,8 @@ import Create from "../components/templates/product/create-product/test";
 import PaymentSuccess from "../pages/payment/payment-sucess";
 import PaymentFailed from "../pages/payment/payment-fail";
 import Order from "../pages/order";
-
+import ManageSOP from "../components/templates/manage-sop";
+import ManageOrder from "../components/templates/manage-order";
 
 export const router = createBrowserRouter([
   {
@@ -109,7 +110,7 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: USER_ROUTES.SOP_DETAIL,
+        path: `${USER_ROUTES.SOP}/:id`,
         element: <SOPDetail />,
       },
       {
@@ -161,8 +162,7 @@ export const router = createBrowserRouter([
         path: ADMIN_ROUTES.OVERVIEW,
         element: <OverviewTeamplate />,
       },
-  
-   
+
       {
         path: ADMIN_ROUTES.BLOG_CATEGORY,
         element: <PostCategory />,
@@ -187,6 +187,14 @@ export const router = createBrowserRouter([
       {
         path: ADMIN_ROUTES.CATEGORY,
         element: <Category />,
+      },
+      {
+        path: ADMIN_ROUTES.SOP,
+        element: <ManageSOP />,
+      },
+      {
+        path: ADMIN_ROUTES.ORDER,
+        element: <ManageOrder />,
       },
     ],
   },

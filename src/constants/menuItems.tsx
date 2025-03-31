@@ -2,12 +2,14 @@ import { MenuProps } from "antd";
 import { Link } from "react-router-dom";
 import {
   BarsOutlined,
+  DatabaseOutlined,
   HomeOutlined,
   LineChartOutlined,
   PaperClipOutlined,
   ProductOutlined,
   SettingOutlined,
   ShopOutlined,
+  TransactionOutlined,
 } from "@ant-design/icons";
 
 import { Key } from "react";
@@ -39,8 +41,10 @@ export const getLabel = (
 const adminItems = [
   { label: "Tổng quan", key: "overview", icon: <HomeOutlined /> },
   { label: "Sản phẩm", key: "product", icon: <ProductOutlined /> },
+  { label: "SOP", key: "sop", icon: <DatabaseOutlined /> },
   { label: "Nhãn hàng", key: "brand", icon: <ShopOutlined /> },
   { label: "Danh mục sản phẩm", key: "category", icon: <BarsOutlined /> },
+  { label: "Đơn hàng", key: "order", icon: <TransactionOutlined /> },
   { label: "Bài đăng", key: "create-blog", icon: <PaperClipOutlined /> },
   {
     label: "Danh mục bài đăng",

@@ -39,3 +39,7 @@ export enum PAYMENT {
   CREATE = "create-payment",
   WEBHOOK = "payos-webhook",
 }
+
+export enum SOP {
+  DEFAULT = "sops",
+}
